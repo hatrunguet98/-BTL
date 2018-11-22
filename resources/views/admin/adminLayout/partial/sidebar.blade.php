@@ -6,7 +6,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="http://localhost/Laravel/public/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{ asset('AdminLTE/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>Alexander Pierce</p>
@@ -32,8 +32,8 @@
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="http://localhost/Laravel/public/admin/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-            <li class="active"><a href="http://localhost/Laravel/public/admin/students"><i class="fa fa-link"></i> <span>Danh sách sinh viên</span></a></li>
-            <li class="active"><a href="http://localhost/Laravel/public/admin/lecturers"><i class="fa fa-link"></i> <span>Danh sách giảng viên</span></a></li>
+            <li class="active"><a href="{{ url('student-register') }}"><i class="fa fa-link"></i> <span>Danh sách sinh viên</span></a></li>
+            <li class="active"><a href="{{ url('teacher-register') }}"><i class="fa fa-link"></i> <span>Danh sách giảng viên</span></a></li>
             <li class="active"><a href="http://localhost/Laravel/public/admin/admins"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
