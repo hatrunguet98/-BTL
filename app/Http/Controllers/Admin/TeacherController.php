@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Excel;
-use App\Imports\StudentRegister;
+use App\Imports\TeacherRegister;
 
-class StudentRegisterController extends Controller
+class TeacherController extends Controller
 {
-     use RegistersUsers;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -22,7 +22,7 @@ class StudentRegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-    protected $role = 1;
+    protected $role = 2;
     /**
      * Create a new controller instance.
      *
@@ -35,44 +35,31 @@ class StudentRegisterController extends Controller
         $this->middleware('admin');
     }
 
-    public function registerStudent()
+    public function registerTeacher()
     {
-    	//return view('auth.StudentRegister');
-        return view('admin.students.index');
+    	return view('Admin.lecturers.Teacher');
     }
-
-    public function import()
-    {
-    	return view('auth.StudentRegisterImport');
-    }
-
-    public function importStudent(Request $request)
-    {
-    	if($request->hasFile('FILE')){
-        	Excel::import(new StudentRegister, request()->file('FILE'));
-        	//$data =  $this->excel->import(new StudentRegister, request()->file('FILE'));
-        	 return redirect('/home')->with('success', 'All good!');
-        }
-    }
-
-   /* public static function importData(array $datas)
-    {
-    	foreach ($datas as $data) {
-    		$rel = [
-    			'username' => $data[1],
-    			'password' => $data[2],
-    			'email' => $data[4],
-    			'course' => $data[5],
-    		];
-    		$this->createUser($rel);
-    	}
-    }*/
 
     public function register(Request $request)
     {
         $data = $request->all();
         return $this->createUser($data);
     }
+
+    public function import()
+    {
+        return view('auth.TeacherRegisterImport');
+    }
+
+    public function importTeacher(Request $request)
+    {
+        if($request->hasFile('FILE')){
+            //return Excel::import(new TeacherRegister, request()->file('FILE'));
+            Excel::import(new TeacherRegister, request()->file('FILE'));
+            return redirect('/home')->with('success', 'All good!');
+        }
+    }
+
 
     public function createUser(array $data)
     {
@@ -96,8 +83,8 @@ class StudentRegisterController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'course' => ['required', 'string'],
         ]);
     }
 
@@ -109,12 +96,11 @@ class StudentRegisterController extends Controller
      */
     protected function create(array $data)
     {
-    	dd($data);
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
+            'name' => $data['name'],
             'password' => Hash::make($data['password']),
-            'course' => $data['course'],
             'role' => $this->role,
         ]);
     }

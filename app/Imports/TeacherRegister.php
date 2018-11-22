@@ -36,11 +36,13 @@ class TeacherRegister implements ToCollection
             }
             if( $arr != null) {
                 //$arr[0] = (int)$arr[0];
+                //$a = trim($arr[1],$arr[1][0]);
                 $arr[1] = preg_replace('/[^A-Za-z0-9\-\_]/', '', $arr[1]);
                 $arr[2] = preg_replace('/[^A-Za-z0-9\-\_]/', '', $arr[2]);
                 if($arr[4][0] == "=") {
                     $arr[4] = $arr[1] . "@vnu.edu.vn";
                 }
+                $arr[3] = substr($arr[3], 2);
                 $array[] = $arr;
             }
             $count++;
@@ -49,6 +51,7 @@ class TeacherRegister implements ToCollection
             try {
                 User::create([
                     'username' => $data[1],
+                    'name' => $data[3],
                     'email' => $data[4],
                     'password' => Hash::make($data[2]),
                     'role' => $this->role,

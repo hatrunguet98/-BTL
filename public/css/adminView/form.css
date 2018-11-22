@@ -1,0 +1,32 @@
+.modal  .modal-dialog  .modal-content .form {
+    background-color: white;
+    padding: 0px;
+    height: 320px;
+    width: 600px;
+    margin: 20px auto 0px;
+}
+
+.modal  .modal-dialog  .modal-content  h2 {
+    margin-bottom: 20px;
+    padding: 10px 0px;
+    text-align: center;
+    background-color: #3c8dbc;
+    color: #c2e9ff;
+}
+
+.modal  .modal-dialog  .modal-content  #submitBtn {
+    margin-left: 170px;
+}
+
+.modal  .modal-dialog  .modal-content  #closeBtn {
+    margin-left: 100px;
+}
+
+.modal-content {
+    margin-top: 100px;
+}
+
+.insertList  .modal-dialog  .modal-content .form {
+    height: 160px;
+
+}

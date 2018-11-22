@@ -41,6 +41,7 @@ class StudentRegister implements ToCollection
                 if($arr[4][0] == "=") {
                     $arr[4] = $arr[1] . "@vnu.edu.vn";
                 }
+                $arr[3] = substr($arr[3], 2);
                 $array[] = $arr;
             }
             $count++;
@@ -49,9 +50,10 @@ class StudentRegister implements ToCollection
             try {
                 User::create([
                     'username' => $data[1],
+                    'name' => $data[3],
                     'email' => $data[4],
                     'password' => Hash::make($data[2]),
-                    'course' => $data[5],
+                    'class' => $data[5],
                     'role' => $this->role,
                 ]);
             } catch( \Exception $e ) {

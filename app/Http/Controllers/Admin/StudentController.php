@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,9 +12,9 @@ use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\StudentRegister;
 
-class StudentRegisterController extends Controller
+class StudentController extends Controller
 {
-     use RegistersUsers;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -38,7 +38,7 @@ class StudentRegisterController extends Controller
     public function registerStudent()
     {
     	//return view('auth.StudentRegister');
-        return view('admin.students.index');
+        return view('admin.students.Student');
     }
 
     public function import()
@@ -77,7 +77,6 @@ class StudentRegisterController extends Controller
     public function createUser(array $data)
     {
         $this->validator($data)->validate();
-
         event(new Registered($user = $this->create($data)));
 
         //$this->guard()->login($user);
@@ -94,10 +93,11 @@ class StudentRegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'course' => ['required', 'string'],
+            'class' => ['required', 'string'],
         ]);
     }
 
@@ -109,12 +109,12 @@ class StudentRegisterController extends Controller
      */
     protected function create(array $data)
     {
-    	dd($data);
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
+            'name' => $data['name'],
             'password' => Hash::make($data['password']),
-            'course' => $data['course'],
+            'class' => $data['class'],
             'role' => $this->role,
         ]);
     }
