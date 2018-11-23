@@ -30,4 +30,4 @@ Route::post('/teacher-register', 'Admin\TeacherController@register')->name('regi
 Route::get('/teacher-import', 'Admin\TeacherController@import')->name('teacher-import');
 Route::post('/teacher-import', 'Admin\TeacherController@importTeacher')->name('teacher-import');
 
-
+Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard');

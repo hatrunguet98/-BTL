@@ -31,7 +31,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="http://localhost/Laravel/public/admin/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+            <li class="active"><a href="{{ url('dashboard') }}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
             <li class="active"><a href="{{ url('student-register') }}"><i class="fa fa-link"></i> <span>Danh sách sinh viên</span></a></li>
             <li class="active"><a href="{{ url('teacher-register') }}"><i class="fa fa-link"></i> <span>Danh sách giảng viên</span></a></li>
             <li class="active"><a href="http://localhost/Laravel/public/admin/admins"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
