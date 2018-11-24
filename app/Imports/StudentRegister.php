@@ -43,7 +43,7 @@ class StudentRegister implements ToCollection
                     $arr[4] = $arr[1] . "@vnu.edu.vn";
                 }
 
-                $arr[3] = substr($arr[3], 0, 2);
+                //$arr[3] = substr($arr[3], 0, 2);
                 $array[] = $arr;
             }
             $count++;
