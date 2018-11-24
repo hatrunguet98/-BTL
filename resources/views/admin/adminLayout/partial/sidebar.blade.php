@@ -34,7 +34,7 @@
             <li class="active"><a href="{{ url('dashboard') }}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
             <li class="active"><a href="{{ url('student-register') }}"><i class="fa fa-link"></i> <span>Danh sách sinh viên</span></a></li>
             <li class="active"><a href="{{ url('teacher-register') }}"><i class="fa fa-link"></i> <span>Danh sách giảng viên</span></a></li>
-            <li class="active"><a href="http://localhost/Laravel/public/admin/admins"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
+            <li class="active"><a href="{{ url('admin-register') }}"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
                     <span class="pull-right-container">
