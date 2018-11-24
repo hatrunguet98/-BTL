@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\StudentRegister;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -36,9 +37,14 @@ class StudentController extends Controller
     }
 
     public function registerStudent()
-    {
+    {	
     	//return view('auth.StudentRegister');
-        return view('admin.students.Student');
+    	//dd(User::find(5)->Paginate(7)->role());
+        $users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
+        ->join('roles','users.role', '=', 'roles.id')
+        ->where('roles.name','sinhvien')
+       	->Paginate(7);
+        return view('admin.students.Student', compact('users'));
     }
 
     public function import()

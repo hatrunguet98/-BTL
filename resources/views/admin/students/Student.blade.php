@@ -13,65 +13,36 @@
     <div style="width: 30%; float: left">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListStudent">Thêm danh sách sinh viên</button>
     </div>
-
+    
+    @endphp
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Mã sinh viên/Tên đăng nhập</th>
-                <th>Mật khẩu</th>
                 <th>Họ và tên</th>
                 <th>VNU Email</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
+            @foreach($users as $user)
             <tr>
-                <td>1</td>
-                <td>15020881</td>
-                <td>12345678</td>
-                <td>Triệu Hoàng An</td>
-                <td>15020881@vnu.edu.vn</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
                 <td>
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleStudent">Sửa</button>
                     <a class="btn btn-default remove" href="#">Xóa</a>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>15021394</td>
-                <td>12345678</td>
-                <td>Bùi Châu Anh</td>
-                <td>15021394@vnu.edu.vn</td>
-                <td>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleStudent">Sửa</button>
-                    <a class="btn btn-default remove" href="#">Xóa</a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>15021606</td>
-                <td>12345678</td>
-                <td>Lưu Việt Anh</td>
-                <td>15021606@vnu.edu.vn</td>
-                <td>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleStudent">Sửa</button>
-                    <a class="btn btn-default remove" href="#">Xóa</a>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>15020881</td>
-                <td>12345678</td>
-                <td>Triệu Hoàng An</td>
-                <td>15020881@vnu.edu.vn</td>
-                <td>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleStudent">Sửa</button>
-                    <a class="btn btn-default remove" href="#">Xóa</a>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
+    <div class="clearfix">
+        {{ $users->links() }}
+    </div>
 
     <div class="modal fade" id="insertSingleStudent" role="dialog">
         <link rel="stylesheet" href="{{ asset('css/adminView/form.css') }}">
