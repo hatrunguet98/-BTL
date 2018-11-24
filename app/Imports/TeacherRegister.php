@@ -42,7 +42,9 @@ class TeacherRegister implements ToCollection
                 if($arr[4][0] == "=") {
                     $arr[4] = $arr[1] . "@vnu.edu.vn";
                 }
-                $arr[3] = substr($arr[3], 2);
+
+                //$arr[3] = substr($arr[3], 1,1);
+
                 $array[] = $arr;
             }
             $count++;

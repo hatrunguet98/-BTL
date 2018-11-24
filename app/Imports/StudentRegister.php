@@ -20,6 +20,7 @@ class StudentRegister implements ToCollection
     */
     public function collection(Collection $rows)
     {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
         $datas = $rows;
         $array = array();
         $count = 0;
@@ -41,7 +42,8 @@ class StudentRegister implements ToCollection
                 if($arr[4][0] == "=") {
                     $arr[4] = $arr[1] . "@vnu.edu.vn";
                 }
-                $arr[3] = substr($arr[3], 2);
+
+                $arr[3] = substr($arr[3], 0, 2);
                 $array[] = $arr;
             }
             $count++;
@@ -57,7 +59,7 @@ class StudentRegister implements ToCollection
                     'role' => $this->role,
                 ]);
             } catch( \Exception $e ) {
-
+                dd($e);
             }
         }
         return $array;

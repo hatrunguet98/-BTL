@@ -14,7 +14,6 @@
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListStudent">Thêm danh sách sinh viên</button>
     </div>
     
-    @endphp
     <table class="table table-striped">
         <thead>
             <tr>
