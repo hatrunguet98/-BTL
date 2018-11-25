@@ -1,5 +1,5 @@
 <div class="modal fade insertList" id="insertListStudent" role="dialog">
-    <link rel="stylesheet" href="http://localhost/Laravel/public/css/admin_view/form.css">
+    <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">

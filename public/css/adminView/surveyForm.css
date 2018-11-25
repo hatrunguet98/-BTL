@@ -1,0 +1,54 @@
+.form {
+    background: white;
+    margin-left: 50px;
+    width: 85%;
+}
+
+.form .form-group {
+
+}
+
+.form .date {
+    padding-top: 20px;
+}
+.form .date label{
+    display: inline-block;
+    float: left;
+    font-size: 15px;
+    line-height: 25px;
+    margin: 0;
+}
+
+.form .date input[type="date"] {
+    display: inline-block;
+    float: left;
+    width: 80%;
+}
+
+.form .survey h4{
+    font-size: 20px;
+}
+
+.form .survey .row {
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.form .survey label {
+    display: block;
+}
+.form .survey label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.form .survey label span {
+    font-weight: normal;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.form button {
+    margin-left: 40%;
+    margin-bottom: 15px;
+}

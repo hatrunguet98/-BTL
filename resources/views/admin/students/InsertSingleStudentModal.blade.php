@@ -1,5 +1,5 @@
 <div class="modal fade" id="insertSingleStudent" role="dialog">
-    <link rel="stylesheet" href="{{ asset('css/adminView/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">

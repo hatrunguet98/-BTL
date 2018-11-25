@@ -1,11 +1,12 @@
 <div class="modal fade insertList" id="insertListAdmin" role="dialog">
-    <link rel="stylesheet" href="http://localhost/Laravel/public/css/admin_view/form.css">
+    <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="form">
                 <h2>Chọn danh sách admin</h2>
                 <form action="" method="post">
+                    @csrf
                     <div class="form-group col-md-12">
                         <div class="input-group">
                             <input type="file" class="button-a-background">
