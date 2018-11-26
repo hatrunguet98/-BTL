@@ -32,7 +32,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleStudent">Sửa</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleLecturer">Sửa</button>
                     <a class="btn btn-default remove" href="#">Xóa</a>
                 </td>
             </tr>

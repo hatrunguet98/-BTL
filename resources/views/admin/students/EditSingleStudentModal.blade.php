@@ -1,11 +1,12 @@
 <div class="modal fade" id="editSingleStudent" role="dialog">
-    <link rel="stylesheet" href="{{ asset('css/adminView/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="form">
                 <h2>Sửa thông tin sinh viên</h2>
                 <form action="#" method="post">
+                    @csrf
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>

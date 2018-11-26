@@ -31,3 +31,15 @@ Route::get('/teacher-import', 'Admin\TeacherController@import')->name('teacher-i
 Route::post('/teacher-import', 'Admin\TeacherController@importTeacher')->name('teacher-import');
 
 Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard');
+
+Route::get('/survey-register', function () {
+    return view('admin.surveys.survey');
+});
+
+Route::get('/survey-generate', function () {
+    return view('admin.surveys.generate');
+});
+
+Route::get('/survey-edit', function () {
+    return view('admin.surveys.edit');
+});
