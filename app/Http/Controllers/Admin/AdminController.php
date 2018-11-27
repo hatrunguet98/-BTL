@@ -12,8 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\StudentRegister;
 use Illuminate\Support\Facades\Auth;
-
-class StudentController extends Controller
+class AdminController extends Controller
 {
     use RegistersUsers;
 
@@ -23,7 +22,7 @@ class StudentController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-    protected $role = 1;
+    protected $role = 0;
     /**
      * Create a new controller instance.
      *
@@ -36,43 +35,14 @@ class StudentController extends Controller
         $this->middleware('admin');
     }
 
-    public function registerStudent()
-    {	
-    	//return view('auth.StudentRegister');
-    	//dd(User::find(5)->Paginate(7)->role());
-        $users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
+    public function registerTeacher()
+    {
+    	$users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
         ->join('roles','users.role', '=', 'roles.id')
-        ->where('roles.name','sinhvien')
+        ->where('roles.name','admin')
        	->Paginate(7);
-        return view('admin.students.Student', compact('users'));
+    	return view('Admin.admins.Admin', compact('users'));
     }
-
-    public function import()
-    {
-    	return view('auth.StudentRegisterImport');
-    }
-
-    public function importStudent(Request $request)
-    {
-    	if($request->hasFile('FILE')){
-        	Excel::import(new StudentRegister, request()->file('FILE'));
-        	//$data =  $this->excel->import(new StudentRegister, request()->file('FILE'));
-        	 return redirect('/dashboard')->with('success', 'All good!');
-        }
-    }
-
-   /* public static function importData(array $datas)
-    {
-    	foreach ($datas as $data) {
-    		$rel = [
-    			'username' => $data[1],
-    			'password' => $data[2],
-    			'email' => $data[4],
-    			'course' => $data[5],
-    		];
-    		$this->createUser($rel);
-    	}
-    }*/
 
     public function register(Request $request)
     {
@@ -80,9 +50,25 @@ class StudentController extends Controller
         return $this->createUser($data);
     }
 
+    public function import()
+    {
+        return view('auth.TeacherRegisterImport');
+    }
+
+    public function importTeacher(Request $request)
+    {
+        if($request->hasFile('FILE')){
+            //return Excel::import(new TeacherRegister, request()->file('FILE'));
+            Excel::import(new TeacherRegister, request()->file('FILE'));
+            return redirect('/dashboard')->with('success', 'All good!');
+        }
+    }
+
+
     public function createUser(array $data)
     {
         $this->validator($data)->validate();
+
         event(new Registered($user = $this->create($data)));
 
         //$this->guard()->login($user);
@@ -99,11 +85,10 @@ class StudentController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255','unique:users'],
+            'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'name' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'class' => ['required', 'string'],
         ]);
     }
 
@@ -120,7 +105,6 @@ class StudentController extends Controller
             'email' => $data['email'],
             'name' => $data['name'],
             'password' => Hash::make($data['password']),
-            'class' => $data['class'],
             'role' => $this->role,
         ]);
     }
