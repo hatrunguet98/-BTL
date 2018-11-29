@@ -12,6 +12,8 @@ use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\StudentRegister;
 use Illuminate\Support\Facades\Auth;
+use App\Services\ClassAdmin\ClassDeleteUser;
+
 class AdminController extends Controller
 {
     use RegistersUsers;
@@ -21,7 +23,7 @@ class AdminController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
     protected $role = 0;
     /**
      * Create a new controller instance.
@@ -40,10 +42,25 @@ class AdminController extends Controller
     	$users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
         ->join('roles','users.role', '=', 'roles.id')
         ->where('roles.name','admin')
+        ->where('status',1)
        	->Paginate(7);
     	return view('Admin.admins.Admin', compact('users'));
     }
 
+    public function delete($id)
+    {
+        ClassDeleteUser::delete($id);
+        return redirect('/admin-register');
+    }
+
+    public function edit ($id, Request $request) {
+        $data = $this->validate($request,[
+            'name' => 'required',
+            'password' => 'required',
+        ]);
+        dd($data);
+    }
+    
     public function register(Request $request)
     {
         $data = $request->all();

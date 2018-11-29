@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="form">
                 <h2>Sửa thông tin giảng viên</h2>
-                <form action="" method="post">
+                <form action="{{ action('Admin\TeacherController@edit', $user->id) }}" method="post">
                     @csrf
                     <div class="form-group col-md-6">
                         <div class="input-group">

@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\StudentRegister;
 use Illuminate\Support\Facades\Auth;
+use App\Services\ClassAdmin\ClassDeleteUser;
 
 class StudentController extends Controller
 {
@@ -22,7 +23,7 @@ class StudentController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
     protected $role = 1;
     /**
      * Create a new controller instance.
@@ -36,6 +37,21 @@ class StudentController extends Controller
         $this->middleware('admin');
     }
 
+    public function edit ($id, Request $request) {
+        dd("heeloo");
+        $data = $this->validate($request,[
+            'name' => 'required',
+            'password' => 'required',
+        ]);
+        dd($data);
+    }
+
+    public function delete($id)
+    {
+        ClassDeleteUser::delete($id);
+        return redirect('/student-register');
+    }
+
     public function registerStudent()
     {	
     	//return view('auth.StudentRegister');
@@ -43,6 +59,7 @@ class StudentController extends Controller
         $users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
         ->join('roles','users.role', '=', 'roles.id')
         ->where('roles.name','sinhvien')
+        ->where('status',1)
        	->Paginate(7);
         return view('admin.students.Student', compact('users'));
     }

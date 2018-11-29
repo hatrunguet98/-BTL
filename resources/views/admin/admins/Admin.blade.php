@@ -33,7 +33,14 @@
                 <td>{{ $user->email }}</td>
                 <td>
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleLecturer">Sửa</button>
-                    <a class="btn btn-default remove" href="#">Xóa</a>
+                </td>
+                <td>
+                    <form action="{{action('Admin\TeacherController@delete', $user->id)}}" method="post">
+                        {{csrf_field()}}
+                        <!-- <input name="_method" type="hidden" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" /> -->
+                        <button class="btn btn-danger" onclick="if (!confirm('Are you sure?')) { return false }" type="submit">Delete</button>           
+                    </form>
                 </td>
             </tr>
             @endforeach
