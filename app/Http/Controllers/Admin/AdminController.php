@@ -12,7 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\StudentRegister;
 use Illuminate\Support\Facades\Auth;
-use App\Services\ClassAdmin\ClassDeleteUser;
+use App\Services\ClassAdmin\ClassQueryUser;
 
 class AdminController extends Controller
 {
@@ -49,7 +49,7 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        ClassDeleteUser::delete($id);
+        ClassQueryUser::delete($id);
         return redirect('/admin-register');
     }
 

@@ -20,17 +20,22 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/student-register', 'Admin\StudentController@registerStudent')->name('student-register');
+Route::get('/student', 'Admin\StudentController@student')->name('student');
 Route::post('/student-register', 'Admin\StudentController@register')->name('student-register');
 Route::get('/student-import', 'Admin\StudentController@import')->name('student-import');
 Route::post('/student-import', 'Admin\StudentController@importStudent')->name('student-import');
-Route::post('/student/delete/{id}', 'Admin\StudentController@delete');
+Route::post('/student/delete', 'Admin\StudentController@delete')->name('/student/delete');
+Route::get('/load-student', 'Admin\StudentController@loadUser')->name('load-student');
+Route::post('/student/edit', 'Admin\StudentController@edit')->name('/student/edit');
 
-Route::get('/teacher-register', 'Admin\TeacherController@registerTeacher')->name('teacher-register');
+
+Route::get('/teacher', 'Admin\TeacherController@teacher')->name('teacher');
 Route::post('/teacher-register', 'Admin\TeacherController@register')->name('teacher-register');
 Route::get('/teacher-import', 'Admin\TeacherController@import')->name('teacher-import');
 Route::post('/teacher-import', 'Admin\TeacherController@importTeacher')->name('teacher-import');
-Route::post('/teacher/delete/{id}', 'Admin\TeacherController@delete');
+Route::post('/teacher/delete', 'Admin\TeacherController@delete')->name('/teacher/delete');;
+Route::get('/load-teacher', 'Admin\TeacherController@loadUser')->name('load-teacher');
+Route::post('/teacher/edit', 'Admin\TeacherController@edit')->name('/teacher/edit');
 
 Route::get('/admin-register', 'Admin\AdminController@registerTeacher')->name('admin-register');
 Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');
@@ -39,7 +44,6 @@ Route::post('/admin-import', 'Admin\AdminController@importTeacher')->name('admin
 Route::post('/Admin/delete/{id}', 'Admin\AdminController@delete');
 
 
-Route::post('/student/edit/{id}', 'Admin\StudentController@edit');
 Route::post('/teacher/edit/{id}', 'Admin\TeacherController@edit');
 Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
 
