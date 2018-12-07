@@ -24,11 +24,24 @@ Route::get('/student-register', 'Admin\StudentController@registerStudent')->name
 Route::post('/student-register', 'Admin\StudentController@register')->name('student-register');
 Route::get('/student-import', 'Admin\StudentController@import')->name('student-import');
 Route::post('/student-import', 'Admin\StudentController@importStudent')->name('student-import');
+Route::post('/student/delete/{id}', 'Admin\StudentController@delete');
 
 Route::get('/teacher-register', 'Admin\TeacherController@registerTeacher')->name('teacher-register');
-Route::post('/teacher-register', 'Admin\TeacherController@register')->name('register-teacher');
+Route::post('/teacher-register', 'Admin\TeacherController@register')->name('teacher-register');
 Route::get('/teacher-import', 'Admin\TeacherController@import')->name('teacher-import');
 Route::post('/teacher-import', 'Admin\TeacherController@importTeacher')->name('teacher-import');
+Route::post('/teacher/delete/{id}', 'Admin\TeacherController@delete');
+
+Route::get('/admin-register', 'Admin\AdminController@registerTeacher')->name('admin-register');
+Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');
+Route::get('/admin-import', 'Admin\AdminController@import')->name('admin-import');
+Route::post('/admin-import', 'Admin\AdminController@importTeacher')->name('admin-import');
+Route::post('/Admin/delete/{id}', 'Admin\AdminController@delete');
+
+
+Route::post('/student/edit/{id}', 'Admin\StudentController@edit');
+Route::post('/teacher/edit/{id}', 'Admin\TeacherController@edit');
+Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
 
 Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard');
 

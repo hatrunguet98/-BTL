@@ -5,12 +5,12 @@
         <div class="modal-content">
             <div class="form">
                 <h2>Sửa thông tin sinh viên</h2>
-                <form action="#" method="post">
+                <form action="{{ action('Admin\StudentController@edit', $user->id) }}" method="post">
                     @csrf
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control" name="student_code" placeholder="Mã sinh viên">
+                            <input type="text" class="form-control" name="student_code" placeholder="Mã sinh viên" value="{{ $user->username }}">
                         </div>
                     </div>
                     <div class="form-group col-md-6">

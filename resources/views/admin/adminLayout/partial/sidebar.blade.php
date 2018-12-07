@@ -9,7 +9,12 @@
                 <img src="{{ asset('AdminLTE/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>@if (Auth::user()->name)
+                        {{ Auth::user()->name }}
+                    @else
+                        {{ Auth::user()->username }} 
+                    @endif
+                </p>
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -35,7 +40,7 @@
             <li class="active"><a href="{{ url('student-register') }}"><i class="fa fa-link"></i> <span>Danh sách sinh viên</span></a></li>
             <li class="active"><a href="{{ url('teacher-register') }}"><i class="fa fa-link"></i> <span>Danh sách giảng viên</span></a></li>
             <li class="active"><a href="{{ url('admin-register') }}"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
-            <li class="active"><a href="http://localhost/-BTL/public/survey-register"><i class="fa fa-link"></i> <span>Danh sách đánh giá</span></a></li>
+            <li class="active"><a href="{{ url('survey-register') }}"><i class="fa fa-link"></i> <span>Danh sách đánh giá</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
                     <span class="pull-right-container">
