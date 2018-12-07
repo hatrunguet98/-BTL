@@ -11,7 +11,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\TeacherRegister;
-use App\Services\ClassAdmin\ClassDeleteUser;
+use Illuminate\Support\Facades\Auth;
+use App\Services\ClassAdmin\ClassQueryUser;
 
 class TeacherController extends Controller
 {
@@ -36,40 +37,66 @@ class TeacherController extends Controller
         $this->middleware('admin');
     }
 
-    public function registerTeacher()
+    public function teacher()
     {
-    	$users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
+    	/*$users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
         ->join('roles','users.role', '=', 'roles.id')
         ->where('roles.name','giaovien')
         ->where('status',1)
-       	->Paginate(7);
-    	return view('Admin.lecturers.Teacher', compact('users'));
+       	->Paginate(7);*/
+    	return view('Admin.lecturers.Teacher');
     }
 
-    public function delete($id)
+    public function edit (Request $request) {
+       if($request->ajax()) {
+            $data = "";
+            if(!$request->password) {
+                $data = $this->validate($request, [
+                    'username' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'name' => ['required', 'string', 'max:255'],
+                ]);
+            } else {
+                $data = $this->validate($request, [
+                    'username' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'password' => ['required', 'string', 'min:6'],
+                ]);
+                if($request->password != $request->confirm_password) {
+                    return response(['message' => 'The password confirmation does not match.']);
+                }
+            }
+            $user = User::find($request->id);
+            $user->update($data);
+            return $this->loadUser();
+       }
+       return response(['message' => 'something ERROR']);
+    }
+
+    public function delete(Request $request)
     {
-        ClassDeleteUser::delete($id);
-        return redirect('/teacher-register');
+        if($request->ajax()) {
+            ClassQueryUser::delete($request->id);
+            return response(['message' => 'teacher deleted succesfully']);
+        }
     }
 
-    public function edit ($id, Request $request) {
-        dd("heeloo");
-        $data = $this->validate($request,[
-            'name' => 'required',
-            'password' => 'required',
-        ]);
-        dd($data);
+    public function loadUser(){
+        $role_name = 'giaovien';
+        $user = ClassQueryUser::showUser($role_name);
+        return response($user);
     }
 
     public function register(Request $request)
     {
-        $data = $request->all();
-        return $this->createUser($data);
-    }
-
-    public function import()
-    {
-        return view('auth.TeacherRegisterImport');
+       if($request->ajax()){
+            $data = $request->all();
+            $this->createUser($data);
+            $role_name = 'giaovien';
+            $user = ClassQueryUser::showUser($role_name);
+            return response($user);
+        }
     }
 
     public function importTeacher(Request $request)
