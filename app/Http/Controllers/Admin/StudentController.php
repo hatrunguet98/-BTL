@@ -12,7 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Excel;
 use App\Imports\StudentRegister;
 use Illuminate\Support\Facades\Auth;
-use App\Services\ClassAdmin\ClassDeleteUser;
+use App\Services\ClassAdmin\ClassQueryUser;
 
 class StudentController extends Controller
 {
@@ -37,36 +37,53 @@ class StudentController extends Controller
         $this->middleware('admin');
     }
 
-    public function edit ($id, Request $request) {
-        dd("heeloo");
-        $data = $this->validate($request,[
-            'name' => 'required',
-            'password' => 'required',
-        ]);
-        dd($data);
-    }
-
-    public function delete($id)
-    {
-        ClassDeleteUser::delete($id);
-        return redirect('/student-register');
-    }
-
-    public function registerStudent()
+    public function student()
     {	
-    	//return view('auth.StudentRegister');
-    	//dd(User::find(5)->Paginate(7)->role());
-        $users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
-        ->join('roles','users.role', '=', 'roles.id')
-        ->where('roles.name','sinhvien')
-        ->where('status',1)
-       	->Paginate(7);
-        return view('admin.students.Student', compact('users'));
+        return view('admin.students.Student');
     }
 
-    public function import()
+    public function edit (Request $request) {
+       if($request->ajax()) {
+            $data = "";
+            if(!$request->password) {
+                $data = $this->validate($request, [
+                    'username' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'class' => ['required', 'string'],
+                ]);
+            } else {
+                $data = $this->validate($request, [
+                    'username' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'password' => ['required', 'string', 'min:6'],
+                    'class' => ['required', 'string'],
+                ]);
+                if($request->password != $request->confirm_password) {
+                    return response(['message' => 'The password confirmation does not match.']);
+                }
+            }
+            $user = User::find($request->id);
+            $user->update($data);
+            return $this->loadUser();
+       }
+       return response(['message' => 'something ERROR']);
+    }
+
+    public function delete(Request $request)
     {
-    	return view('auth.StudentRegisterImport');
+        if($request->ajax()) {
+            ClassQueryUser::delete($request->id);
+            return response(['message' => 'student deleted succesfully']);
+        }
+    }
+
+
+    public function loadUser(){
+        $role_name = 'sinhvien';
+        $user = ClassQueryUser::showUser($role_name);
+        return response($user);
     }
 
     public function importStudent(Request $request)
@@ -74,27 +91,19 @@ class StudentController extends Controller
     	if($request->hasFile('FILE')){
         	Excel::import(new StudentRegister, request()->file('FILE'));
         	//$data =  $this->excel->import(new StudentRegister, request()->file('FILE'));
-        	 return redirect('/dashboard')->with('success', 'All good!');
+        	 return redirect('/student-register')->with('success', 'All good!');
         }
     }
 
-   /* public static function importData(array $datas)
-    {
-    	foreach ($datas as $data) {
-    		$rel = [
-    			'username' => $data[1],
-    			'password' => $data[2],
-    			'email' => $data[4],
-    			'course' => $data[5],
-    		];
-    		$this->createUser($rel);
-    	}
-    }*/
-
     public function register(Request $request)
     {
-        $data = $request->all();
-        return $this->createUser($data);
+        if($request->ajax()){
+            $data = $request->all();
+            $this->createUser($data);
+            $role_name = 'sinhvien';
+            $user = ClassQueryUser::showUser($role_name);
+            return response($user);
+        }
     }
 
     public function createUser(array $data)

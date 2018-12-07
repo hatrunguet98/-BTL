@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="form">
                 <h2>Thêm mới sinh viên</h2>
-                <form action="{{ url('student-register') }}" method="post">
+                <form action="{{ url('student-register') }}" method="post" id="insert-Student">
                     @csrf
                     <div class="form-group col-md-6">
                         <div class="input-group">
@@ -73,8 +73,8 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-                    <button type="button" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="insertBtn">Submit</button>
+                    <button type="button" class="btn btn-danger pull-right" id="closeInsertBtn" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>
