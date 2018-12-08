@@ -48,11 +48,12 @@
 
 
 
+
 .modal .modal-dialog .modal-content .survey {
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
     border-right: 1px solid gray;
-    padding: 0 10px;
+    padding: 0 20px;
     margin: 0;
     height: 50px;
 }
@@ -103,4 +104,12 @@
     margin-left: 40%;
     margin-top: 0;
     margin-bottom: 15px;
+}
+
+
+#generateSurvey .modal-dialog {
+    width: 60%;
+}
+#generateSurvey .modal-dialog  .modal-content {
+    padding: 30px;
 }
