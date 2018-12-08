@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="container">
-        <link rel="stylesheet" href="{{ asset("css/adminView/surveyForm.css") }}">
+        <link rel="stylesheet" href="{{ asset('css/adminView/surveyForm.css') }}">
         <form action="{{ url('survey-register') }}" method="post">
             @csrf
             <h3>Chọn môn</h3>
@@ -49,14 +49,7 @@
                             <input type="date" id="start" name="start" value="2018-07-22">
                         </div>
                         <div class="survey-content">
-                            <script language="JavaScript">
-                                function toggle(source) {
-                                    checkboxes = document.getElementsByName('foo');
-                                    for(var checkbox in checkboxes)
-                                        checkbox.checked = source.checked;
-                                }
-                            </script>
-                            <input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
+                            <input type="checkbox"  id="check-all" /> Toggle All<br/>
                             <div class="row">
                                 <label><input type="checkbox" name="survey1" value="1"><span>Giảng đường đáp ứng yêu cầu của môn học</span></label>
                             </div>
@@ -126,5 +119,18 @@
         </form>
     </div>
 
-
+<script type="text/javascript">
+    $(document).on('click','#check-all', function(){
+        if(this.checked) {
+            // Iterate each checkbox
+            $('.survey-content .row  :checkbox').each(function() {
+                this.checked = true;                        
+            });
+        } else {
+            $('.survey-content .row  :checkbox').each(function() {
+                this.checked = false;                       
+            });
+        }
+    });
+</script>
 @endsection
