@@ -104,7 +104,7 @@ class TeacherController extends Controller
         if($request->hasFile('FILE')){
             //return Excel::import(new TeacherRegister, request()->file('FILE'));
             Excel::import(new TeacherRegister, request()->file('FILE'));
-            return redirect('/dashboard')->with('success', 'All good!');
+            return redirect('/teacher')->with('success', 'All good!');
         }
     }
 
