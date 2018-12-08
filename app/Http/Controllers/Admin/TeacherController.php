@@ -39,12 +39,14 @@ class TeacherController extends Controller
 
     public function teacher()
     {
-    	/*$users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
-        ->join('roles','users.role', '=', 'roles.id')
-        ->where('roles.name','giaovien')
-        ->where('status',1)
-       	->Paginate(7);*/
     	return view('Admin.lecturers.Teacher');
+    }
+
+    public function editUser(Request $request) {
+        if($request->ajax()) {
+            $user = User::find($request->id);
+            return response($user);
+        }
     }
 
     public function edit (Request $request) {
@@ -78,14 +80,14 @@ class TeacherController extends Controller
     {
         if($request->ajax()) {
             ClassQueryUser::delete($request->id);
-            return response(['message' => 'teacher deleted succesfully']);
+            return $this->loadUser();
         }
     }
 
     public function loadUser(){
         $role_name = 'giaovien';
-        $user = ClassQueryUser::showUser($role_name);
-        return response($user);
+        $users = ClassQueryUser::showUser($role_name);
+        return view('admin.lecturers.ListTeacher', compact('users'))->render();
     }
 
     public function register(Request $request)
@@ -93,9 +95,7 @@ class TeacherController extends Controller
        if($request->ajax()){
             $data = $request->all();
             $this->createUser($data);
-            $role_name = 'giaovien';
-            $user = ClassQueryUser::showUser($role_name);
-            return response($user);
+            return $this->loadUser();
         }
     }
 
