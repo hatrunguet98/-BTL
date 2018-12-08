@@ -97,7 +97,7 @@ class StudentController extends Controller
     	if($request->hasFile('FILE')){
         	Excel::import(new StudentRegister, request()->file('FILE'));
         	//$data =  $this->excel->import(new StudentRegister, request()->file('FILE'));
-        	 return redirect('/student-register')->with('success', 'All good!');
+        	 return redirect('/student')->with('success', 'All good!');
         }
     }
 
