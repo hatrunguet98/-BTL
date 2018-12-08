@@ -17,10 +17,14 @@ class DatabaseSeeder extends Seeder
 
     	}
 
-    	try {
     		$this->call(RolesTableSeeder::class);
+        try {
     	} catch (Exception $e) {
     		
     	}
+        try {
+        } catch (Exception $e) {
+            
+        }
     }
 }

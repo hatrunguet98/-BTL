@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Course;
+use App\Criterion;
 
 class SurveyController extends Controller
 {
@@ -15,12 +16,14 @@ class SurveyController extends Controller
     }
 
     public function survey() {
-    	$courses = Course::all();
+    	$courses = Course::where('status',0)->get();
     	return view('admin.surveys.survey',compact('courses'));
     }
 
     public function surveyGenerate(){
-		return view('admin.surveys.generate');
+        $criteria = Criterion::all();
+        $courses = Course::where('status',0)->get();
+		return view('admin.surveys.generate', compact('criteria','courses'));
     }
 
     public function surveyEdit() {

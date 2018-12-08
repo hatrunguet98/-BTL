@@ -52,7 +52,7 @@ Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
 Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard');
 
 
-Route::get('/survey-register', 'Admin\SurveyController@survey');
+Route::get('/survey', 'Admin\SurveyController@survey');
 
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate');
 
