@@ -27,6 +27,7 @@ Route::post('/student-import', 'Admin\StudentController@importStudent')->name('s
 Route::post('/student/delete', 'Admin\StudentController@delete')->name('/student/delete');
 Route::get('/load-student', 'Admin\StudentController@loadUser')->name('load-student');
 Route::post('/student/edit', 'Admin\StudentController@edit')->name('/student/edit');
+Route::get('/student/edit','Admin\StudentController@editUser')->name('/student/edit');
 
 
 Route::get('/teacher', 'Admin\TeacherController@teacher')->name('teacher');
@@ -36,6 +37,7 @@ Route::post('/teacher-import', 'Admin\TeacherController@importTeacher')->name('t
 Route::post('/teacher/delete', 'Admin\TeacherController@delete')->name('/teacher/delete');;
 Route::get('/load-teacher', 'Admin\TeacherController@loadUser')->name('load-teacher');
 Route::post('/teacher/edit', 'Admin\TeacherController@edit')->name('/teacher/edit');
+Route::get('/teacher/edit', 'Admin\TeacherController@editUser')->name('/teacher/edit');
 
 Route::get('/admin-register', 'Admin\AdminController@registerTeacher')->name('admin-register');
 Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');

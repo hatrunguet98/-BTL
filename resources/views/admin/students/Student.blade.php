@@ -13,22 +13,10 @@
     <div style="width: 30%; float: left">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListStudent">Thêm danh sách sinh viên</button>
     </div>
-    <div id="action"></div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width:5%;text-align: center">ID</th>
-                <th style="width:15%;text-align: center">Mã sinh viên</th>
-                <th style="width:30%;text-align: center">Họ và tên</th>
-                <th style="width:20%;text-align: center">VNU Email</th>
-                <th style="width:15;text-align: center">Class</th>
-                <th style="width:15%;text-align: center">Action</th>
-            </tr>
-        </thead>
-        <tbody id="listUsers">
-            
-        </tbody>
-    </table>
+    <div id="table">
+        
+    </div>
+    
     
     @include('admin/students/InsertSingleStudentModal')
 
@@ -40,22 +28,10 @@
 
 @section('js')
 <script type="text/javascript">
-    var list = "";
     /*---------auto load list students by ajax-------------*/
     $(document).ready(function(){
-        var data = "";
-        var url = "load-student";
-        var method = "get";
-        $.ajax({
-            type : method,
-            url : url,
-            data : data,
-            dataTy : 'json',
-            success:function(data){
-                listUsers(data);
-                list = data;
-            }
-        });
+        autoload();
+        listUsers();
     });
 
     /* add students  */
@@ -81,9 +57,7 @@
                 //console.log(data);
             }
         }).done(function(data) {
-            alert('success');
-            listUsers(data);
-                list = data;
+            $('#table').empty().html(data);
         }).fail(function(e) {
             $('#insertSingleStudent').modal('hide')
             //console.log(e.responseText.message);
@@ -116,17 +90,22 @@
     $(document).on('click','#edit', function(){
         $('#editSingleStudent').modal('show');
         var id = $(this).data('id');
-        var student = "";
-        $.each(list,function(i,value){
-            if(value.id == id){
-               student = value;
-            }
-        })
-
+        console.log(id);
+        student = "";
+        $.get('{{URL::to("student/edit")}}',{id:id}).done(function(data) {
+            $('#username-edit').val(data.username);
+            $('#name-edit').val(data.name);
+            $('#email-edit').val(data.email);
+            $('#class-edit').val(data.class);
+        }).fail(function(data){
+            alert( "something error" );
+            $('#editSingleStudent').modal('hide');
+        });
         $('#username-edit').val(student.username);
         $('#name-edit').val(student.name);
         $('#email-edit').val(student.email);
         $('#class-edit').val(student.class);
+
         $('#edit-student').on('submit',function(e){
             $.ajaxSetup({
                 headers: {
@@ -148,7 +127,7 @@
                 }
             }).done(function(data) {
                 $('#editSingleStudent').modal('hide');
-                listUsers(data);
+                $('#table').empty().html(data);
             }).fail(function(data) {
                 alert('something error');
             });
@@ -156,33 +135,32 @@
     });
 
     /*----------show list Students---------------*/
-    function listUsers(data){
-        var html = "";
-
-        $.each(data,function(i,value){
-            var id = value.id || "";
-            var username = value.username || "";
-            var name = value.name || "";
-            var email = value.email || "";
-            var clas = value.class || "";
-
-            html += '<tr id="'+id+'">';
-            html += '<td style="width:5%;text-align: center">'+id+'</td>';
-            html += '<td style="width:15%;text-align: center">'+username+'</td>';
-            html += '<td style="width:30%;text-align: center">'+name+'</td>';
-            html += '<td style="width:20%;text-align: center">'+email+'</td>';
-            html += '<td style="width:15%;text-align: center">'+clas+'</td>';
-            html +='<td style="width:15%;text-align: center">';
-            html += '<a  class="btn btn-info btn-xs" id="view" data-id="'+id+'">'+"View"+'</a>';
-            html += " ";
-            html += '<a  class="btn btn-success btn-xs" id="edit" data-id="'+id+'">'+"Edit"+'</a>';
-            html += " ";
-            html += '<a  class="btn btn-danger btn-xs" id="delete" data-id="'+id+'">'+"Delete"+'</a>';
-            html +='</td>';
-            html += '</tr>'; 
+    function listUsers(){
+       $(document).on('click','.pagination a', function(e){
+            e.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            var url = '{{URL::to("load-student")}}'+'?page='+page;
+            $.ajax({
+                url : url
+            }).done(function(data){
+                $('#table').html(data);
+            })
+        })
+    }
+    /*--------------auto load data---------------------------*/
+    function autoload(){
+        var data = "";
+        var url = "load-student";
+        var method = "get";
+        $.ajax({
+            type : method,
+            url : url,
+            data : data,
+            dataTy : 'json',
+            success:function(data){
+                $('#table').empty().html(data);
+            }
         });
-
-        $('#listUsers').empty().html(html);
     }
 </script>
 @endsection

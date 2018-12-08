@@ -38,8 +38,15 @@ class StudentController extends Controller
     }
 
     public function student()
-    {	
+    {	        
         return view('admin.students.Student');
+    }
+
+    public function editUser(Request $request) {
+        if($request->ajax()) {
+            $user = User::find($request->id);
+            return response($user);
+        }
     }
 
     public function edit (Request $request) {
@@ -79,11 +86,10 @@ class StudentController extends Controller
         }
     }
 
-
     public function loadUser(){
         $role_name = 'sinhvien';
-        $user = ClassQueryUser::showUser($role_name);
-        return response($user);
+        $users = ClassQueryUser::showUser($role_name);
+        return view('admin.students.ListStudent', compact('users'))->render();
     }
 
     public function importStudent(Request $request)
@@ -100,9 +106,8 @@ class StudentController extends Controller
         if($request->ajax()){
             $data = $request->all();
             $this->createUser($data);
-            $role_name = 'sinhvien';
-            $user = ClassQueryUser::showUser($role_name);
-            return response($user);
+            
+            return $this->loadUser();
         }
     }
 
