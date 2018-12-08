@@ -22,7 +22,7 @@ class ClassQueryUser
         ->where('roles.name',$role_name)
         ->where('status',1)
         ->orderBy('id', 'desc')
-        ->get();
+        ->Paginate(3);
         return $user;
     }
 }

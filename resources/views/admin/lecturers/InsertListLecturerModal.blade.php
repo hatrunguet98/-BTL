@@ -1,4 +1,4 @@
-<div class="modal fade insertList" id="insertListLecturer" role="dialog">
+<div class="modal fade insertList" id="insertListTeacher" role="dialog">
     <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
     <div class="modal-dialog">
         <!-- Modal content-->

@@ -43,7 +43,7 @@ class AdminController extends Controller
         ->join('roles','users.role', '=', 'roles.id')
         ->where('roles.name','admin')
         ->where('status',1)
-       	->Paginate(7);
+       	->Paginate(1);
     	return view('Admin.admins.Admin', compact('users'));
     }
 
