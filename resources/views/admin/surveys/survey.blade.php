@@ -15,48 +15,32 @@
         <a class="btn btn-vimeo" href="http://localhost/-BTL/public/survey-generate">Tạo đánh giá chung</a>
     </div>
 
-    <div class="container" style="width: 1300px">
+    <div class="container">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><i class="fa fa-cog" aria-hidden="true"></i></th>
-                <th>Title</th>
-                <th>Created At</th>
-                <th>Modified At</th>
+                <th style="width:15%;text-align: center"><i class="fa fa-cog" aria-hidden="true"></i></th>
+                <th style="width:30%;text-align: center">Title</th>
+                <th style="width:15%;text-align: center">Code</th>
+                <th style="width:20%;text-align: center">Created At</th>
+                <th style="width:20%;text-align: center">Modified At</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <a href="http://localhost/-BTL/public/survey-edit" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#showSurvey"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                    <button type="button" href="" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                </td>
-                <td>Giải tích 1</td>
-                <td>12/02/2222</td>
-                <td>12/02/2222</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="http://localhost/-BTL/public/survey-edit" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#showSurvey"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                    <button type="button" href="" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                </td>
-                <td>Điện quang</td>
-                <td>12/02/2222</td>
-                <td>12/02/2222</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="http://localhost/-BTL/public/survey-edit" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#showSurvey"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                    <button type="button" href="" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                </td>
-                <td>Tín hiệu hê thống</td>
-                <td>12/02/2222</td>
-                <td>12/02/2222</td>
-            </tr>
+                @foreach($courses as $course)
+                    <tr>
+                        <td style="width:15%;text-align: center">
+                            <a href="http://localhost/-BTL/public/survey-edit" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#showSurvey"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button type="button" href="" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </td>
+                        <td style="width:30%;text-align: center">{{ $course->name }}</td>
+                        <td style="width:15%;text-align: center">{{ $course->code}}</td>
+                        <td style="width:20%;text-align: center">12/02/2222</td>
+                        <td style="width:20%;text-align: center">12/02/2222</td>
 
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

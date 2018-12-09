@@ -51,14 +51,10 @@ Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
 
 Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard');
 
-Route::get('/survey-register', function () {
-    return view('admin.surveys.survey');
-});
 
-Route::get('/survey-generate', function () {
-    return view('admin.surveys.generate');
-});
+Route::get('/survey', 'Admin\SurveyController@survey');
 
-Route::get('/survey-edit', function () {
-    return view('admin.surveys.edit');
-});
+Route::get('/survey-generate','Admin\SurveyController@surveyGenerate');
+
+Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
+Route::post('/survey-register','Admin\SurveyController@surveyRegister');
