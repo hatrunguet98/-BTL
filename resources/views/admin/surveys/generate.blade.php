@@ -15,14 +15,12 @@
             <div class="row select-subject">
                 <div class="form-group col-md-12 survey first-child">
                     <div class="survey-content">
-                            <input type="checkbox" name="mon1" value="1">
+                            <input type="checkbox" name="{{ $course->code }}" value="1">
                             <label>{{ $course->name}}</label>
-                        
                     </div>
                 </div>
             </div>
             @endforeach
-
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generateSurvey">Tạo đánh giá</button>
 
@@ -37,7 +35,7 @@
                         </div>
                         <div class="form-group col-md-6 date">
                             <label for="start">Ngày kết thúc:</label>
-                            <input type="date" id="start" name="start" value="2018-07-22">
+                            <input type="date" id="start" name="finish" value="2018-07-22">
                         </div>
                         <div class="survey-content">
                             <input type="checkbox"  id="check-all" checked /> Toggle All<br/>

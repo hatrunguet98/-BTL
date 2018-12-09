@@ -23,10 +23,22 @@ class SurveyController extends Controller
     public function surveyGenerate(){
         $criteria = Criterion::all();
         $courses = Course::where('status',0)->get();
+        foreach ($courses as $key => $value) {
+            $courses[$key]->code = str_replace(' ','_',$value->code);
+        }
 		return view('admin.surveys.generate', compact('criteria','courses'));
     }
 
     public function surveyEdit() {
     	return view('admin.surveys.edit');
+    }
+
+    public function surveyRegister(Request $request) {
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+           
+        }
+
+        dd($request->all());
     }
 }
