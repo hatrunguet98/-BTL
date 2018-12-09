@@ -57,3 +57,4 @@ Route::get('/survey', 'Admin\SurveyController@survey');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate');
 
 Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
+Route::post('/survey-register','Admin\SurveyController@surveyRegister');
