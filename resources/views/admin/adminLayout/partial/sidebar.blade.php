@@ -12,7 +12,7 @@
                 <p>@if (Auth::user()->name)
                         {{ Auth::user()->name }}
                     @else
-                        {{ Auth::user()->username }} 
+                        {{ Auth::user()->username }}
                     @endif
                 </p>
                 <!-- Status -->
@@ -41,6 +41,7 @@
             <li class="active"><a href="{{ url('teacher') }}"><i class="fa fa-link"></i> <span>Danh sách giảng viên</span></a></li>
             <li class="active"><a href="{{ url('admin-register') }}"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
             <li class="active"><a href="{{ url('survey') }}"><i class="fa fa-link"></i> <span>Danh sách đánh giá</span></a></li>
+            <li class="active"><a href="{{ url('course') }}"><i class="fa fa-link"></i> <span>Danh sách môn học</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
                     <span class="pull-right-container">
