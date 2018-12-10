@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 2 | Starter</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -18,6 +18,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Datatable-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/css/dataTables.checkboxes.css" rel="stylesheet"/>
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.4.6/collection/icon/icon.css">
@@ -69,17 +73,17 @@ desired effect
 <div class="wrapper">
 
     <!-- Main Header -->
-    @include('admin.adminLayout.partial.mainHeader')
+@include('admin.adminLayout.partial.mainHeader')
 
-    <!-- Left side column. contains the logo and sidebar -->
-    @include('admin.adminLayout.partial.sidebar')
+<!-- Left side column. contains the logo and sidebar -->
+@include('admin.adminLayout.partial.sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            @section('content_header')
-                <!--------------------------
+        @section('content_header')
+            <!--------------------------
                 | Your Page header_content Here |
                  -------------------------->
             @show
@@ -87,8 +91,8 @@ desired effect
 
         <!-- Main content -->
         <section class="content container-fluid">
-            @section('content')
-                <!--------------------------
+        @section('content')
+            <!--------------------------
                 | Your Page Content Here |
                 -------------------------->
             @show
@@ -98,9 +102,9 @@ desired effect
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    @include('admin.adminLayout.partial.footer')
+@include('admin.adminLayout.partial.footer')
 
-    <!-- Control Sidebar -->
+<!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -187,8 +191,7 @@ desired effect
 @show
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 3 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->

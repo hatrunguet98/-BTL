@@ -1,27 +1,32 @@
 @extends('admin.adminLayout.adminLayout')
 
 @section('content_header')
-    <h1>Tạo đánh giá</h1>
+    <h1>Danh sách đánh giá</h1>
 @endsection
 
 @section('content')
-
-    <div class="container">
-        <link rel="stylesheet" href="{{ asset('css/adminView/surveyForm.css') }}">
-        <form action="{{ url('survey-register') }}" method="post">
-            @csrf
-            <h3>Chọn môn</h3>
-            @foreach($courses as $course)
-            <div class="row select-subject">
-                <div class="form-group col-md-12 survey first-child">
-                    <div class="survey-content">
-                            <input type="checkbox" name="{{ $course->code }}" value="1">
-                            <label>{{ $course->name}}</label>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/css/dataTables.checkboxes.css" rel="stylesheet"/>
+    <div class="container" style="width: 95%; background: white; padding: 20px">
+        <form id="myform" action="{{ url('survey-generate') }}" method="post">
+            <table id="mytable" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Tên môn học</th>
+                    <th>Mã môn học</th>
+                    <th>Giảng viên</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Tên môn học</th>
+                    <th>Mã môn học</th>
+                    <th>Giảng viên</th>
+                </tr>
+                </tfoot>
+            </table>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generateSurvey">Tạo đánh giá</button>
 
             <div class="modal fade" id="generateSurvey" role="dialog">
@@ -40,9 +45,9 @@
                         <div class="survey-content">
                             <input type="checkbox"  id="check-all" checked /> Toggle All<br/>
                             @foreach($criteria as $criterion)
-                            <div class="row">
-                                <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
-                            </div>
+                                <div class="row">
+                                    <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                </div>
                             @endforeach
                         </div>
 
@@ -55,18 +60,58 @@
         </form>
     </div>
 
-<script type="text/javascript">
-    $(document).on('click','#check-all', function(){
-        if(this.checked) {
-            // Iterate each checkbox
-            $('.survey-content .row  :checkbox').each(function() {
-                this.checked = true;                        
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/js/dataTables.checkboxes.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var mytable = $("#mytable").DataTable({
+                ajax: 'data.json',
+                columnDefs: [
+                    {
+                        targets: 0,
+                        checkboxes: {
+                            selectRow: true
+                        }
+                    }
+                ],
+                select:{
+                    style: 'multi'
+                },
+                order: [[0, 'asc']]
             });
-        } else {
-            $('.survey-content .row  :checkbox').each(function() {
-                this.checked = false;                       
-            });
-        }
-    });
-</script>
+
+
+            $("#myform").on('submit', function(e){
+                var form = this;
+                var rowsel = mytable.column(0).checkboxes.selected();
+                $.each(rowsel, function(index, rowId){
+
+                    $(form).append(
+                        $('<input>').attr('type','hidden').attr('name','name[]').val(mytable.cell(rowId,2).data())
+                    )
+                });
+                 //e.preventDefault()
+            })
+        });
+        console.log("hello");
+    </script>
+
+    <script type="text/javascript">
+        $(document).on('click','#check-all', function(){
+            if(this.checked) {
+                // Iterate each checkbox
+                $('.survey-content .row  :checkbox').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $('.survey-content .row  :checkbox').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+    </script>
+
 @endsection
