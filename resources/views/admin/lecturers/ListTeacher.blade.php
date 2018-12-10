@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th style="width:5%;text-align: center">ID</th>
-            <th style="width:20%;text-align: center">Mã sinh viên</th>
+            <th style="width:20%;text-align: center">Mã giảng viên</th>
             <th style="width:30%;text-align: center">Họ và tên</th>
             <th style="width:25%;text-align: center">VNU Email</th>
             <th style="width:20%;text-align: center">Action</th>
