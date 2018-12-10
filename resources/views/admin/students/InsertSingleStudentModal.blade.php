@@ -11,60 +11,30 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}"  placeholder="username" required autofocus>
-
-                            @if ($errors->has('username'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                            @endif
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Họ và tên" required autofocus>
-
-                            @if ($errors->has('name'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                            @endif
                         </div>
                     </div>
                     <div class="form-group col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Nhập VNU email" required>
-
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                            @endif
                         </div>
                     </div>
                     <div class="form-group col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
                             <input id="class" type="text" class="form-control{{ $errors->has('class') ? ' is-invalid' : '' }}" name="class" value="{{ old('class') }}" placeholder="Khóa đào tạo" required autofocus>
-
-                            @if ($errors->has('class'))
-                                <span class="invalid-classfeedback" role="alert">
-                                        <strong>{{ $errors->first('class') }}</strong>
-                                    </span>
-                            @endif
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
-
-                            @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                            @endif
                         </div>
                     </div>
                     <div class="form-group col-md-6">

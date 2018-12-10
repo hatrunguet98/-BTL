@@ -13,11 +13,27 @@
     <div style="width: 30%; float: left">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListStudent">Thêm danh sách sinh viên</button>
     </div>
+    <div class="modal fade" id="errors" role="dialog">
+        <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="form ">
+                    <h2>Chọn danh sách sinh viên</h2>
+                    <form >
+                        <ul></ul>
+                        <button type="button" class="btn btn-danger pull-right" id="close" data-dismiss="modal">Close</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div id="table">
         
     </div>
-    
-    
+   
     @include('admin/students/InsertSingleStudentModal')
 
     @include('admin/students/EditSingleStudentModal')
@@ -53,15 +69,17 @@
             data : data,
             dataTy : 'json',
             success:function(data) {
-                $('#insertSingleStudent').modal('hide')
+                if ($.isEmptyObject(data.errors)) {
+                    alert('success');
+                    $('#table').empty().html(data);
+                    $('#insertSingleStudent').modal('hide')
+                } else {
+                    msgError(data.errors);
+                }
                 //console.log(data);
             }
-        }).done(function(data) {
-            $('#table').empty().html(data);
-        }).fail(function(e) {
-            $('#insertSingleStudent').modal('hide')
-            //console.log(e.responseText.message);
-            alert(e.responseText);
+        }).fail(function(data) {
+            alert('something error')
         });
     })
         /* delete students*/
@@ -90,7 +108,6 @@
     $(document).on('click','#edit', function(){
         $('#editSingleStudent').modal('show');
         var id = $(this).data('id');
-        console.log(id);
         student = "";
         $.get('{{URL::to("student/edit")}}',{id:id}).done(function(data) {
             $('#username-edit').val(data.username);
@@ -123,11 +140,14 @@
                 data : data,
                 dataTy : 'json',
                 success:function(data){
-                    alert('success');
+                    if ($.isEmptyObject(data.errors)) {
+                        alert('success');
+                        $('#table').empty().html(data);
+                        $('#editSingleStudent').modal('hide')
+                    } else {
+                        msgError(data.errors);
+                    }
                 }
-            }).done(function(data) {
-                $('#editSingleStudent').modal('hide');
-                $('#table').empty().html(data);
             }).fail(function(data) {
                 alert('something error');
             });
@@ -161,6 +181,14 @@
                 $('#table').empty().html(data);
             }
         });
+    }
+
+    function msgError(data) {
+        var a = ""
+        $.each(data, function(key, value){
+            a += "- " +value+"\n";
+        });
+        alert(a);
     }
 </script>
 @endsection
