@@ -67,7 +67,7 @@ class CreateUsersTable extends Migration
             $table->string('code');
         });
 
-        Schema::create('criterions', function(Blueprint $table) {
+        Schema::create('criteria', function(Blueprint $table) {
             $table->integer('id');
             $table->string('name');
             $table->string('type');
@@ -87,6 +87,6 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('user_courses');
         Schema::dropIfExists('courses');
         Schema::dropIfExists('subjects');
-        Schema::dropIfExists('criterions');
+        Schema::dropIfExists('criteria');
     }
 }
