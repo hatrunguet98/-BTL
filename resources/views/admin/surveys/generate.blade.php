@@ -60,15 +60,15 @@
         </form>
     </div>
 
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/js/dataTables.checkboxes.min.js"></script>
     <script>
         $(document).ready(function(){
             var mytable = $("#mytable").DataTable({
-                ajax: 'data.json',
+
+                //ajax : '{{URL::to("survey-generate")}}',
+                ajax : 'data.json',
                 columnDefs: [
                     {
                         targets: 0,
@@ -84,7 +84,7 @@
             });
 
 
-            $("#myform").on('submit', function(e){
+           /* $("#myform").on('submit', function(e){
                 var form = this;
                 var rowsel = mytable.column(0).checkboxes.selected();
                 $.each(rowsel, function(index, rowId){
@@ -94,7 +94,7 @@
                     )
                 });
                  //e.preventDefault()
-            })
+            })*/
         });
         console.log("hello");
     </script>

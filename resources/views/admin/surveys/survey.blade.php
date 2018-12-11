@@ -12,7 +12,7 @@
     </div>
 
     <div style="width: 30%; float: left">
-        <a class="btn btn-vimeo" href="http://localhost/-BTL/public/survey-generate">Tạo đánh giá chung</a>
+        <a class="btn btn-vimeo" href="http://localhost/-BTL/public/generate">Tạo đánh giá chung</a>
     </div>
 
     <div class="container">
