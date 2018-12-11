@@ -7,12 +7,9 @@
 @section('content')
 
     <link rel="stylesheet" href="{{ asset("css/adminView/table.css") }}">
-    <div style="width: 30%; float: left">
-        <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleSurvey">Thêm môn học</button>
-    </div>
 
     <div style="width: 30%; float: left">
-        <a class="btn btn-vimeo" href="http://localhost/-BTL/public/survey-generate">Tạo đánh giá chung</a>
+        <a class="btn btn-vimeo" href="http://localhost/-BTL/public/generate">Tạo đánh giá chung</a>
     </div>
 
     <div class="container">
@@ -45,43 +42,6 @@
         </table>
     </div>
 
-    <div class="modal fade" id="insertSingleSurvey" role="dialog">
-        <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="form">
-                    <h2>Thêm mới môn học</h2>
-                    <form action="{{ url('survey-register') }}" method="post">
-                        @csrf
-                        <h3>Danh sách môn</h3>
-                        <div class="form-group col-md-12 survey first-child">
-                            <div class="survey-content">
-                                <input type="checkbox" name="vehicle1" value="Bike">
-                                <label><span>mon1</span></label>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12 survey">
-                            <div class="survey-content">
-                                <input type="checkbox" name="vehicle1" value="Bike">
-                                <label><span>mon1</span></label>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12 survey">
-                            <div class="survey-content">
-                                <input type="checkbox" name="vehicle1" value="Bike">
-                                <label><span>mon1</span></label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-                        <button type="button" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
     <div class="modal fade" id="showSurvey" role="dialog">
         <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">

@@ -54,11 +54,10 @@ Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard
 
 Route::get('/survey', 'Admin\SurveyController@survey');
 
-Route::get('/survey-generate1', function () {
-    return view('admin.surveys.generate');
-});
+Route::get('/generate','Admin\SurveyController@generate');
+Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
 
-Route::get('/survey-generate','Admin\SurveyController@surveyGenerate');
+
 Route::any('/survey-submit', function () {
     return view('admin.surveys.submit');
 });
