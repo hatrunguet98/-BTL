@@ -113,3 +113,7 @@
 #generateSurvey .modal-dialog  .modal-content {
     padding: 30px;
 }
+
+.bootstrap-select {
+    width: 220px!important;
+}
