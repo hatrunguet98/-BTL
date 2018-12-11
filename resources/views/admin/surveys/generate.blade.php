@@ -68,7 +68,7 @@
     <script>
         $(document).ready(function(){
             var mytable = $("#mytable").DataTable({
-                ajax: 'data.json',
+                ajax : '{{URL::to("survey-generate")}}',
                 columnDefs: [
                     {
                         targets: 0,
@@ -87,16 +87,15 @@
             $("#myform").on('submit', function(e){
                 var form = this;
                 var rowsel = mytable.column(0).checkboxes.selected();
-                $.each(rowsel, function(index, rowId){
-
+                $.each(rowsel, function(index){
                     $(form).append(
-                        $('<input>').attr('type','hidden').attr('name','name[]').val(mytable.cell(rowId,2).data())
+                        $('<input>').attr('type','hidden').attr('name','name[]').val(mytable.cell(index,2).data())
                     )
                 });
-                 //e.preventDefault()
-            })
+                //e.preventDefault();
+            });
+
         });
-        console.log("hello");
     </script>
 
     <script type="text/javascript">
