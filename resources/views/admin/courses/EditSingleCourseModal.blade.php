@@ -25,13 +25,7 @@
                             <input type="text" class="form-control" name="name" placeholder="Tên môn học">
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control" name="teacher_code" placeholder="Mã giảng viên">
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input type="text" class="form-control" name="teacher_name" placeholder="Tên giảng viên">

@@ -33,12 +33,10 @@
                     <button class="btn btn-info btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Enroll
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <li role="presentation"><a id="#enrollSingleStudent">Single</a></li>
-                        <li role="presentation"><a id="#enrollListStudent">List</a></li>
+                        <li role="presentation"><a id="enrollSingle">Single</a></li>
+                        <li role="presentation"><a id="enrollList">List</a></li>
                     </ul>
                 </div>
-
-
                 <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                 <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
             </td>
@@ -48,7 +46,14 @@
             <td>Cơ nhiệt</td>
             <td>INT1101 2</td>
             <td>
-                <a  class="btn btn-info btn-xs" id="enroll">Enroll</a>
+                <div class="dropdown" style="display: inline">
+                    <button class="btn btn-info btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Enroll
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a id="enrollSingle">Single</a></li>
+                        <li role="presentation"><a id="enrollList">List</a></li>
+                    </ul>
+                </div>
                 <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                 <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
             </td>
@@ -58,7 +63,14 @@
             <td>Điện quang</td>
             <td>INT1101 3</td>
             <td>
-                <a  class="btn btn-info btn-xs" id="enroll">Enroll</a>
+                <div class="dropdown" style="display: inline">
+                    <button class="btn btn-info btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Enroll
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a id="enrollSingle">Single</a></li>
+                        <li role="presentation"><a id="enrollList">List</a></li>
+                    </ul>
+                </div>
                 <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                 <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
             </td>
@@ -72,16 +84,25 @@
 
     @include('admin/courses/InsertListCourseModal')
 
+    @include('admin/courses/EnrollListStudentModal')
+
+    @include('admin/courses/EnrollSingleStudentModal')
+
+
+
        <script type="text/javascript">
         /*-----------------Edit Student-----------------------*/
         $(document).on('click','#edit', function(){
             $('#editSingleCourse').modal('show');
         });
 
-        $(document).on('click','#enrollSingleStudent', function(){
+        $(document).on('click','#enrollSingle', function(){
             $('#enrollSingleStudent').modal('show');
         });
 
+        $(document).on('click','#enrollList', function(){
+            $('#enrollListStudent').modal('show');
+        });
     </script>
 @endsection
 

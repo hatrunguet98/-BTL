@@ -23,6 +23,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/css/dataTables.checkboxes.css" rel="stylesheet"/>
 
+    <!--select bootstrap-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.4.6/collection/icon/icon.css">
     <!-- Theme style -->
