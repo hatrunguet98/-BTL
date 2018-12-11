@@ -69,21 +69,3 @@ Route::post('/survey-register','Admin\SurveyController@surveyRegister');
 Route::get('/course', function () {
     return view('admin.courses.course');
 });
-Route::get('/user/student/students',function(){
-    return view('user.student.students');
-});
-Route::get('/user/elements/survey',function(){
-    return view('user.elements.survey');
-});
-Route::get('/welcome',function(){
-    return view('welcome');
-});
-Route::get('/porfile',function(){
-    return view('porfile');
-});
-Route::get('/user/teacher/teacher',function(){
-    return view('user.teacher.teacher');
-});
-Route::get('/user/elements/result',function(){
-    return view('user.elements.result');
-});
