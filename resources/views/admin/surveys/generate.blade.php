@@ -8,7 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/css/dataTables.checkboxes.css" rel="stylesheet"/>
     <div class="container" style="width: 95%; background: white; padding: 20px">
-        <form id="myform" action="{{ url('survey-generate') }}" method="post">
+        <form id="myform" action="{{ url('generate') }}" method="post">
+            @csrf
             <table id="mytable" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
@@ -18,14 +19,14 @@
                     <th>Giảng viên</th>
                 </tr>
                 </thead>
-                <tfoot>
+               <!--  <tfoot>
                 <tr>
                     <th></th>
                     <th>Tên môn học</th>
                     <th>Mã môn học</th>
                     <th>Giảng viên</th>
                 </tr>
-                </tfoot>
+                </tfoot> -->
             </table>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generateSurvey">Tạo đánh giá</button>
 
@@ -88,17 +89,16 @@
                 var form = this;
                 var rowsel = mytable.column(0).checkboxes.selected();
                 $.each(rowsel, function(index){
+                    console.log(form);
                     $(form).append(
-                        $('<input>').attr('type','hidden').attr('name','name[]').val(mytable.cell(index,2).data())
+                        $('<input>').attr('type','hidden').attr('name','courses[]').val(mytable.cell(index,0).data())
                     )
                 });
                 //e.preventDefault();
             });
 
         });
-    </script>
 
-    <script type="text/javascript">
         $(document).on('click','#check-all', function(){
             if(this.checked) {
                 // Iterate each checkbox
