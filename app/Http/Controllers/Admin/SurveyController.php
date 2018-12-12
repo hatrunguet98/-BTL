@@ -44,14 +44,7 @@ class SurveyController extends Controller
             $record[] = $value->user_name;
             $data[] = $record;
         }
-
-//        echo '<pre>';
-//        print_r($data);
-//        echo '</pre>';
-//        die;
-
         return "{\"data\": ".json_encode($data)."}";
-        //return json_encode($data);
     }
 
     public function surveyEdit() {
@@ -59,11 +52,30 @@ class SurveyController extends Controller
     }
 
     public function surveyRegister(Request $request) {
+        $courses = $request->courses;
+        $start = date_create($request->start . ' 00:00:00');
+        $start = date_format($start,"Y-m-d H:i:s");
+        $finish = date_create($request->finish . ' 23:59:59');
+        $finish = date_format($finish,"Y-m-d H:i:s");
         $data = $request->all();
+        $criteria = array();
         foreach ($data as $key => $value) {
-           
+            if(substr($key, 0,6) == 'survey' ){
+                $criteria[] = substr($key, 6);
+            }
+
+        }
+        $criterion =  json_encode($criteria);
+        foreach($courses as $course) {
+            DB::table('courses')->where('id',$course)
+                ->update([
+                    'status' => 1,
+                    'criterion' => $criterion,
+                    'start' => $start,
+                    'finish' => $finish,
+                ]);
         }
 
-        dd($request->all());
+        return $this->generate();
     }
 }

@@ -48,6 +48,12 @@ class RolesTableSeeder extends Seeder
             [ 'id' => 19, 'name' => 'Thông tin phản hồi từ kiểm tra đánh giá giúp bạn cả thiện được kết quả học tập', 'type' => 'Hoạt động học tập của sinh viên'],
 
         ]);
+        DB::table('semesters')->insert([
+            ["id" =>"1" , "name" => "Kì I"],
+            ["id" =>"2" , "name" => "Kì II"],
+            ["id" =>"3" , "name" => "Kì Hè"],
+        ]);
+
         DB::table('roles')->delete();
         DB::table('roles')->insert([
             ['id' => '0', 'name' => 'admin'],

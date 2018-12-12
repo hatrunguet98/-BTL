@@ -56,18 +56,23 @@ Route::get('/survey', 'Admin\SurveyController@survey');
 
 Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
+Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
+Route::post('/generate','Admin\SurveyController@surveyRegister');
+
+
+
+
+Route::get('/course', 'Admin\CourseController@course');
+Route::post('/add-course','Admin\CourseController@addCourse');
+
+
 
 
 Route::any('/survey-submit', function () {
     return view('admin.surveys.submit');
 });
 
-Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
-Route::post('/survey-register','Admin\SurveyController@surveyRegister');
 
-Route::get('/course', function () {
-    return view('admin.courses.course');
-});
 Route::get('/user/student/students',function(){
     return view('user.student.students');
 });
