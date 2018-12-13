@@ -18,7 +18,7 @@ class SurveyController extends Controller
     }
 
     public function survey() {
-    	$courses = Course::where('status',0)->get();
+    	$courses = Course::where('status',1)->get();
     	return view('admin.surveys.survey',compact('courses'));
     }
 
@@ -34,7 +34,6 @@ class SurveyController extends Controller
             ->join('roles', 'users.role', '=', 'roles.id')
             ->where('courses.status',0)
             ->where('roles.name', '=', 'giaovien')->get();
-
         $data = array();
         foreach ($courses as $value) {
             $record = array();
