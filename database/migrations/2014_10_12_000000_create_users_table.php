@@ -41,7 +41,7 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('user_courses', function (Blueprint $table) {
-            $table->integer('user_id')->primary();
+            $table->integer('user_id');
             $table->integer('course_id');
             $table->integer('survey_id');
             $table->timestamps();
@@ -50,7 +50,8 @@ class CreateUsersTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('admin_id');
-            $table->integer('admin_survay_id');
+            $table->integer('admin_survay_id')->nullable();
+            $table->integer('subject_id')->nullable();
             $table->string('name')->nullable();
             $table->string('code');
             $table->string('semester');
@@ -93,6 +94,6 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('courses');
         Schema::dropIfExists('subjects');
         Schema::dropIfExists('criteria');
-        Schema::dropIfExists('semester');
+        Schema::dropIfExists('semesters');
     }
 }
