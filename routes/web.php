@@ -67,6 +67,7 @@ Route::post('/add-course','Admin\CourseController@addCourse');
 
 
 
+
 Route::any('/survey-submit', function () {
     return view('admin.surveys.submit');
 });

@@ -21,6 +21,6 @@ class CourseController extends Controller
     }
 
     public function addCourse(Request $request){
-    	dd($request->all());
+    	dd($request);
     }
 }
