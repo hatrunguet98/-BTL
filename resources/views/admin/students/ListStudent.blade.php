@@ -5,7 +5,7 @@
             <th style="width:15%;text-align: center">Mã sinh viên</th>
             <th style="width:30%;text-align: center">Họ và tên</th>
             <th style="width:20%;text-align: center">VNU Email</th>
-            <th style="width:15;text-align: center">Class</th>
+            <th style="width:15%;text-align: center">Class</th>
             <th style="width:15%;text-align: center">Action</th>
         </tr>
     </thead>
@@ -16,7 +16,7 @@
         		<td style="width:15%;text-align: center">{{$user->username}}</td>
         		<td style="width:30%;text-align: center">{{$user->name}}</td>
         		<td style="width:20%;text-align: center">{{$user->email}}</td>
-        		<td style="width:15;text-align: center">{{$user->class}}</td>
+        		<td style="width:15%;text-align: center">{{$user->class}}</td>
         		<td style="width:15%;text-align: center">
         			<a  class="btn btn-info btn-xs" id="view" data-id="{{$user->id}}">View</a>
         			<a  class="btn btn-success btn-xs" id="edit" data-id="{{$user->id}}">Edit</a>

@@ -51,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-    <link rel="stylesheet" href="{{ asset('css/adminView/table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
 
 </head>
 <!--
@@ -96,11 +96,13 @@ desired effect
 
         <!-- Main content -->
         <section class="content container-fluid">
+        <div class="container">
         @section('content')
             <!--------------------------
                 | Your Page Content Here |
                 -------------------------->
             @show
+        </div>
         </section>
         <!-- /.content -->
     </div>

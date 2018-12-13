@@ -6,15 +6,14 @@
 
 @section('content')
 
-    <div style="width: 30%; float: left">
+    <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleStudent">Thêm sinh viên</button>
     </div>
 
-    <div style="width: 30%; float: left">
+    <div class="main-button2">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListStudent">Thêm danh sách sinh viên</button>
     </div>
     <div class="modal fade" id="errors" role="dialog">
-        <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">

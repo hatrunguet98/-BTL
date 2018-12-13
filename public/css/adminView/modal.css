@@ -1,4 +1,20 @@
-.model {
+.container {
+    background-color: white;
+    padding: 15px;
+}
+
+.container .main-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.container .main-button2 {
+    display: inline-block;
+    margin-left: 20%;
+}
+
+.modal {
     box-sizing: border-box;
 }
 
@@ -49,20 +65,109 @@
 
 
 
-.modal .modal-dialog .modal-content .survey {
+#generateSurvey .modal-dialog {
+    width: 60%;
+}
+#generateSurvey .modal-dialog  .modal-content {
+    padding: 30px;
+}
+
+
+#showSurvey .modal-dialog {
+    width: 60%;
+}
+
+#showSurvey .modal-dialog .modal-content h3{
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+#showSurvey .modal-dialog .modal-content button {
+    margin-bottom: 15px;
+    margin-left: 40%;
+}
+
+
+#showSurvey .modal-dialog li{
+    font-size: 20px;
+}
+
+
+
+
+#editSurvey .modal-dialog {
+    width: 60%;
+}
+
+#editSurvey .form {
+    background: white;
+    margin: 20px;
+
+}
+
+#editSurvey .form .date label{
+    display: inline-block;
+    float: left;
+    font-size: 15px;
+    line-height: 25px;
+    margin: 0;
+}
+
+#editSurvey .form .date input[type="date"] {
+    display: inline-block;
+    float: left;
+    width: 70%;
+}
+
+#editSurvey .form .survey h4{
+    font-size: 20px;
+}
+
+#editSurvey .form .survey .row {
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+#editSurvey .form .survey label {
+    display: block;
+}
+#editSurvey .form .survey label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+#editSurvey .form .survey label span {
+    font-weight: normal;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+#editSurvey .form button {
+    margin-left: 40%;
+    margin-bottom: 15px;
+}
+
+
+#editSurvey form .select-subject {
+    width: 70%;
+    margin-left: 20px;
+}
+
+#editSurvey form .select-subject .survey{
+    box-sizing: border-box;
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
     border-right: 1px solid gray;
-    padding: 0 20px;
+    padding: 0 12px;
     margin: 0;
     height: 50px;
 }
 
-.modal .modal-dialog .modal-content .survey .survey-content {
+#editSurvey form .select-subject .survey-content {
     height: 100%;
 }
 
-.modal .modal-dialog .modal-content .survey .survey-content input[type="checkbox"] {
+#editSurvey form .select-subject input[type="checkbox"]{
     display:inline-block;
     height: 20px;
     width: 20px;
@@ -70,7 +175,7 @@
     margin-right: 10px;
 }
 
-.modal .modal-dialog .modal-content .survey .survey-content label {
+#editSurvey form .select-subject label {
     display:inline-block;
     position: absolute;
     top: 0;
@@ -78,7 +183,7 @@
     margin: 0;
 }
 
-.modal .modal-dialog .modal-content .survey .survey-content label span{
+#editSurvey form .select-subject label span {
     display:inline-block;
     position: absolute;
     top: 0;
@@ -91,29 +196,11 @@
     font-weight: normal;
 }
 
-
-.modal .modal-dialog .modal-content .first-child {
+#editSurvey form .select-subject .first-child {
     border-top: 1px solid gray;
 }
 
-.modal .modal-dialog .modal-content h4 {
-    padding-left: 20px;
-}
-
-.modal  .modal-dialog  .modal-content > #closeBtn {
-    margin-left: 40%;
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-
-#generateSurvey .modal-dialog {
-    width: 60%;
-}
-#generateSurvey .modal-dialog  .modal-content {
-    padding: 30px;
-}
-
-.bootstrap-select {
-    width: 220px!important;
+#editSurvey form button[type="button"] {
+    margin-top: 20px;
+    margin-left: 20%;
 }

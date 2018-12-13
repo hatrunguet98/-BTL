@@ -6,11 +6,11 @@
 
 @section('content')
 
-    <div style="width: 30%; float: left">
+    <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleTeacher">Thêm giảng viên</button>
     </div>
 
-    <div style="width: 30%; float: left">
+    <div class="main-button2">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListTeacher">Thêm danh sách giảng viên</button>
     </div>
     <div id="table">

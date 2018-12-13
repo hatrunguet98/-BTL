@@ -6,11 +6,11 @@
 
 @section('content')
 
-    <div style="width: 30%; float: left">
+    <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleAdmin">Thêm admin</button>
     </div>
 
-    <div style="width: 30%; float: left">
+    <div class="main-button2">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListAdmin">Thêm danh sách admin</button>
     </div>
     <div>
