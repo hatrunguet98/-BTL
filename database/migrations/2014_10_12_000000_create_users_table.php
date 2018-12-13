@@ -41,9 +41,9 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('user_courses', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->integer('course_id');
-            $table->integer('survey_id');
+            $table->integer('user_id')->nullable();
+            $table->integer('course_id')->nullable();
+            $table->integer('survey_id')->nullable();
             $table->timestamps();
         });
 
@@ -56,7 +56,7 @@ class CreateUsersTable extends Migration
             $table->string('code');
             $table->string('semester');
             $table->string('status')->default(0);
-            $table->string('criterion_survay')->nullable();
+            $table->string('criterion')->nullable();
             $table->datetime('start')->nullable();
             $table->datetime('finish')->nullable();
             $table->timestamps();

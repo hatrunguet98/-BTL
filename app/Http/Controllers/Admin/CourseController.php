@@ -34,8 +34,12 @@ class CourseController extends Controller
                     ->orderBy('id', 'desc')
                     ->first();
         $admin_id = Auth::user()->id;
-
-        if($subject) {
+        $teacher = DB::table('users')
+                    ->join('roles','roles.id', '=', 'users.role')
+                    ->where('roles.name','giaovien')
+                    ->where('users.id', $data['user'])
+                    ->first();
+        if($subject && $teacher) {
             $code = "";
             if(!$course){
                 $code = $subject->code . " 1";
@@ -52,6 +56,11 @@ class CourseController extends Controller
                 'subject_id' => $subject_id,
                 'name' => $subject_name,
                 'semester' => $semester,
+            ]);
+            $course_id = DB::table('courses')->orderBy('id', 'desc')->first()->id;
+            DB::table('user_courses')->insert([
+                'user_id' => $teacher->id,
+                'course_id' => $course_id,
             ]);
         } else {
             dd("@@@");
