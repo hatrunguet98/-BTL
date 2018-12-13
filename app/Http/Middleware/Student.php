@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Services\ClassAdmin\ClassRoleAdmin;
+use App\Services\ClassUser\ClassRoleUser;
 
-class Admin
+class Student
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $req = ClassRoleAdmin::checkAdmin();
+        $req = ClassRoleUser::checkStudent();
         if(!$req) {
             return redirect('/');
         }
-
         return $next($request);
     }
 }

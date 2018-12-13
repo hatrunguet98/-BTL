@@ -56,33 +56,40 @@ Route::get('/survey', 'Admin\SurveyController@survey');
 
 Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
+Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
+Route::post('/generate','Admin\SurveyController@surveyRegister');
+
+
+
+
+Route::get('/course', 'Admin\CourseController@course');
+Route::post('/add-course','Admin\CourseController@addCourse');
+
 
 
 Route::any('/survey-submit', function () {
     return view('admin.surveys.submit');
 });
 
-Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
-Route::post('/survey-register','Admin\SurveyController@surveyRegister');
+// chức năng cho sinh giao viên và sinh viên
 
-Route::get('/course', function () {
-    return view('admin.courses.course');
-});
-Route::get('/user/student/students',function(){
-    return view('user.student.students');
-});
+Route::get('/user/student','User\StudentController@student');
+Route::get('/user/teacher','User\TeacherController@teacher');
+
+
 Route::get('/user/elements/survey',function(){
     return view('user.elements.survey');
-});
-Route::get('/welcome',function(){
-    return view('welcome');
 });
 Route::get('/porfile',function(){
     return view('porfile');
 });
-Route::get('/user/teacher/teacher',function(){
-    return view('user.teacher.teacher');
-});
 Route::get('/user/elements/result',function(){
     return view('user.elements.result');
 });
+
+
+
+
+/*Route::get('/welcome',function(){
+    return view('welcome');
+});*/
