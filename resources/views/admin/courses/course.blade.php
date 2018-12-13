@@ -27,9 +27,9 @@
         <tbody>
         @foreach($courses as $course)
         <tr>
-            <td>1</td>
             <td>{{$course->id}}</td>
             <td>{{$course->name}}</td>
+            <td>{{$course->code}}</td>
             <td>{{$course->semester}}</td>
             <td>
                 <div class="dropdown" style="display: inline">

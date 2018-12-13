@@ -20,16 +20,7 @@
                                 <p class="name-course">  ứng dụng web</p>
                             </a>
                         </li>
-                        <li class="tag-courses">
-                            <a class="tag-sidebar" href="">
-                                <img class="icontree" src="{{ asset('user/images/book1.png') }}" /> INT3306 2
-                            </a>
-                        </li>
-                        <li class="tag-courses">
-                            <a class="tag-sidebar" href="">
-                                <img class="icontree" src="{{ asset('user/images/book1.png') }}" /> INT3306 2
-                        </a>
-                        </li>
+                       
                     </ul>
                 </li>
             </ul>
@@ -42,22 +33,12 @@
         Courses</button>
         <button class="tag-sidebar" id="class-survey" href=""><img class="icontree" src="{{ asset('user/images/notebook.png') }}" /> ClassSurvey</button>
             <ul id="list-survey"  style="display:none">
-                        <li class="tag-courses" >
-                            <a class="tag-sidebar" href="">
-                                <img class="icontree" src="{{ asset('user/images/book1.png') }}" />INT3306 2
-                                <p class="name-course">  ứng dụng web</p>
-                            </a>
-                        </li>
-                        <li class="tag-courses">
-                            <a class="tag-sidebar" href="">
-                                <img class="icontree" src="{{ asset('user/images/book1.png') }}" /> INT3306 2
-                            </a>
-                        </li>
-                        <li class="tag-courses">
-                            <a class="tag-sidebar" href="">
-                                <img class="icontree" src="{{ asset('user/images/book1.png') }}" /> INT3306 2
-                        </a>
-                        </li>
+                <li class="tag-courses" >
+                    <a class="tag-sidebar" href="">
+                        <img class="icontree" src="{{ asset('user/images/book1.png') }}" />INT3306 2
+                        <p class="name-course">  ứng dụng web</p>
+                    </a>
+                </li>
             </ul>
     </div>
     <!--Main Layout-->
