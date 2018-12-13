@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Services\ClassAdmin\ClassRoleAdmin;
+use App\Services\ClassUser\ClassRoleUser;
 
 class LoginController extends Controller
 {
@@ -73,12 +74,20 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        $req = ClassRoleAdmin::checkAdmin();
-        if($req) {
+        $admin = ClassRoleAdmin::checkAdmin();
+        $teacher = ClassRoleUser::CheckTeacher();
+        $student = ClassRoleUser::CheckStudent();
+
+        if($admin) {
             return redirect('dashboard');
         }
-
-        return redirect('home');
+        if($teacher) {
+            return redirect('/user/teacher');
+        }
+        if($student) {
+            return redirect('/user/student');
+        }
+        return redirect('/');
     }
 
     /**
