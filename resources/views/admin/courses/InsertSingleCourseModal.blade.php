@@ -1,6 +1,4 @@
 <div class="modal fade" id="insertSingleCourse" role="dialog">
-    <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
-
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">

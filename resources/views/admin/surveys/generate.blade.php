@@ -7,59 +7,58 @@
 @section('content')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/css/dataTables.checkboxes.css" rel="stylesheet"/>
-    <div class="container" style="width: 95%; background: white; padding: 20px">
-        <form id="myform" action="{{ url('generate') }}" method="post">
-            @csrf
-            <table id="mytable" class="table table-bordered table-striped table-hover">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Tên môn học</th>
-                    <th>Mã môn học</th>
-                    <th>Giảng viên</th>
-                </tr>
-                </thead>
-               <!--  <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Tên môn học</th>
-                    <th>Mã môn học</th>
-                    <th>Giảng viên</th>
-                </tr>
-                </tfoot> -->
-            </table>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generateSurvey">Tạo đánh giá</button>
 
-            <div class="modal fade" id="generateSurvey" role="dialog">
-                <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="form-group col-md-6 date">
-                            <label for="start">Ngày bắt đầu:</label>
-                            <input type="date" id="start" name="start" value="2018-07-22">
-                        </div>
-                        <div class="form-group col-md-6 date">
-                            <label for="start">Ngày kết thúc:</label>
-                            <input type="date" id="start" name="finish" value="2018-07-22">
-                        </div>
-                        <div class="survey-content">
-                            <input type="checkbox"  id="check-all" checked /> Toggle All<br/>
-                            @foreach($criteria as $criterion)
-                                <div class="row">
-                                    <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
-                                </div>
-                            @endforeach
-                        </div>
+    <form id="myform" action="{{ url('generate') }}" method="post">
+        @csrf
+        <table id="mytable" class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Tên môn học</th>
+                <th>Mã môn học</th>
+                <th>Giảng viên</th>
+            </tr>
+            </thead>
+           <!--  <tfoot>
+            <tr>
+                <th></th>
+                <th>Tên môn học</th>
+                <th>Mã môn học</th>
+                <th>Giảng viên</th>
+            </tr>
+            </tfoot> -->
+        </table>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generateSurvey">Tạo đánh giá</button>
 
-                        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-
+        <div class="modal fade" id="generateSurvey" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="form-group col-md-6 date">
+                        <label for="start">Ngày bắt đầu:</label>
+                        <input type="date" id="start" name="start" value="2018-07-22">
+                    </div>
+                    <div class="form-group col-md-6 date">
+                        <label for="start">Ngày kết thúc:</label>
+                        <input type="date" id="start" name="finish" value="2018-07-22">
+                    </div>
+                    <div class="survey-content">
+                        <input type="checkbox"  id="check-all" checked /> Chọn tất cả<br/>
+                        @foreach($criteria as $criterion)
+                            <div class="row">
+                                <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                            </div>
+                        @endforeach
                     </div>
 
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+
                 </div>
+
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+
 
 
 
@@ -81,7 +80,7 @@
                 select:{
                     style: 'multi'
                 },
-                order: [[0, 'asc']]
+                order: [[1, 'asc']]
             });
 
 
@@ -91,7 +90,7 @@
                 $.each(rowsel, function(index){
                     console.log(form);
                     $(form).append(
-                        $('<input>').attr('type','hidden').attr('name','courses[]').val(mytable.cell(index,0).data())
+                        $('<input>').attr('type','hidden').attr('name','courses[]').val(mytable.cell(index,2).data())
                     )
                 });
                 //e.preventDefault();
