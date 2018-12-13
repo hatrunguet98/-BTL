@@ -77,7 +77,7 @@ Route::get('/user/student','User\StudentController@student');
 Route::get('/user/teacher','User\TeacherController@teacher');
 
 
-Route::get('/user/elements/survey',function(){
+Route::get('/user/elements/survey', function(){
     return view('user.elements.survey');
 });
 Route::get('/porfile',function(){
