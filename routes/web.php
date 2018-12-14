@@ -78,19 +78,18 @@ Route::get('/user/student','User\StudentController@student');
 Route::get('/user/teacher','User\TeacherController@teacher');
 
 
-Route::get('/user/elements/survey', function(){
-    return view('user.elements.survey');
+Route::get('students',function(){
+    return view('user.student.students');
 });
-Route::get('/porfile',function(){
-    return view('porfile');
+Route::get('/user/userlayout/teacher/teacher',function(){
+    return view('user.userlayout.teacher.teacher');
 });
-Route::get('/user/elements/result',function(){
-    return view('user.elements.result');
+Route::get('/surveys',function(){
+    return view('user.student.survey.survey');
 });
-
-
-
-
-/*Route::get('/welcome',function(){
+Route::get('/courses',function(){
+    return view('user.courses.courses');
+});
+Route::get('/welcome', function () {
     return view('welcome');
-});*/
+});
