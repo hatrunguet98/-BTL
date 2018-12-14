@@ -77,7 +77,8 @@ Route::any('/survey-submit', function () {
 // chức năng cho sinh giao viên và sinh viên
 
 Route::get('/students','User\StudentController@student');
-Route::get('/student/survey', 'User\StudentController@survey');
+Route::get('/student/survey', 'User\StudentController@survey')->name('student/survey');
+Route::post('/student/survey', 'User\StudentController@insertSurvey')->name('student/survey');
 
 
 Route::get('/user/teacher','User\TeacherController@teacher');
