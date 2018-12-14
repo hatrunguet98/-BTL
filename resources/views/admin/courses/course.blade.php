@@ -60,7 +60,10 @@
 
 
 
-       <script type="text/javascript">
+@endsection
+
+@section('js')
+   <script type="text/javascript">
         /*-----------------Edit Student-----------------------*/
         $(document).on('click','#edit', function(){
             $('#editSingleCourse').modal('show');
@@ -74,9 +77,6 @@
             $('#enrollListStudent').modal('show');
         });
     </script>
-@endsection
-
-@section('js')
     
 @endsection
 
