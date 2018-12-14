@@ -67,4 +67,19 @@ class CourseController extends Controller
         }
        return redirect('/course');
     }
+
+    public function enrollStudent(Request $request) {
+        $username = $request->username;
+        $course_id = $request->id;
+        $user = DB::table('users')->where('username',$username)->first();
+        if($user) {
+            DB::table('user_courses')->insert([
+                'user_id' => $user->id,
+                'course_id' => $course_id,
+            ]);
+        } else {
+            dd('hi');
+        }
+        return redirect('/course');
+    }
 }

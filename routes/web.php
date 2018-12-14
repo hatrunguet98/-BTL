@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+// Chức năng với sinh viên
 Route::get('/student', 'Admin\StudentController@student')->name('student');
 Route::post('/student-register', 'Admin\StudentController@register')->name('student-register');
 Route::get('/student-import', 'Admin\StudentController@import')->name('student-import');
@@ -29,7 +29,7 @@ Route::get('/load-student', 'Admin\StudentController@loadUser')->name('load-stud
 Route::post('/student/edit', 'Admin\StudentController@edit')->name('/student/edit');
 Route::get('/student/edit','Admin\StudentController@editUser')->name('/student/edit');
 
-
+// Chức năng với giáo viên
 Route::get('/teacher', 'Admin\TeacherController@teacher')->name('teacher');
 Route::post('/teacher-register', 'Admin\TeacherController@register')->name('teacher-register');
 Route::get('/teacher-import', 'Admin\TeacherController@import')->name('teacher-import');
@@ -39,6 +39,7 @@ Route::get('/load-teacher', 'Admin\TeacherController@loadUser')->name('load-teac
 Route::post('/teacher/edit', 'Admin\TeacherController@edit')->name('/teacher/edit');
 Route::get('/teacher/edit', 'Admin\TeacherController@editUser')->name('/teacher/edit');
 
+// Chức năng với admin
 Route::get('/admin-register', 'Admin\AdminController@registerTeacher')->name('admin-register');
 Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');
 Route::get('/admin-import', 'Admin\AdminController@import')->name('admin-import');
@@ -51,7 +52,7 @@ Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
 
 Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard');
 
-
+// Chức năng với survey
 Route::get('/survey', 'Admin\SurveyController@survey');
 
 Route::get('/generate','Admin\SurveyController@generate');
@@ -61,9 +62,10 @@ Route::post('/generate','Admin\SurveyController@surveyRegister');
 
 
 
-
+// Chức năng với course
 Route::get('/course', 'Admin\CourseController@course');
 Route::post('/add-course','Admin\CourseController@addCourse');
+Route::post('/enroll-student','Admin\CourseController@enrollStudent');
 
 
 
