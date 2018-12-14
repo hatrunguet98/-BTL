@@ -85,7 +85,7 @@ class LoginController extends Controller
             return redirect('/user/teacher');
         }
         if($student) {
-            return redirect('/user/student');
+            return redirect('/students');
         }
         return redirect('/');
     }

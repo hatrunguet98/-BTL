@@ -41,10 +41,10 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('user_courses', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id')->nullable();
             $table->integer('course_id')->nullable();
             $table->integer('survey_id')->nullable();
-            $table->timestamps();
         });
 
         Schema::create('courses', function (Blueprint $table) {
