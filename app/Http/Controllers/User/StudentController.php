@@ -71,8 +71,23 @@ class StudentController extends Controller
 
 
             }
-            
+
             return view('user.student.survey.survey', compact('datas'));
         }
+    }
+
+    public function insertSurvey(Request $request) {
+        $request = $request->all();
+        $array = array();
+        foreach ($request as $key => $value) {
+            if(substr($key, 0,6) == 'survey'){
+                $array += [substr($key, 6) => $value];
+            }
+        }
+        $evaluate = json_encode($array);
+        DB::table('surveys')->insert([
+            'evaluate' => $evaluate,
+        ]);
+        return redirect('students');
     }
 }

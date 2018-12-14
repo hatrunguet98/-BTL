@@ -35,7 +35,6 @@ class CreateUsersTable extends Migration
         Schema::create('surveys', function (Blueprint $table) {
             $table->increments('id');
             $table->string('evaluate')->nullable();
-            $table->integer('admin_id');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
