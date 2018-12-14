@@ -68,13 +68,12 @@ class SurveyController extends Controller
         foreach($courses as $course) {
             DB::table('courses')->where('id',$course)
                 ->update([
-                    'status' => 1,
+                    'status' => '1',
                     'criterion' => $criterion,
                     'start' => $start,
                     'finish' => $finish,
                 ]);
         }
-
         return $this->generate();
     }
 }

@@ -11,9 +11,14 @@
                 <li class="has-children p-1 ">
                     <button class="tag-sidebar" id="class-survey" href=""><img class="icontree" src="{{ asset('user/images/notebook.png') }}" /> ClassSurvey</button>
                     <ul id="list-survey" style="display:none">
-                        <a class="tag-sidebar" id="tag-classsurvey" href="{{ url('surveys') }}">
-                            <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">INT2202 1</span>
+                        @foreach($courses as $course)
+                        <li>
+                        <a class="tag-sidebar" id="survey" data-id="{{$course->course_id}}" href="{{ url('surveys') }}">
+                            <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
+                            <p>{{$course->course_name}}</p>
                         </a>
+                        @endforeach
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -27,9 +32,11 @@
         <button class="tag-sidebar" id="class-survey-mobile" href=""><img class="icontree" src="{{ asset('user/images/notebook.png') }}" /> ClassSurvey</button>
         <ul id="list-survey-mobile" style="display:none">
             <li class="tag-courses">
+            @foreach($courses as $course)
             <button class="tag-sidebar" id="tag-classsurvey" href="{{ url('surveys') }}">
-                    <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">INT2202 1</span>
+                    <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
             </button>
+            @endforeach
             </li>
         </ul>
     </div>

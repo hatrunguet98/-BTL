@@ -31,7 +31,13 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <img class="avatar" height="30" src="{{ asset('user/images/avatar.png') }}">
-                                <span class="nameuser">{{ Auth::user()->username }}</span>
+                                <span class="nameuser">
+                                    @if (Auth::user()->name)
+                                        {{ Auth::user()->name }}
+                                    @else
+                                        {{ Auth::user()->username }}
+                                    @endif
+                                </span>
                                 <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

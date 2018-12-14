@@ -35,6 +35,7 @@ class CourseController extends Controller
                     ->first();
         $admin_id = Auth::user()->id;
         $teacher = DB::table('users')
+                    ->select('users.id as id', 'users.name as name', 'users.email as email')
                     ->join('roles','roles.id', '=', 'users.role')
                     ->where('roles.name','giaovien')
                     ->where('users.id', $data['user'])

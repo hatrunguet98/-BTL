@@ -76,13 +76,12 @@ Route::any('/survey-submit', function () {
 
 // chức năng cho sinh giao viên và sinh viên
 
-Route::get('/user/student','User\StudentController@student');
+Route::get('/students','User\StudentController@student');
+Route::get('/student/survey', 'User\StudentController@survey');
+
+
 Route::get('/user/teacher','User\TeacherController@teacher');
 
-
-Route::get('students',function(){
-    return view('user.student.students');
-});
 Route::get('/user/userlayout/teacher/teacher',function(){
     return view('user.userlayout.teacher.teacher');
 });
