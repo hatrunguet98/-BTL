@@ -4,22 +4,15 @@
         <div class="modal-content">
             <div class="form">
                 <h2>Thêm mới sinh viên</h2>
-                <form action="" method="post">
+                <form action="{{ url('enroll-student') }}" method="post">
                     @csrf
                     <div class="form-group col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <input id="code" type="text" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" name="code" value="{{ old('code') }}"  placeholder="Mã sinh viên" required autofocus>
-
-                            @if ($errors->has('code'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('code') }}</strong>
-                                    </span>
-                            @endif
+                            <input type="hidden" name="id" value="{{$course->id}}">
+                            <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}"  placeholder="Mã sinh viên" required autofocus>
                         </div>
                     </div>
-
-
                     <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
                     <button type="button" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</button>
                 </form>

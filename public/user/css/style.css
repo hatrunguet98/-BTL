@@ -25,8 +25,8 @@ header {
     z-index: 10000;
 }
 
-header:hover {
-    background: rgba(29, 210, 177, 0.7) 100%);
+a {
+    color: #fff;
 }
 
 .form-search {
@@ -88,22 +88,7 @@ a.btn:hover {
     border-width: 0px;
 }
 
-.header-right a.signin {
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #ffff;
-    text-transform: capitalize;
-    font-family: 'Niramit', sans-serif;
-}
-
-.header-right a.signin:hover {
-    color: #5563b1;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.header-right a.contact {
+.login {
     background-image: linear-gradient(284deg, #5563b1, #2dde98);
     padding: 11px 30px;
     font-size: 17px;
@@ -113,8 +98,18 @@ a.btn:hover {
     display: inline-block;
 }
 
-.header-right a.contact:hover {
+.login:hover {
     text-decoration: none;
+    color: #5563b1;
+    font-size: 20px;
+}
+.login-content{
+    color: #fff;
+}
+.login-content:hover {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
 }
 
 #image1 {
@@ -255,19 +250,18 @@ button#course {
     border: none;
 }
 
-#class-survey {
-    background: none;
-    border: none;
-}
+
 
 #list-survey {
-    transition-duration: 3s;
+    transition: height 4s;
 }
 
 .tag-sidebar {
     color: #fff;
     text-decoration: none;
     font-size: 20px;
+    background: none;
+    border: none;
 }
 
 .tag-sidebar:hover {

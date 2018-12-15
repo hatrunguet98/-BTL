@@ -90,7 +90,7 @@
                 $.each(rowsel, function(index){
                     console.log(form);
                     $(form).append(
-                        $('<input>').attr('type','hidden').attr('name','courses[]').val(mytable.cell(index,2).data())
+                        $('<input>').attr('type','hidden').attr('name','courses[]').val(mytable.cell(index,0).data())
                     )
                 });
                 //e.preventDefault();
