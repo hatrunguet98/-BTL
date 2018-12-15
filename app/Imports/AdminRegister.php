@@ -18,7 +18,7 @@ class AdminRegister implements ToCollection
     */
     public function collection(Collection $rows)
     {
-         $datas = $rows;
+        $datas = $rows;
         $array = array();
         $count = 0;
         foreach ($datas as $data) {

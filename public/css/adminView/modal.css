@@ -1,15 +1,16 @@
-.container {
+.myContainer {
     background-color: white;
     padding: 15px;
+    width: 97%;
 }
 
-.container .main-button {
+.myContainer .main-button {
     display: inline-block;
     margin-bottom: 20px;
     margin-top: 10px;
 }
 
-.container .main-button2 {
+.myContainer .main-button2 {
     display: inline-block;
     margin-left: 20%;
 }
