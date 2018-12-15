@@ -5,7 +5,7 @@
             <ul class="tree pl-1">
                 <a class="tag-sidebar p-1" href=""><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
                 <li class="has-children p-1 pt-2">
-                    <button class="tag-sidebar" id="course" href="{{ url('all-courses') }}"><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
+                    <button class="tag-sidebar" id="course" href=""><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
                     Courses</button>
                 </li>
                 <li class="has-children p-1 ">
@@ -13,7 +13,7 @@
                     <ul id="list-survey" style="display:none">
                         @foreach($courses as $course)
                         <li>
-                        <a class="tag-sidebar" id="survey" data-id="{{$course->course_id}}" href="{{ url('surveys') }}">
+                        <a class="tag-sidebar" id="survey" data-id="{{$course->user_courses_id}}" href="{{ url('surveys') }}">
                             <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
                             <p>{{$course->course_name}}</p>
                         </a>

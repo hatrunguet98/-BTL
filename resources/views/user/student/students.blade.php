@@ -3,7 +3,7 @@
     <!--Main Layout-->
     <main class="main-user">
     	<div id="data">
-    		
+    		@include('user/courses/courses')
     	</div>
     </main>
 @endsection
@@ -16,6 +16,7 @@
 		$.get('{{ URL::to("student/survey") }}', {id:id}).done(function(data){
 			console.log(data);
 			$('#data').empty().html(data);
+			$('#input-id').val(id);
 		}).fail(function(data){
 			alert('something error');
 		});

@@ -3,6 +3,7 @@
         @csrf
     <div class="survey-table p-5">
         <h2 class="text-center" id="name-courses">Name Course</h2>
+            <input type="hidden" name="user_course_id" id="input-id" value="">
             <table class="table">
                 <thead>
                     <tr>
