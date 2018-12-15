@@ -101,9 +101,9 @@
     @include("user.layout.partial.footer")
     @show
 </body>
-<!-- <style>
+<style>
 header:hover {
     background: rgba(0, 0, 0, .6);
     transition-duration: 1s;
 }
-</style> -->
+</style>
