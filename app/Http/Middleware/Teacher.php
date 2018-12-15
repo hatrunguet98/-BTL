@@ -16,7 +16,7 @@ class Teacher
      */
     public function handle($request, Closure $next)
     {
-        $req = ClassRoleUser::checkStudent();
+        $req = ClassRoleUser::checkTeacher();
         if(!$req) {
             return redirect('/');
         }

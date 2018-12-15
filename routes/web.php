@@ -93,7 +93,9 @@ Route::get('/student/survey', 'User\StudentController@survey')->name('student/su
 Route::post('/student/survey', 'User\StudentController@insertSurvey')->name('student/survey');
 
 
-Route::get('/user/teacher','User\TeacherController@teacher');
+Route::get('/teachers','User\TeacherController@teacher');
+Route::get('/teacher/result', 'User\TeacherController@result')->name('teacher/result');
+
 
 Route::get('/user/userlayout/teacher/teacher',function(){
     return view('user.userlayout.teacher.teacher');
