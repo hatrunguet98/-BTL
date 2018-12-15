@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Excel;
-use App\Imports\StudentRegister;
+use App\Imports\AdminRegister;
 use Illuminate\Support\Facades\Auth;
 use App\Services\ClassAdmin\ClassQueryUser;
 
@@ -37,47 +37,74 @@ class AdminController extends Controller
         $this->middleware('admin');
     }
 
-    public function registerTeacher()
+    public function admin()
     {
-    	$users = User::select('users.id','users.username', 'users.name', 'users.email', 'roles.name as role')
-        ->join('roles','users.role', '=', 'roles.id')
-        ->where('roles.name','admin')
-        ->where('status',1)
-       	->Paginate(1);
-    	return view('Admin.admins.Admin', compact('users'));
+    	return view('Admin.admins.Admin');
     }
 
-    public function delete($id)
-    {
-        ClassQueryUser::delete($id);
-        return redirect('/admin-register');
+    public function editUser(Request $request) {
+        if($request->ajax()) {
+            $user = User::find($request->id);
+            return response($user);
+        }
     }
 
-    public function edit ($id, Request $request) {
-        $data = $this->validate($request,[
-            'name' => 'required',
-            'password' => 'required',
-        ]);
-        dd($data);
+    public function edit (Request $request) {
+       if($request->ajax()) {
+            $data = "";
+            if(!$request->password) {
+                $data = $this->validate($request, [
+                    'username' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'name' => ['required', 'string', 'max:255'],
+                ]);
+            } else {
+                $data = $this->validate($request, [
+                    'username' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'password' => ['required', 'string', 'min:6'],
+                ]);
+                if($request->password != $request->confirm_password) {
+                    return response(['message' => 'The password confirmation does not match.']);
+                }
+            }
+            $user = User::find($request->id);
+            $user->update($data);
+            return $this->loadUser();
+       }
+       return response(['message' => 'something ERROR']);
+    }
+
+    public function delete(Request $request)
+    {
+        if($request->ajax()) {
+            ClassQueryUser::delete($request->id);
+            return $this->loadUser();
+        }
+    }
+
+    public function loadUser(){
+        $role_name = 'admin';
+        $users = ClassQueryUser::showUser($role_name);
+        return view('admin.admins.ListAdmin', compact('users'))->render();
     }
     
     public function register(Request $request)
     {
-        $data = $request->all();
-        return $this->createUser($data);
+       if($request->ajax()){
+            $data = $request->all();
+            $this->createUser($data);
+            return $this->loadUser();
+        }
     }
 
-    public function import()
-    {
-        return view('auth.TeacherRegisterImport');
-    }
-
-    public function importTeacher(Request $request)
+    public function importAdmin(Request $request)
     {
         if($request->hasFile('FILE')){
             //return Excel::import(new TeacherRegister, request()->file('FILE'));
-            Excel::import(new TeacherRegister, request()->file('FILE'));
-            return redirect('/dashboard')->with('success', 'All good!');
+            Excel::import(new AdminRegister, request()->file('FILE'));
+            return redirect('/admin')->with('success', 'All good!');
         }
     }
 

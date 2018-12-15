@@ -96,7 +96,7 @@ desired effect
 
         <!-- Main content -->
         <section class="content container-fluid">
-        <div class="container">
+        <div class="myContainer">
         @section('content')
             <!--------------------------
                 | Your Page Content Here |

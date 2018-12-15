@@ -26,7 +26,7 @@
         </thead>
         <tbody>
         @foreach($courses as $course)
-        <tr>
+        <tr{{ $course->id }}>
             <td>{{$course->id}}</td>
             <td>{{$course->name}}</td>
             <td>{{$course->code}}</td>
@@ -36,7 +36,7 @@
                     <button class="btn btn-info btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Enroll
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <li role="presentation"><a id="enrollSingle">Single</a></li>
+                        <li role="presentation"><a id="enrollSingle" data-id="{{ $course->id }}">Single</a></li>
                         <li role="presentation"><a id="enrollList">List</a></li>
                     </ul>
                 </div>
@@ -71,6 +71,8 @@
 
         $(document).on('click','#enrollSingle', function(){
             $('#enrollSingleStudent').modal('show');
+            var id = $(this).data('id');
+            $('#input-id').val(id);
         });
 
         $(document).on('click','#enrollList', function(){

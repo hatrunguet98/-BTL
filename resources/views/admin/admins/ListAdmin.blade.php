@@ -1,35 +1,28 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Mã sinh viên/Tên đăng nhập</th>
-            <th>Họ và tên</th>
-            <th>VNU Email</th>
-            <th>Action</th>
+            <th style="width:5%;text-align: center">ID</th>
+            <th style="width:20%;text-align: center">Tên đang nhập</th>
+            <th style="width:30%;text-align: center">Họ và tên</th>
+            <th style="width:25%;text-align: center">VNU Email</th>
+            <th style="width:20%;text-align: center">Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="listAdmins">
         @foreach($users as $user)
-        <tr>
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->username }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSingleLecturer">Sửa</button>
-            </td>
-            <td>
-                <form action="{{action('Admin\TeacherController@delete', $user->id)}}" method="post">
-                    {{csrf_field()}}
-                    <!-- <input name="_method" type="hidden" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" /> -->
-                    <button class="btn btn-danger" onclick="if (!confirm('Are you sure?')) { return false }" type="submit">Delete</button>           
-                </form>
-            </td>
-        </tr>
+        	<tr id="{{$user->id}}">
+        		<td  style="width:5%;text-align: center">{{$user->id}}</td>
+        		<td style="width:20%;text-align: center">{{$user->username}}</td>
+        		<td style="width:30%;text-align: center">{{$user->name}}</td>
+        		<td style="width:25%;text-align: center">{{$user->email}}</td>
+        		<td style="width:20%;text-align: center">
+        			<a  class="btn btn-success btn-xs" id="edit" data-id="{{$user->id}}">Edit</a>
+        			<a  class="btn btn-danger btn-xs" id="delete" data-id="{{$user->id}}">Delete</a>
+        		</td>
+        	</tr>
         @endforeach
     </tbody>
 </table>
 <div class="clearfix">
-    {{ $users->links() }}
+    {{ $users->render() }}
 </div>

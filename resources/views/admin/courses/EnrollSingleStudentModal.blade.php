@@ -9,7 +9,7 @@
                     <div class="form-group col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <input type="hidden" name="id" value="{{$course->id}}">
+                            <input type="hidden" name="id" value="" id="input-id">
                             <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}"  placeholder="Mã sinh viên" required autofocus>
                         </div>
                     </div>

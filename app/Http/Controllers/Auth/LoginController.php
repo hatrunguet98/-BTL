@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Services\ClassAdmin\ClassRoleAdmin;
 use App\Services\ClassUser\ClassRoleUser;
+use App\Services\ClassHasDelete;
 
 class LoginController extends Controller
 {
@@ -74,6 +75,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        $delete = $user->status;
+        if(!$delete){
+            Auth::logout();
+            return redirect('login');
+        }
         $admin = ClassRoleAdmin::checkAdmin();
         $teacher = ClassRoleUser::CheckTeacher();
         $student = ClassRoleUser::CheckStudent();

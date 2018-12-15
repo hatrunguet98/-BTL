@@ -45,6 +45,8 @@ class TeacherController extends Controller
     public function editUser(Request $request) {
         if($request->ajax()) {
             $user = User::find($request->id);
+            echo $request->id;
+            die;
             return response($user);
         }
     }
