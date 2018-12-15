@@ -40,15 +40,27 @@ Route::post('/teacher/edit', 'Admin\TeacherController@edit')->name('/teacher/edi
 Route::get('/teacher/edit', 'Admin\TeacherController@editUser')->name('/teacher/edit');
 
 // Chức năng với admin
-Route::get('/admin-register', 'Admin\AdminController@registerTeacher')->name('admin-register');
+
+Route::get('/admin', 'Admin\AdminController@admin')->name('admin');
 Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');
 Route::get('/admin-import', 'Admin\AdminController@import')->name('admin-import');
 Route::post('/admin-import', 'Admin\AdminController@importTeacher')->name('admin-import');
-Route::post('/Admin/delete/{id}', 'Admin\AdminController@delete');
+Route::post('/admin/delete', 'Admin\AdminController@delete')->name('/admin/delete');;
+Route::get('/load-admin', 'Admin\AdminController@loadUser')->name('load-admin');
+Route::post('/admin/edit', 'Admin\AdminController@edit')->name('/admin/edit');
+Route::get('/admin/edit', 'Admin\AdminController@editUser')->name('/admin/edit');
 
 
-Route::post('/teacher/edit/{id}', 'Admin\TeacherController@edit');
-Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
+//Route::get('/admin-register', 'Admin\AdminController@registerTeacher')->name('admin-register');
+//Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');
+//Route::get('/admin-import', 'Admin\AdminController@import')->name('admin-import');
+//Route::post('/admin-import', 'Admin\AdminController@importTeacher')->name('admin-import');
+//Route::post('/Admin/delete/{id}', 'Admin\AdminController@delete');
+//
+//
+//Route::post('/teacher/edit/{id}', 'Admin\TeacherController@edit');
+//Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
+
 
 Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard');
 

@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class TeacherRegister implements ToCollection
 {
-
     protected $role = 2;
-
     /**
     * @param array $row
     *

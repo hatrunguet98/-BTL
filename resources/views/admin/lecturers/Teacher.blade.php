@@ -24,7 +24,6 @@
     @include('admin/lecturers/InsertListLecturerModal')
 
 @endsection
-
 @section('js')
 <script type="text/javascript">
     /*---------auto load list users by ajax-------------*/
