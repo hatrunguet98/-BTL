@@ -91,8 +91,44 @@
                         <h3 class="head text-center">Các khóa học </h3>
                         <p class="my-3 head text-center">Sinh viên chỉ đánh gái được khóa học mình tham gia.</p>
                     </div>
-                    <a href="javascript:loadcourses()">adfad</a>
-                    <div id="courses-all"></div>
+            <div class="row">
+                    <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/ungdungweb.png') }} " alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                        <div><img src="{{ asset('user/images/book.png') }} " alt="" class="icon p-1"><label class="h10"id="name-course"> INT3306 1 Phát triển ứng dụng web </label></div>
+                        <div><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"><label class="h10" id="name-teacher">Giảng viên name</label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/ungdungweb.pn') }}g" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <div><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"><label class="h10"> INT3306 2 Phát triển ứng dụng web </label></div>
+                            <div><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"><label class="h10">Giảng viên name</label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/he-dieu-hanh-mang.jpg') }}" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <label class="h10"> <img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3301 1 Thực hành hệ điều hành mạng </label>
+                            <label class="h10"><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"> Giảng viên name</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-5 text-center">
+            <button type="submit"  class="btn btn-lg btn-success center-block">Xem thêm</button>
+        </div>
+                    </div>
                 </div>
             </div>
         </section>

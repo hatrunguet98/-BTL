@@ -1,3 +1,4 @@
+<div class="frame">
 <div class="p-5">
     <div class="container">
         <div>
@@ -57,4 +58,5 @@
         <p class="h5">- M2: giá tri trung bình của các tiêu chí dựa trên ý kiến phản hồi của sinh viên về các môn học mà các thầy/cô đã thực hiện giảng dạy</p>
         <p class="h5">-STD2: độ lệch chuẩn của các tiêu chí dựa trên ý kiến phản hồi của sinh viên về các môn học mà các thầy/cô đã thực hiện giảng dạy </p>
     </div>
+</div>
 </div>

@@ -3,7 +3,7 @@
         <section class="sidebar" id="sidebar">
             <!-- Sidebar user panel -->
             <ul class="tree pl-1">
-                <a class="tag-sidebar p-1" href=""><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
+                <a class="tag-sidebar p-1" href="{{ url('welcome') }}"><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
                 <li class="has-children p-1 pt-2">
                     <button class="tag-sidebar" id="course" href=""><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
                     Courses</button>
@@ -15,7 +15,7 @@
                         <li>
                         <a class="tag-sidebar" id="survey" data-id="{{$course->user_courses_id}}" href="{{ url('surveys') }}">
                             <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
-                            <p>{{$course->course_name}}</p>
+                            <p class="h6" id="name-course" style="display:none">{{$course->course_name}}</p>
                         </a>
                         @endforeach
                         </li>
@@ -31,10 +31,11 @@
         Courses</button>
         <button class="tag-sidebar" id="class-survey-mobile" href=""><img class="icontree" src="{{ asset('user/images/notebook.png') }}" /> ClassSurvey</button>
         <ul id="list-survey-mobile" style="display:none">
-            <li class="tag-courses">
+            <li class="tag-courses p-0">
             @foreach($courses as $course)
             <button class="tag-sidebar" id="tag-classsurvey" href="{{ url('surveys') }}">
-                    <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
+                <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
+                <label class="h10" id="name-course">{{$course->course_name}}</label>
             </button>
             @endforeach
             </li>

@@ -20,11 +20,11 @@
                 @if($data['id'] <= 2)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" > </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5"required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -43,11 +43,11 @@
                 @if($data['id'] <= 7 && $data['id'] > 2)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" > </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -67,11 +67,11 @@
                 @if($data['id'] <= 15 && $data['id'] > 7)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" > </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -91,11 +91,11 @@
                 @if($data['id'] > 15)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" > </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" > </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -115,7 +115,7 @@
             </table>
     </div>
     <div class="p-5 text-center">
-        <button type="submit" class="btn btn-lg btn-success center-block">Nộp đánh giá</button>
+        <input type="submit"  class="btn btn-lg btn-success center-block">
     </div>
     </form>
 </div>
