@@ -73,14 +73,43 @@
     padding: 30px;
 }
 
+#generateSurvey .date label{
+    display: inline-block;
+    float: left;
+    font-size: 19px;
+    line-height: 25px;
+    margin: 0;
+}
+
+#generateSurvey .survey h5 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+#generateSurvey .survey label {
+    display: block;
+    margin-left: 40px;
+}
+
 
 #showSurvey .modal-dialog {
     width: 60%;
 }
 
-#showSurvey .modal-dialog .modal-content h3{
-    margin-left: 25px;
+#showSurvey .modal-dialog .time, .list-survey {
+    margin-left: 20px;
     margin-bottom: 10px;
+}
+
+#showSurvey .modal-dialog .modal-content h3 {
+    font-size: 20px;
+}
+
+#showSurvey .modal-dialog .modal-content h5{
+    margin-left: 25px;
+    margin-bottom: 0;
+    font-size: 18px;
 }
 
 #showSurvey .modal-dialog .modal-content button {
@@ -90,7 +119,9 @@
 
 
 #showSurvey .modal-dialog li{
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 25px;
 }
 
 
@@ -102,14 +133,13 @@
 
 #editSurvey .form {
     background: white;
-    margin: 20px;
-
+    margin: 0;
 }
 
 #editSurvey .form .date label{
     display: inline-block;
     float: left;
-    font-size: 15px;
+    font-size: 19px;
     line-height: 25px;
     margin: 0;
 }
@@ -117,11 +147,19 @@
 #editSurvey .form .date input[type="date"] {
     display: inline-block;
     float: left;
-    width: 70%;
+    width: 60%;
+    font-size: 16px;
+    margin-left: 5px;
 }
 
 #editSurvey .form .survey h4{
     font-size: 20px;
+}
+
+#editSurvey .form .survey h5{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 #editSurvey .form .survey .row {
@@ -131,16 +169,15 @@
 
 #editSurvey .form .survey label {
     display: block;
+    margin-left: 25px;
 }
 #editSurvey .form .survey label input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    margin-top: 6px;
 }
 
 #editSurvey .form .survey label span {
-    font-weight: normal;
-    font-size: 20px;
     margin-left: 5px;
+    font-weight: 700;
 }
 
 #editSurvey .form button {
@@ -149,57 +186,7 @@
 }
 
 
-#editSurvey form .select-subject {
-    width: 70%;
-    margin-left: 20px;
-}
 
-#editSurvey form .select-subject .survey{
-    box-sizing: border-box;
-    border-bottom: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-    padding: 0 12px;
-    margin: 0;
-    height: 50px;
-}
-
-#editSurvey form .select-subject .survey-content {
-    height: 100%;
-}
-
-#editSurvey form .select-subject input[type="checkbox"]{
-    display:inline-block;
-    height: 20px;
-    width: 20px;
-    margin-top: 15px;
-    margin-right: 10px;
-}
-
-#editSurvey form .select-subject label {
-    display:inline-block;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    margin: 0;
-}
-
-#editSurvey form .select-subject label span {
-    display:inline-block;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    margin: 0;
-    border-left: 1px solid gray;
-    padding-top: 9px;
-    padding-left: 15px;
-    font-size: 20px;
-    font-weight: normal;
-}
-
-#editSurvey form .select-subject .first-child {
-    border-top: 1px solid gray;
-}
 
 #editSurvey form button[type="button"] {
     margin-top: 20px;
