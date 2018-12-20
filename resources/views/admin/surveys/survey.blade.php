@@ -40,39 +40,52 @@
     </table>
 
 
-
     <div class="modal fade" id="showSurvey" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <h2>Chi tiết đánh giá</h2>
                 <div class="time">
-                    <h3>Ngày bắt đầu:  22/22/2222</h3>
-                    <h3>Ngày kết thúc:  22/22/2222</h3>
+                    <h3><b>Ngày bắt đầu:</b>  22/22/2222</h3>
+                    <h3><b>Ngày kết thúc:</b>  22/22/2222</h3>
                 </div>
                 <div class="list-survey">
-                    <h3>Các tiêu chí đánh giá: </h3>
-                    <ul>
-                        <li>Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu 1Tiêu chí 1Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                        <li>Tiêu chí 1</li>
-                    </ul>
+                    <h3><b>Các tiêu chí đánh giá:</b> </h3>
+                    <div class="about-equipments">
+                        <h5>1. Cơ sở vật chất</h5>
+                        <ul>
+                            <li>Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu 1Tiêu chí 1Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                        </ul>
+                    </div>
+                    <div class="about-subject">
+                        <h5>2. Môn học</h5>
+                        <ul>
+                            <li>Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu 1Tiêu chí 1Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                        </ul>
+                    </div>
+                    <div class="about-teachers">
+                        <h5>3. Hoạt động dạy hoc của giảng viên</h5>
+                        <ul>
+                            <li>Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu 1Tiêu chí 1Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                        </ul>
+                    </div>
+                    <div class="about-students">
+                        <h5>4. Hoạt động học tập của sinh viên</h5>
+                        <ul>
+                            <li>Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu chí 1Tiêu 1Tiêu chí 1Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                            <li>Tiêu chí 1</li>
+                        </ul>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
             </div>
@@ -80,7 +93,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editSurvey" role="dialog">
+    <div class="modal fade survey-content" id="editSurvey" role="dialog">
         <link rel="stylesheet" href="{{ asset('css/adminView/modal.css') }}">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -94,76 +107,47 @@
                             <input type="date" id="start" name="start" value="2018-07-22">
                         </div>
                         <div class="form-group col-md-6 date">
-                            <label for="start">Ngày kết thúc:</label>
-                            <input type="date" id="start" name="start" value="2018-07-22">
+                            <label for="end">Ngày kết thúc:</label>
+                            <input type="date" id="end" name="end" value="2018-07-22">
                         </div>
                         <div class="form-group col-md-12 survey">
-                            <h4>Chọn tiêu chí:</h4>
+                            <h4><b>Chọn tiêu chí:</b></h4>
                             <div class="survey-content">
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey1" value="1"><span>Giảng đường đáp ứng yêu cầu của môn học</span></label>
+                                <div class="about-equipments">
+                                    <h5>1. Cơ sở vật chất</h5>
+                                    <div class="row">
+                                        <label><input type="checkbox" name="survey1" value="1"><span>Các trang thiết bị tại giảng đường đáp ứng nhu cầu giảng dạy và học tập đường có đáp ứng yêu cầu của môn học</span></label>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey2" value="1"><span>Các trang thiết bị tại giảng đường đáp ứng nhu cầu giảng dạy và học tập</span></label>
+
+                                <div class="about-subject">
+                                    <h5>2. Môn học</h5>
+                                    <div class="row">
+                                        <label><input type="checkbox" name="survey1" value="1"><span>Giảng đường đáp ứng yêu cầu của môn học</span></label>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey3" value="1"><span>Bạn được hỗ trợ kịp thời trong quá trình học môn này</span></label>
+
+                                <div class="about-teachers">
+                                    <h5>3. Hoạt động dạy hoc của giảng viên</h5>
+                                    <div class="row">
+                                        <label><input type="checkbox" name="survey1" value="1"><span>Giảng đường đáp ứng yêu cầu của môn học</span></label>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey4" value="1"><span>Mục tiêu của môn học nêu rõ kiến thức và kỹ năng cần đạt được</span></label>
+
+                                <div class="about-students">
+                                    <h5>4. Hoạt động học tập của sinh viên</h5>
+                                    <div class="row">
+                                        <label><input type="checkbox" name="survey1" value="1"><span>Kết quả học tập của người học được đánh giá bằng nhiều hình thức phú hợp với tính chất và đặc thù môn học</span></label>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey5" value="1"><span>Thời lượng của môn học được phân bố hợp lý cho các hình thức học tập</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey6" value="1"><span>Các tài liệu phục vụ môn học được cập nhật</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey7" value="1"><span>Môn học góp phần trang bị kiến thức, kỹ năng nghề nghiệp cho bạn</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey8" value="1"><span>Giảng viên thực hiện đầy đủ nội dung và thời lượng của môn học theo kế hoạch</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey9" value="1"><span>Giảng viên hướng dẫn bạn phương pháp học tập khi bắt đầu môn học</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey10" value="1"><span>Phương pháp giảng dạy của giảng viên giúp bạn phát triển tư duy</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey11" value="1"><span>Giảng viên tạo cơ hội để bạn chủ động tham gia vào quá trình học tập</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey12" value="1"><span>Giảng viên giúp bạn phát triển kỹ năng làm việc độc lập</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey13" value="1"><span>Giảng viên rèn luyện cho bạn phương pháp liên hệ giữa các vẫn đề trong môn học và thực tiễn</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey14" value="1"><span>Giảng viên sử dụng hiệu quả phương tiện dạy học</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey15" value="1"><span>Giảng viên quan tâm giáo dục tư cách, phẩm chất nghề nhiệp của người học</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey16" value="1"><span>Bạn hiểu những vấn đề được truyền tải trên lớp</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey17" value="1"><span>Kết quả học tập của người học được đánh giá bằng nhiều hình thức phù hợp với tính chất và đặc thù môn học</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey18" value="1"><span>Nội dung kiểm tra đánh giá tổng hợp được các kỹ năng mà người học phải đạt theo yêu cầu</span></label>
-                                </div>
-                                <div class="row">
-                                    <label><input type="checkbox" name="survey19" value="1"><span>Thông tin phản hồi từ kiểm tra đánh giá giúp bạn cải thiện kết quả học tập</span></label>
-                                </div>
+
 
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
                         <button type="button" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</button>
                     </form>
-
+                </div>
             </div>
 
         </div>
