@@ -16,7 +16,7 @@
 	$(document).on('click', '#course', function(e){
 		loadCourses();
 	})
-	$(document).on('click', '#all-course', function(e){
+	/*$(document).on('click', '#all-course', function(e){
 		$.get(
 			'{{ URL::to("courses") }}'
 		).done(function(data){
@@ -24,7 +24,7 @@
 		}).fail(function(data){
 			alert('something errors');
 		});
-	})
+	})*/
 
 	$(document).on('click', '#survey',function(e){
 		e.preventDefault();
@@ -33,8 +33,12 @@
 			'{{ URL::to("student/survey") }}',
 			 {id:id}
 		).done(function(data){
-			$('#data').empty().html(data);
-			$('#input-id').val(id);
+			if ($.isEmptyObject(data.errors)) {
+					$('#data').empty().html(data);
+					$('#input-id').val(id);
+                } else {
+                    alert(data.errors);
+                }
 		}).fail(function(data){
 			alert('something error');
 		});

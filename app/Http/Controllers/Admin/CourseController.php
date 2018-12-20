@@ -12,7 +12,7 @@ use App\Services\ClassAdmin\ClassQueryUser;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
-{
+{ 
     public function course(){
     	$courses = Course::all();
     	$subjects = Subject::all();
