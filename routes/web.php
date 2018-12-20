@@ -91,6 +91,7 @@ Route::any('/survey-submit', function () {
 Route::get('/students','User\StudentController@student');
 Route::get('/student/survey', 'User\StudentController@survey')->name('student/survey');
 Route::post('/student/survey', 'User\StudentController@insertSurvey')->name('student/survey');
+Route::get('/courses', 'Admin\CourseController@allCourses');
 
 
 Route::get('/teachers','User\TeacherController@teacher');
@@ -103,9 +104,7 @@ Route::get('/user/userlayout/teacher/teacher',function(){
 Route::get('/surveys',function(){
     return view('user.student.survey.survey');
 });
-Route::get('/courses',function(){
-    return view('user.courses.courses');
-});
+
 Route::get('/welcome', function () {
     return view('welcome');
 });

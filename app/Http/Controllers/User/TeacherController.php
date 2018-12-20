@@ -49,7 +49,12 @@ class TeacherController extends Controller
 	    		$results[] = [
 	    			'id' => $criteria[$key-1]->id,
 	    			'name' => $criteria[$key-1]->name,
-	    			'value' => $value,
+	    			'M' => $value,
+	    			'STD' => '1',
+	    			'M1' => '1',
+	    			'STD1' => '1',
+	    			'M2' => '1',
+	    			'STD2' => '1',
 	    		];
 	    	}
 	    	/*dd($val);

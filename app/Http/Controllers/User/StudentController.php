@@ -32,6 +32,11 @@ class StudentController extends Controller
     	if($request->ajax()){
             $user_id = Auth::user()->id;
             $user_course_id = $request->id;
+            $course = DB::table('user_courses')
+                            ->select('courses.name')
+                            ->where('user_courses.id', $user_course_id)
+                            ->join('courses','courses.id', '=', 'user_courses.course_id')
+                            ->first()->name;
             $courses = DB::table('courses')
                         ->select('courses.id as course_id', 'courses.criterion as criterion', 'courses.name as course_name', 'courses.code as code', 'users.id as user_id')
                         ->join('user_courses','user_courses.course_id', '=', 'courses.id')
@@ -68,15 +73,13 @@ class StudentController extends Controller
                                 'type' => $criteria[$value-1]->type, 
                             ];
                 }
-
-
             }
-
-            return view('user.student.survey.survey', compact('datas'));
+            return view('user.student.survey.survey', compact('datas','course'));
         }
     }
 
     public function insertSurvey(Request $request) {
+        $comment = $request->comment;
         $user_course_id = $request->user_course_id;
         $request = $request->all();
         $array = array();
@@ -85,25 +88,28 @@ class StudentController extends Controller
                 $array += [substr($key, 6) => $value];
             }
         }
+        $array += ['comment' => $comment];
         $evaluate = json_encode($array);
         $checkSurvey = DB::table('user_courses')
                         ->where('id', $user_course_id)
                         ->first()->survey_id;
         if(!$checkSurvey) {
-            DB::table('surveys')->insert([
+            $survey = DB::table('surveys')->insert([
                 'evaluate' => $evaluate,
             ]);
             $survey_id = DB::table('surveys')->orderBy('id', 'desc')->first()->id;
             DB::table('user_courses')
                 ->where('id', $user_course_id)
                 ->update(['survey_id' => $survey_id]);
+            return response()->json(['success' => 'survey success']);
         } else {
             DB::table('surveys')
                 ->where('id', $checkSurvey)
                 ->update([
                     'evaluate' => $evaluate,
                 ]);
+            return response()->json(['success' => 'survey update']);
         }
-        return redirect('students');
+        return response()->json(['errors' => 'somethings errors']);
     }
 }

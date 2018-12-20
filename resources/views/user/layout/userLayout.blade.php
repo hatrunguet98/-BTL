@@ -38,7 +38,19 @@
     <!--------------------------
     | Your Javascript Here |
     -------------------------->
+
     @show
+    <script type="text/javascript">
+        $(document).on('click', '#all-course', function(e){
+        $.get(
+            '{{ URL::to("courses") }}'
+        ).done(function(data){
+            $('#data').empty().html(data);
+        }).fail(function(data){
+            alert('something errors');
+        });
+    })
+    </script>
 </body>
 <style>
     header{

@@ -3,18 +3,36 @@
     <!--Main Layout-->
     <main class="main-user">
     	<div id="data">
-    		@include('user/courses/courses')
     	</div>
     </main>
 @endsection
 
 @section('js')
 <script type="text/javascript">
+	$(document).ready(function(e){
+		loadCourses();
+	})
+
+	$(document).on('click', '#course', function(e){
+		loadCourses();
+	})
+	$(document).on('click', '#all-course', function(e){
+		$.get(
+			'{{ URL::to("courses") }}'
+		).done(function(data){
+			$('#data').empty().html(data);
+		}).fail(function(data){
+			alert('something errors');
+		});
+	})
+
 	$(document).on('click', '#survey',function(e){
 		e.preventDefault();
 		var id = $(this).data('id');
-		$.get('{{ URL::to("student/survey") }}', {id:id}).done(function(data){
-			console.log(data);
+		$.get(
+			'{{ URL::to("student/survey") }}',
+			 {id:id}
+		).done(function(data){
 			$('#data').empty().html(data);
 			$('#input-id').val(id);
 		}).fail(function(data){
@@ -22,9 +40,42 @@
 		});
 	});
 
+	$(document).on('submit', '#insert-survey', function(e){
+		e.preventDefault();
+        var data = $(this).serialize();
+        var url = $(this).attr('action');
+        var method = $(this).attr('method');
+		$.ajax({
+			type : method,
+            url : url,
+            data : data,
+            dataTy : 'json',
+            success:function(data) {
+            	if ($.isEmptyObject(data.errors)) {
+            		alert(data.success);
+                } else {
+                    alert(data.errors);
+                }
+            }
+		}).fail(function(data) {
+            alert('something error');
+        });
+
+	})
+
 	/*$(document).on('click','#insert-survey', function(e){
 		e.preventDefault();
 	})*/
+
+	function loadCourses(){
+		$.get(
+			'{{ URL::to("courses") }}'
+		).done(function(data){
+			$('#data').empty().html(data);
+		}).fail(function(data){
+			alert('something errors');
+		});
+	}
 </script>
 @endsection
 

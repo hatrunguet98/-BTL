@@ -2,7 +2,7 @@
     <form action="{{ URL('student/survey') }}" method="post" id="insert-survey" >
         @csrf
     <div class="survey-table p-5">
-        <h2 class="text-center" id="name-courses">Name Course</h2>
+        <h2 class="text-center" id="name-courses">{{$course}}</h2>
             <input type="hidden" name="user_course_id" id="input-id" value="">
             <table class="table">
                 <thead>
@@ -108,14 +108,14 @@
                     <tbody>
                         <tr>
                             <form>
-                                <td><input type="" class="form-control" id="input-note"></td>
+                                <td><input type="" class="form-control" name="comment" id="input-note"></td>
                             </form>
                         </tr>
                     </tbody>
             </table>
     </div>
     <div class="p-5 text-center">
-        <input type="submit"  class="btn btn-lg btn-success center-block">
+        <input type="submit" value="submit" class="btn btn-lg btn-success center-block">
     </div>
     </form>
 </div>

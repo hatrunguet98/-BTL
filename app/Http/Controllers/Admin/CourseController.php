@@ -21,6 +21,10 @@ class CourseController extends Controller
 	    return view('admin.courses.course',compact('courses','subjects','semesters','teachers'));
     }
 
+    public function allCourses(){
+        return view('user.courses.courses');
+    }
+
     public function addCourse(Request $request){
         $data = $request->all();
         $semesters = DB::table('semesters')
