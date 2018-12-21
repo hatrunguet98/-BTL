@@ -76,4 +76,25 @@ class SurveyController extends Controller
         }
         return $this->generate();
     }
+
+    public function viewSurvey(Request $request){
+        if($request->ajax()){
+            $id = $request->id;
+            $courses = DB::table('courses')
+                        ->where('id',$id)
+                        ->first();
+            $criterion = json_decode($courses->criterion);
+            $criteria = DB::table('criteria')->get();
+            $datas = array();
+            foreach ($criterion as $key => $value) {
+                $datas[] = [
+                    'id' => $criteria[$value-1]->id,
+                    'name' => $criteria[$value-1]->name,
+                ];
+            }
+            $start = $courses->start;
+            $finish = $courses->finish;
+            return view('admin.surveys.showSurvey', compact('datas','start','finish'));
+        }
+    }
 }

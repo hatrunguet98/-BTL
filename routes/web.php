@@ -66,6 +66,7 @@ Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard
 
 // Chức năng với survey
 Route::get('/survey', 'Admin\SurveyController@survey');
+Route::get('/view-survey', 'Admin\SurveyController@viewSurvey');
 
 Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');

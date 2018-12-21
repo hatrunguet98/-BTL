@@ -16,15 +16,6 @@
 	$(document).on('click', '#course', function(e){
 		loadCourses();
 	})
-	/*$(document).on('click', '#all-course', function(e){
-		$.get(
-			'{{ URL::to("courses") }}'
-		).done(function(data){
-			$('#data').empty().html(data);
-		}).fail(function(data){
-			alert('something errors');
-		});
-	})*/
 
 	$(document).on('click', '#survey',function(e){
 		e.preventDefault();
