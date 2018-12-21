@@ -43,22 +43,22 @@
     margin: 0;
 }
 
-.modal  .modal-dialog  .modal-content  #submitBtn {
-    margin-left: 25%;
-    margin-top: 20px;
-}
-
-.modal  .modal-dialog  .modal-content  #closeBtn {
+.modal  .modal-dialog  .modal-content  .submitBtn {
     margin-left: 20%;
     margin-top: 20px;
 }
 
+.modal  .modal-dialog  .modal-content  .closeBtn {
+    margin-left: 30%;
+    margin-top: 20px;
+}
+
 @media only screen and (max-width: 600px) {
-    .modal  .modal-dialog  .modal-content  #submitBtn {
+    .modal  .modal-dialog  .modal-content  .submitBtn {
         margin-left: 15%;
     }
 
-    .modal  .modal-dialog  .modal-content  #closeBtn {
+    .modal  .modal-dialog  .modal-content  .closeBtn {
         margin-left: 10%;
     }
 }
@@ -71,6 +71,10 @@
 }
 #generateSurvey .modal-dialog  .modal-content {
     padding: 30px;
+}
+
+#generateSurvey .modal-dialog  .modal-content button[type=submit] {
+    margin-left: 40%;
 }
 
 #generateSurvey .date label{
@@ -179,14 +183,6 @@
     margin-left: 5px;
     font-weight: 700;
 }
-
-#editSurvey .form button {
-    margin-left: 40%;
-    margin-bottom: 15px;
-}
-
-
-
 
 #editSurvey form button[type="button"] {
     margin-top: 20px;

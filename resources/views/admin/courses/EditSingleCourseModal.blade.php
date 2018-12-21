@@ -32,7 +32,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-                    <button type="button" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>

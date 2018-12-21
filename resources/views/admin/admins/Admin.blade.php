@@ -17,29 +17,29 @@
 
     </div>
 
-    @include('admin/admins/InsertSingleAdminModal')
+    @include('admin.admins.InsertSingleAdminModal')
 
-    @include('admin/admins/EditSingleAdminModal')
+    @include('admin.admins.EditSingleAdminModal')
 
-    @include('admin/admins/InsertListAdminModal')
+    @include('admin.admins.InsertListAdminModal')
 
 @endsection
 @section('js')
-<script type="text/javascript">
-    /*---------auto load list users by ajax-------------*/
-    $(document).ready(function(){
-        autoload();
-        listUsers();
-    });
+    <script type="text/javascript">
+        /*---------auto load list users by ajax-------------*/
+        $(document).ready(function(){
+            autoload();
+            listUsers();
+        });
 
         /* add users  */
         $(document).on('submit','#insert-admin',function(e){
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
             e.preventDefault();
             var data = $(this).serialize();
@@ -63,15 +63,15 @@
             });
         })
         /* delete users*/
-    $(document).on('click','#delete',function(e){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        $(document).on('click','#delete',function(e){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-        if(confirm('Are you sure?')){
-            var id = $(this).data('id');
+            if(confirm('Are you sure?')){
+                var id = $(this).data('id');
 
                 $.post('{{URL::to("admin/delete")}}',{id:id}, function(data){
                     alert('delete success');
@@ -82,7 +82,7 @@
                 })
             }
 
-    })
+        })
 
         /*-----------------Edit User-----------------------*/
         $(document).on('click','#edit', function(){

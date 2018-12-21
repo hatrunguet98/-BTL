@@ -33,9 +33,9 @@
         
     </div>
    
-    @include('admin/students/InsertSingleStudentModal')
+    @include('admin.students.InsertSingleStudentModal')
 
-    @include('admin/students/EditSingleStudentModal')
+    @include('admin.students.EditSingleStudentModal')
 
     @include('admin.students.InsertListStudentModal')
 

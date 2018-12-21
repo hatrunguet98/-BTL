@@ -17,11 +17,11 @@
         
     </div>
 
-    @include('admin/lecturers/InsertSingleLecturerModal')
+    @include('admin.lecturers.InsertSingleLecturerModal')
 
-    @include('admin/lecturers/EditSingleLecturerModal')
+    @include('admin.lecturers.EditSingleLecturerModal')
 
-    @include('admin/lecturers/InsertListLecturerModal')
+    @include('admin.lecturers.InsertListLecturerModal')
 
 @endsection
 @section('js')
