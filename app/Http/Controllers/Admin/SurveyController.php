@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Course;
 use App\Criterion;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
 
 class SurveyController extends Controller
 {
@@ -95,6 +95,28 @@ class SurveyController extends Controller
             $start = $courses->start;
             $finish = $courses->finish;
             return view('admin.surveys.showSurvey', compact('datas','start','finish'));
+        }
+    }
+
+    public function editSurvey(Request $request) {
+        if($request->ajax()){
+            $id = $request->id;
+            $courses = DB::table('courses')
+                        ->where('id',$id)
+                        ->first();
+            $criterion = json_decode($courses->criterion);
+            $criteria = DB::table('criteria')->get();
+            $datas = array();
+            foreach ($criterion as $key => $value) {
+                $datas[] = [
+                    'id' => $criteria[$value-1]->id,
+                    'name' => $criteria[$value-1]->name,
+                ];
+            }
+            $start = Carbon::parse($courses->start)->format('Y-m-d');
+            $finish = Carbon::parse($courses->finish)->format('Y-m-d');
+
+            return view('admin.surveys.editSurvey', compact('datas','start', 'finish'));
         }
     }
 }
