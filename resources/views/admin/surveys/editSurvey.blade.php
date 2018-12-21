@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary submitBtn">Submit</button>
-                    <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger closeBtn" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>
