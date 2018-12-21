@@ -11,7 +11,7 @@
                             <input type="file" name="FILE" required="true">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary submitBtn" id="submitBtn">Submit</button>
+                    <button type="submit" class="btn btn-primary submitBtn">Submit</button>
                     <button type="button" class="btn btn-danger closeBtn" data-dismiss="modal">Close</button>
                 </form>
             </div>

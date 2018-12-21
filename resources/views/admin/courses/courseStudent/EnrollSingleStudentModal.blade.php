@@ -13,8 +13,8 @@
                             <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}"  placeholder="Mã sinh viên" required autofocus>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-                    <button type="button" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                    <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>

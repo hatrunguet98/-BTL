@@ -21,7 +21,7 @@
                     <h2>Chọn danh sách sinh viên</h2>
                     <form >
                         <ul></ul>
-                        <button type="button" class="btn btn-danger pull-right" id="close" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </form>
                 </div>
             </div>
