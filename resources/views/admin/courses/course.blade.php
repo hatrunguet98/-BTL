@@ -10,10 +10,6 @@
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleCourse">Thêm lớp môn học</button>
     </div>
 
-    <div class="main-button2">
-        <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListCourse">Thêm danh sách lớp môn học</button>
-    </div>
-
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -32,14 +28,7 @@
             <td>{{$course->code}}</td>
             <td>{{$course->semester}}</td>
             <td>
-                <div class="dropdown" style="display: inline">
-                    <button class="btn btn-info btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Enroll
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <li role="presentation"><a id="enrollSingle" data-id="{{ $course->id }}">Single</a></li>
-                        <li role="presentation"><a id="enrollList">List</a></li>
-                    </ul>
-                </div>
+                <a  class="btn btn-info btn-xs" href="{{ url('course/courseStudent') }}" id="view">View</a>
                 <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                 <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
             </td>
@@ -48,17 +37,9 @@
         </tbody>
     </table>
 
-    @include('admin/courses/InsertSingleCourseModal')
+    @include('admin.courses.InsertSingleCourseModal')
 
-    @include('admin/courses/EditSingleCourseModal')
-
-    @include('admin/courses/InsertListCourseModal')
-
-    @include('admin/courses/EnrollListStudentModal')
-
-    @include('admin/courses/EnrollSingleStudentModal')
-
-
+    @include('admin.courses.EditSingleCourseModal')
 
 @endsection
 
@@ -67,16 +48,6 @@
         /*-----------------Edit Student-----------------------*/
         $(document).on('click','#edit', function(){
             $('#editSingleCourse').modal('show');
-        });
-
-        $(document).on('click','#enrollSingle', function(){
-            $('#enrollSingleStudent').modal('show');
-            var id = $(this).data('id');
-            $('#input-id').val(id);
-        });
-
-        $(document).on('click','#enrollList', function(){
-            $('#enrollListStudent').modal('show');
         });
     </script>
     
