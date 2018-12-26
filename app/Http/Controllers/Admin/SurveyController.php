@@ -93,17 +93,23 @@ class SurveyController extends Controller
                         ->where('id',$id)
                         ->first();
             $criterion = json_decode($courses->criterion);
-            $criteria = DB::table('criteria')->get();
+            $data = DB::table('criteria')->get();
+            $criteria = array();
+            foreach ($data as $key => $value) {
+                $criteria += [
+                    $value->id => $value,
+                ];
+            }
             $datas = array();
             foreach ($criterion as $key => $value) {
                 $datas[] = [
-                    'id' => $criteria[$value-1]->id,
-                    'name' => $criteria[$value-1]->name,
-                    'type' => $criteria[$value-1]->type,
+                    'id' => $criteria[$value]->id,
+                    'name' => $criteria[$value]->name,
+                    'type' => $criteria[$value]->type,
                 ];
             }
-            $start = $courses->start;
-            $finish = $courses->finish;
+            $start = Carbon::parse($courses->start)->format('Y-m-d');
+            $finish = Carbon::parse($courses->finish)->format('Y-m-d');
             $types = DB::table('criteria')->select('type')->distinct()->get();
             $type = array();
             $i = 0;
@@ -124,13 +130,19 @@ class SurveyController extends Controller
                         ->where('id',$id)
                         ->first();
             $criterion = json_decode($courses->criterion);
-            $criteria = DB::table('criteria')->get();
+            $data = DB::table('criteria')->get();
+            $criteria = array();
+            foreach ($data as $key => $value) {
+                $criteria += [
+                    $value->id => $value,
+                ];
+            }
             $datas = array();
             foreach ($criterion as $key => $value) {
                 $datas[] = [
-                    'id' => $criteria[$value-1]->id,
-                    'name' => $criteria[$value-1]->name,
-                    'type' => $criteria[$value-1]->type,
+                    'id' => $criteria[$value]->id,
+                    'name' => $criteria[$value]->name,
+                    'type' => $criteria[$value]->type,
                 ];
             }
             $start = Carbon::parse($courses->start)->format('Y-m-d');
@@ -146,5 +158,63 @@ class SurveyController extends Controller
             }
             return view('admin.surveys.editSurvey', compact('datas','start', 'finish','type'));
         }
+    }
+
+    public function setDefault(){
+        return view('admin.surveys.setDefault.setDefault');
+    }
+
+    public function insertSurvey(Request $request){
+        if($request->ajax()){
+            $name = $request->name;
+            $typeNumber = $request->type;
+
+            $types = DB::table('criteria')->select('type')->distinct()->get();
+            $type = array();
+            $i = 0;
+            foreach ($types as $key => $value) {
+                $type += [
+                    $i => $value->type,
+                ];
+                $i++;
+            }
+
+            $check = DB::table('criteria')->orderBy('id', 'desc')->first();
+            
+            if($check->name != $name || $check->type = $type[$typeNumber]){
+            }
+
+            DB::table('criteria')->insert([
+                'name' => $name,
+                'type' => $type[$typeNumber],
+            ]);
+
+            $criteria = DB::table('criteria')->where('status',1)->get();
+            $types = DB::table('criteria')->select('type')->distinct()->get();
+            $type = array();
+            $i = 0;
+            foreach ($types as $key => $value) {
+                $type += [
+                    $i => $value->type,
+                ];
+                $i++;
+            }
+            return view('admin.surveys.setDefault.Criterion', compact('criteria','type'));
+        }
+        return response()->json(['errors'=>'some thing errors']);
+    }
+
+    public function loadCriterion(){
+        $criteria = DB::table('criteria')->where('status',1)->get();
+        $types = DB::table('criteria')->select('type')->distinct()->get();
+        $type = array();
+        $i = 0;
+        foreach ($types as $key => $value) {
+            $type += [
+                $i => $value->type,
+            ];
+            $i++;
+        }
+        return view('admin.surveys.setDefault.Criterion', compact('criteria','type'));
     }
 }

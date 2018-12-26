@@ -8,6 +8,7 @@
 @section('content')
 <div id="data">
     <div class="main-button">
+        <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleCourse">Thêm lớp môn học</button>
     </div>
 
     <table class="table table-striped table-bordered">
@@ -85,7 +86,6 @@
                     alert(data);
                      $('#data').empty().html(data);
                      $('#h1').empty().html('<h1>Danh sách sinh viên trong lớp '+code +'</h1>');
-                     
                 } else {
                     alert(data.errors);
                 }

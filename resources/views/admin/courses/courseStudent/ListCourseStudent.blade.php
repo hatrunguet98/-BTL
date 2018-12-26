@@ -21,7 +21,6 @@
         			<a  class="btn btn-success btn-xs" id="edit" data-id="{{$user->id}}">Edit</a>
         			<a  class="btn btn-danger btn-xs" id="delete" data-id="{{$user->id}}">Delete</a>
         		</td>
-
         	</tr>
         @endforeach
     </tbody>

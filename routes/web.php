@@ -72,14 +72,13 @@ Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
 Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
 Route::post('/generate','Admin\SurveyController@surveyRegister');
-
+Route::post('/survey/insert-survey', 'Admin\SurveyController@insertSurvey');
 Route::any('/survey-submit', function () {
     return view('admin.surveys.submit');
 });
+Route::get('/survey/setdefault', 'Admin\SurveyController@setDefault');
+Route::get('/survey/load-criterion', 'Admin\SurveyController@loadCriterion');
 
-Route::get('/survey/setdefault', function () {
-    return view('admin.surveys.setDefault.setDefault');
-});
 
 // Chức năng với course
 Route::get('/course', 'Admin\CourseController@course');
