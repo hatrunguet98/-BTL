@@ -13,7 +13,7 @@
                         <h5><b> 1. Cơ sở vật chất</b></h5>
                         <ul>
                         @foreach($datas as $data)
-                            @if($data['id'] <= 2 && $data['id'] >= 1)
+                            @if($data['type'] == $type['0'])
                             <li>{{ $data['name'] }}</li>
                             @endif
                         @endforeach
@@ -23,7 +23,7 @@
                         <h5><b> 2. Môn học</b></h5>
                         <ul>
                         @foreach($datas as $data)
-                            @if($data['id'] <= 7 && $data['id'] >= 3)
+                            @if($data['type'] == $type['1'])
                             <li>{{ $data['name'] }}</li>
                             @endif
                         @endforeach
@@ -33,7 +33,7 @@
                         <h5><b> 3. Hoạt động dạy hoc của giảng viên</b></h5>
                         <ul>
                         @foreach($datas as $data)
-                            @if($data['id'] <= 15 && $data['id'] >= 8)
+                            @if($data['type'] == $type['2'])
                             <li>{{ $data['name'] }}</li>
                             @endif
                         @endforeach
@@ -43,7 +43,7 @@
                         <h5><b> 4. Hoạt động học tập của sinh viên</b></h5>
                         <ul>
                         @foreach($datas as $data)
-                            @if($data['id'] <= 19 && $data['id'] >= 16)
+                            @if($data['type'] == $type['3'])
                             <li>{{ $data['name'] }}</li>
                             @endif
                         @endforeach

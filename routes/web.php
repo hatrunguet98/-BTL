@@ -85,10 +85,9 @@ Route::get('/survey/setdefault', function () {
 Route::get('/course', 'Admin\CourseController@course');
 Route::post('/add-course','Admin\CourseController@addCourse');
 Route::post('/enroll-student','Admin\CourseController@enrollStudent');
+Route::post('/course-delete', 'Admin\CourseController@deleteStudent');
 
-Route::get('/course/courseStudent', function () {
-    return view('admin.courses.courseStudent.courseStudent');
-});
+Route::get('/course/student', 'Admin\CourseController@studentsCourse');
 
 
 
