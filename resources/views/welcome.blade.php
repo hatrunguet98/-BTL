@@ -41,14 +41,9 @@
                         <hr class="style2">
                         <h6 class="mb-4">An objective view about the teaching quality of UET.</h6>
                         <br />
-                        @guest
-                            <a href="{{ route('login') }}" class="btn login-content">Login</a>
-                        @else
-                        <a href="" class="btn login-content"><span class="nameuser">{{ Auth::user()->username }}</span></a>
-                        @endguest
-                        <a class="btn login-content">Learn more</a>
+                        <a class="btn ">Login</a>
+                        <a class="btn ">Learn more</a>
                     </div>
-
                     <!--Grid row-->
                 </div>
             </div>
@@ -91,44 +86,44 @@
                         <h3 class="head text-center">Các khóa học </h3>
                         <p class="my-3 head text-center">Sinh viên chỉ đánh gái được khóa học mình tham gia.</p>
                     </div>
-            <div class="row">
-                    <div class="col-xs-6 col-md-4 p-2 pl-2">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4 p-2 pl-2">
+                            <div class="card-course">
+                                <img id="image-course" src="{{ asset('user/images/course/ungdungweb.png') }} " alt="" class="img-course-ds">
+                                <div class="info-card row">
+                                    <div class="pl-3 pt-2">
+                                        <div class="h7"id="name-course"><img src="{{ asset('user/images/book.png') }} " alt="" class="icon p-1"> INT3306 1 Phát triển ứng dụng web </div>
+                                        <div class="h7" id="name-teacher"><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1">Giảng viên name</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
             <div class="card-course">
-                <img id="image-course" src="{{ asset('user/images/course/ungdungweb.png') }} " alt="" class="img-course-ds">
+                <img id="image-course" src="{{ asset('user/images/course/quantrimang.jpg') }}" alt="" class="img-course-ds">
                 <div class="info-card row">
                     <div class="pl-3 pt-2">
-                        <div><img src="{{ asset('user/images/book.png') }} " alt="" class="icon p-1"><label class="h10"id="name-course"> INT3306 1 Phát triển ứng dụng web </label></div>
-                        <div><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"><label class="h10" id="name-teacher">Giảng viên name</label></div>
+                        <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3310 1 Quản trị mạng  </div>
+                        <div class="h7"><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"> Giảng viên name</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-6 col-md-4 p-2 pl-2">
             <div class="card-course">
-                <img id="image-course" src="{{ asset('user/images/course/ungdungweb.pn') }}g" alt="" class="img-course-ds">
+                <img id="image-course" src="{{ asset('user/images/course/dohoamaytinh.jpg') }}" alt="" class="img-course-ds">
                 <div class="info-card row">
                     <div class="pl-3 pt-2">
-                            <div><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"><label class="h10"> INT3306 2 Phát triển ứng dụng web </label></div>
-                            <div><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"><label class="h10">Giảng viên name</label></div>
+                            <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3403 1 Đồ họa máy tính </div>
+                            <div class="h7"><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"> Giảng viên name</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-md-4 p-2 pl-2">
-            <div class="card-course">
-                <img id="image-course" src="{{ asset('user/images/course/he-dieu-hanh-mang.jpg') }}" alt="" class="img-course-ds">
-                <div class="info-card row">
-                    <div class="pl-3 pt-2">
-                            <label class="h10"> <img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3301 1 Thực hành hệ điều hành mạng </label>
-                            <label class="h10"><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"> Giảng viên name</label>
-                    </div>
+    </div>
                 </div>
-            </div>
-        </div>
-        <div class="p-5 text-center">
-            <button type="submit"  class="btn btn-lg btn-success center-block">Xem thêm</button>
-        </div>
-                    </div>
+                <div class="p-1 text-center">
+                <button type=""  class="btn btn-lg btn-success center-block">Xem thêm</button>
                 </div>
             </div>
         </section>

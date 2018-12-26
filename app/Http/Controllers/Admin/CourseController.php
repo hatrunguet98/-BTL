@@ -85,6 +85,27 @@ class CourseController extends Controller
         } else {
             dd('hi');
         }
-        return redirect('/course');
+        $students  = DB::table('courses')->select('users.id as user_id','user_courses.id as id', 'users.username', 'users.name', 'users.email', 'users.class')
+                        ->join('user_courses','user_courses.course_id','=','courses.id')
+                        ->join('users','user_courses.user_id', '=', 'users.id')
+                        ->join('roles','roles.id','=', 'users.role')
+                        ->where('courses.id',$course_id)
+                        ->where('roles.name','sinhvien')
+                        ->get();
+            return view('admin.courses.courseStudent.CourseStudent', compact('students','course_id'));
+    }
+
+    public function studentsCourse(Request $request){
+        if($request->ajax()) {
+            $course_id = $request->id;
+            $students  = DB::table('courses')->select('users.id as user_id','user_courses.id as id', 'users.username', 'users.name', 'users.email', 'users.class')
+                        ->join('user_courses','user_courses.course_id','=','courses.id')
+                        ->join('users','user_courses.user_id', '=', 'users.id')
+                        ->join('roles','roles.id','=', 'users.role')
+                        ->where('courses.id',$course_id)
+                        ->where('roles.name','sinhvien')
+                        ->get();
+            return view('admin.courses.courseStudent.CourseStudent', compact('students','course_id'));
+        }
     }
 }

@@ -34,10 +34,10 @@ class RolesTableSeeder extends Seeder
 
             [ 'id' => 8, 'name' => 'Giảng viên thực hiện đầy đủ nội dung và thời lượng của môn học theo kế hoạch', 'type' => 'Hoạt động dạy hoc của giảng viên'],
             [ 'id' => 9, 'name' => 'Giảng viên hướng dẫn bạn phương pháp học tập khi bắt đầu môn học', 'type' => 'Hoạt động dạy hoc của giảng viên'],
-            [ 'id' => 10, 'name' => 'hương pháp giảng dạy của giảng viên giúp bạn phát triển tư duy', 'type' => 'Hoạt động dạy hoc của giảng viên'],
-            [ 'id' => 11, 'name' => 'iảng viên tạo cơ hội để bạn chủ động tham gia vào quá trình học tập', 'type' => 'Hoạt động dạy hoc của giảng viên'],
+            [ 'id' => 10, 'name' => 'Phương pháp giảng dạy của giảng viên giúp bạn phát triển tư duy', 'type' => 'Hoạt động dạy hoc của giảng viên'],
+            [ 'id' => 11, 'name' => 'Giảng viên tạo cơ hội để bạn chủ động tham gia vào quá trình học tập', 'type' => 'Hoạt động dạy hoc của giảng viên'],
 
-            [ 'id' => 12, 'name' => 'Giảng viên gisp bạn phát triển kỹ năng làm việc độc lập', 'type' => 'Hoạt động dạy hoc của giảng viên'],
+            [ 'id' => 12, 'name' => 'Giảng viên giúp bạn phát triển kỹ năng làm việc độc lập', 'type' => 'Hoạt động dạy hoc của giảng viên'],
             [ 'id' => 13, 'name' => 'Giảng viên rèn luyện cho bạn phương pháp liên giữa hệ các vấn đề trong môn học và thực tiễn', 'type' => 'Hoạt động dạy hoc của giảng viên'],
             [ 'id' => 14, 'name' => 'Giảng viên sử dụng hiệu quả phương tiện dạy học', 'type' => 'Hoạt động dạy hoc của giảng viên'],
             [ 'id' => 15, 'name' => 'Giảng viên quan tâm giáo dục tư cách, phẩm chất nghề nghiệp của người học', 'type' => 'Hoạt động dạy hoc của giảng viên'],
