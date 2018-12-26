@@ -66,6 +66,8 @@ Route::get('/dashboard', 'Admin\DashBoardController@dashboard')->name('dashboard
 
 // Chức năng với survey
 Route::get('/survey', 'Admin\SurveyController@survey');
+Route::get('/view-survey', 'Admin\SurveyController@viewSurvey');
+Route::get('/edit-survey', 'Admin\SurveyController@editSurvey');
 
 Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
@@ -79,7 +81,9 @@ Route::get('/course', 'Admin\CourseController@course');
 Route::post('/add-course','Admin\CourseController@addCourse');
 Route::post('/enroll-student','Admin\CourseController@enrollStudent');
 
-
+Route::get('/course/courseStudent', function () {
+    return view('admin.courses.courseStudent.courseStudent');
+});
 
 
 Route::any('/survey-submit', function () {
@@ -91,6 +95,7 @@ Route::any('/survey-submit', function () {
 Route::get('/students','User\StudentController@student');
 Route::get('/student/survey', 'User\StudentController@survey')->name('student/survey');
 Route::post('/student/survey', 'User\StudentController@insertSurvey')->name('student/survey');
+Route::get('/courses', 'Admin\CourseController@allCourses');
 
 
 Route::get('/teachers','User\TeacherController@teacher');
@@ -103,9 +108,7 @@ Route::get('/user/userlayout/teacher/teacher',function(){
 Route::get('/surveys',function(){
     return view('user.student.survey.survey');
 });
-Route::get('/courses',function(){
-    return view('user.courses.courses');
-});
+
 Route::get('/welcome', function () {
     return view('welcome');
 });

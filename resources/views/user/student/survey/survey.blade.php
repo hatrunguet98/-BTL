@@ -2,9 +2,9 @@
     <form action="{{ URL('student/survey') }}" method="post" id="insert-survey" >
         @csrf
     <div class="survey-table p-5">
-        <h2 class="text-center" id="name-courses">Name Course</h2>
+        <h2 class="text-center" id="name-courses">{{$course}}</h2>
             <input type="hidden" name="user_course_id" id="input-id" value="">
-            <table class="table">
+             <table class="table">
                 <thead>
                     <tr>
                         <th>1. Cơ sở vật chất</th>
@@ -17,14 +17,14 @@
                 </thead>
                 <tbody>
                 @foreach($datas as $data)
-                @if($data['id'] <= 2)
+                @if($data['id'] <= 2 && $data['id'] >= 1)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5"required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==2 ?'checked':''}} value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==3 ?'checked':''}} value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==4 ?'checked':''}} value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==5 ?'checked':''}} value="5"required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -43,11 +43,11 @@
                 @if($data['id'] <= 7 && $data['id'] > 2)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==2 ?'checked':''}} value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==3 ?'checked':''}} value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==4 ?'checked':''}} value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==5 ?'checked':''}} value="5" required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -67,11 +67,11 @@
                 @if($data['id'] <= 15 && $data['id'] > 7)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==2 ?'checked':''}} value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==3 ?'checked':''}}value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==4 ?'checked':''}} value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==5 ?'checked':''}} value="5" required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -88,14 +88,14 @@
                 </thead>
                 <tbody>
                 @foreach($datas as $data)
-                @if($data['id'] > 15)
+                @if($data['id'] > 15 && $data['id'] <= 19)
                     <tr>
                         <td>{{ $data['name'] }}</td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="1" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="2" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="3" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="4" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" value="5" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==2 ?'checked':''}} value="2" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==3 ?'checked':''}} value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==4 ?'checked':''}} value="4" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==5 ?'checked':''}} value="5" required> </td>
                     </tr>
                 @endif
                 @endforeach
@@ -108,14 +108,14 @@
                     <tbody>
                         <tr>
                             <form>
-                                <td><input type="" class="form-control" id="input-note"></td>
+                                <td><input type="" class="form-control" value="{{$comment}}" name="comment" id="input-note"></td>
                             </form>
                         </tr>
                     </tbody>
-            </table>
+            </table> 
     </div>
     <div class="p-5 text-center">
-        <input type="submit"  class="btn btn-lg btn-success center-block">
+        <input type="submit" value="submit" class="btn btn-lg btn-success center-block">
     </div>
     </form>
 </div>

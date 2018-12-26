@@ -5,7 +5,7 @@
             <ul class="tree pl-1">
                 <a class="tag-sidebar p-1" href="{{ url('welcome') }}"><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
                 <li class="has-children p-1 pt-2">
-                    <button class="tag-sidebar" id="course" href=""><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
+                    <button class="tag-sidebar" id="course"><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
                     Courses</button>
                 </li>
                 <li class="has-children p-1 ">

@@ -34,6 +34,7 @@
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
+
                     <div class="form-group col-md-6 date">
                         <label for="start">Ngày bắt đầu:</label>
                         <input type="date" id="start" name="start" value="2018-07-22">
@@ -42,16 +43,63 @@
                         <label for="start">Ngày kết thúc:</label>
                         <input type="date" id="start" name="finish" value="2018-07-22">
                     </div>
-                    <div class="survey-content">
-                        <input type="checkbox"  id="check-all" checked /> Chọn tất cả<br/>
-                        @foreach($criteria as $criterion)
-                            <div class="row">
-                                <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                    <div class="form-group col-md-12 survey">
+                        <div class="survey-content">
+                            <input type="checkbox"  id="check-all" checked /><b> Chọn tất cả</b><br/>
+
+                            {{--@foreach($criteria as $criterion)--}}
+                            {{--<div class="row">--}}
+                            {{--<label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>--}}
+                            {{--</div>--}}
+                            {{--@endforeach--}}
+
+                            <div class="about-equipments">
+                                <h5>1. Cơ sở vật chất</h5>
+                                @foreach($criteria as $criterion)
+                                    @if ($criterion->type == "Cơ sở vật chất")
+                                    <div class="row">
+                                        <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                    </div>
+                                    @endif
+                                @endforeach
                             </div>
-                        @endforeach
+
+                            <div class="about-subject">
+                                <h5>2. Môn học</h5>
+                                @foreach($criteria as $criterion)
+                                    @if ($criterion->type == "Môn học")
+                                        <div class="row">
+                                            <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+
+                            <div class="about-teachers">
+                                <h5>3. Hoạt động dạy hoc của giảng viên</h5>
+                                @foreach($criteria as $criterion)
+                                    @if ($criterion->type == "Hoạt động dạy hoc của giảng viên")
+                                        <div class="row">
+                                            <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+
+                            <div class="about-students">
+                                <h5>4. Hoạt động học tập của sinh viên</h5>
+                                @foreach($criteria as $criterion)
+                                    @if ($criterion->type == "Hoạt động học tập của sinh viên")
+                                        <div class="row">
+                                            <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
 
                 </div>
 

@@ -12,13 +12,17 @@ use App\Services\ClassAdmin\ClassQueryUser;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
-{
+{ 
     public function course(){
     	$courses = Course::all();
     	$subjects = Subject::all();
     	$semesters = Semester::all();
         $teachers = ClassQueryUser::showUser('giaovien');
 	    return view('admin.courses.course',compact('courses','subjects','semesters','teachers'));
+    }
+
+    public function allCourses(){
+        return view('user.courses.courses');
     }
 
     public function addCourse(Request $request){

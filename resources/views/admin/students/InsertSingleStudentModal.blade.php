@@ -42,8 +42,8 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="insertBtn">Submit</button>
-                    <button type="button" class="btn btn-danger pull-right" id="closeInsertBtn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                    <button type="button" class="btn btn-danger closeBtn" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>
