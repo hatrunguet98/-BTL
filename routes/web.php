@@ -78,7 +78,7 @@ Route::any('/survey-submit', function () {
 });
 
 Route::get('/survey/setdefault', function () {
-    return view('admin.surveys.setDefault');
+    return view('admin.surveys.setDefault.setDefault');
 });
 
 // Chức năng với course
