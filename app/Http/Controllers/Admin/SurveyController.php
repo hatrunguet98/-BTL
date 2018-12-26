@@ -23,8 +23,17 @@ class SurveyController extends Controller
     }
 
     public function generate() {
-        $criteria = Criterion::all();
-        return view('admin.surveys.generate', compact('criteria'));
+        $criteria = DB::table('criteria')->where('status',1)->get();
+        $types = DB::table('criteria')->select('type')->distinct()->get();
+        $type = array();
+        $i = 0;
+        foreach ($types as $key => $value) {
+            $type += [
+                $i => $value->type,
+            ];
+            $i++;
+        }
+        return view('admin.surveys.generate', compact('criteria','type'));
     }
 
     public function surveyGenerate(){

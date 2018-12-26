@@ -19,14 +19,6 @@
                 <th>Giảng viên</th>
             </tr>
             </thead>
-           <!--  <tfoot>
-            <tr>
-                <th></th>
-                <th>Tên môn học</th>
-                <th>Mã môn học</th>
-                <th>Giảng viên</th>
-            </tr>
-            </tfoot> -->
         </table>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generateSurvey">Tạo đánh giá</button>
 
@@ -50,7 +42,7 @@
                             <div class="about-equipments">
                                 <h5>1. Cơ sở vật chất</h5>
                                 @foreach($criteria as $criterion)
-                                    @if ($criterion->type == "Cơ sở vật chất")
+                                    @if ($criterion->type == $type['0'])
                                     <div class="row">
                                         <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                     </div>
@@ -61,7 +53,7 @@
                             <div class="about-subject">
                                 <h5>2. Môn học</h5>
                                 @foreach($criteria as $criterion)
-                                    @if ($criterion->type == "Môn học")
+                                    @if ($criterion->type == $type['1'])
                                         <div class="row">
                                             <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                         </div>
@@ -72,7 +64,7 @@
                             <div class="about-teachers">
                                 <h5>3. Hoạt động dạy hoc của giảng viên</h5>
                                 @foreach($criteria as $criterion)
-                                    @if ($criterion->type == "Hoạt động dạy hoc của giảng viên")
+                                    @if ($criterion->type == $type['2'])
                                         <div class="row">
                                             <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                         </div>
@@ -83,7 +75,7 @@
                             <div class="about-students">
                                 <h5>4. Hoạt động học tập của sinh viên</h5>
                                 @foreach($criteria as $criterion)
-                                    @if ($criterion->type == "Hoạt động học tập của sinh viên")
+                                    @if ($criterion->type == $type['3'])
                                         <div class="row">
                                             <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                         </div>
