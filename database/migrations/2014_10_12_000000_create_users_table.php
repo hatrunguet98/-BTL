@@ -69,9 +69,10 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('criteria', function(Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('type');
+            $table->integer('status')->default(1);
         });
 
         Schema::create('semesters', function(Blueprint $table) {

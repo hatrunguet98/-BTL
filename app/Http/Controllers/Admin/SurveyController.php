@@ -90,11 +90,21 @@ class SurveyController extends Controller
                 $datas[] = [
                     'id' => $criteria[$value-1]->id,
                     'name' => $criteria[$value-1]->name,
+                    'type' => $criteria[$value-1]->type,
                 ];
             }
             $start = $courses->start;
             $finish = $courses->finish;
-            return view('admin.surveys.showSurvey', compact('datas','start','finish'));
+            $types = DB::table('criteria')->select('type')->distinct()->get();
+            $type = array();
+            $i = 0;
+            foreach ($types as $key => $value) {
+                $type += [
+                    $i => $value->type,
+                ];
+                $i++;
+            }
+            return view('admin.surveys.showSurvey', compact('datas','start','finish','type'));
         }
     }
 
@@ -111,12 +121,21 @@ class SurveyController extends Controller
                 $datas[] = [
                     'id' => $criteria[$value-1]->id,
                     'name' => $criteria[$value-1]->name,
+                    'type' => $criteria[$value-1]->type,
                 ];
             }
             $start = Carbon::parse($courses->start)->format('Y-m-d');
             $finish = Carbon::parse($courses->finish)->format('Y-m-d');
-
-            return view('admin.surveys.editSurvey', compact('datas','start', 'finish'));
+            $types = DB::table('criteria')->select('type')->distinct()->get();
+            $type = array();
+            $i = 0;
+            foreach ($types as $key => $value) {
+                $type += [
+                    $i => $value->type,
+                ];
+                $i++;
+            }
+            return view('admin.surveys.editSurvey', compact('datas','start', 'finish','type'));
         }
     }
 }

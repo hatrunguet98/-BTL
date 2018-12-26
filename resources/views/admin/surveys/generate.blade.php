@@ -37,21 +37,15 @@
 
                     <div class="form-group col-md-6 date">
                         <label for="start">Ngày bắt đầu:</label>
-                        <input type="date" id="start" name="start" value="2018-07-22">
+                        <input type="date" id="start" name="start" value="0000-00-00">
                     </div>
                     <div class="form-group col-md-6 date">
                         <label for="start">Ngày kết thúc:</label>
-                        <input type="date" id="start" name="finish" value="2018-07-22">
+                        <input type="date" id="start" name="finish" value="0000-00-00">
                     </div>
                     <div class="form-group col-md-12 survey">
                         <div class="survey-content">
                             <input type="checkbox"  id="check-all" checked /><b> Chọn tất cả</b><br/>
-
-                            {{--@foreach($criteria as $criterion)--}}
-                            {{--<div class="row">--}}
-                            {{--<label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>--}}
-                            {{--</div>--}}
-                            {{--@endforeach--}}
 
                             <div class="about-equipments">
                                 <h5>1. Cơ sở vật chất</h5>
