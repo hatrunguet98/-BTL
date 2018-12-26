@@ -1,14 +1,13 @@
 @extends('admin.adminLayout.adminLayout')
 
 
+@section('content_header')
+    <h1 id="h1">Danh sách lớp học phần</h1>
+@endsection
+
 @section('content')
 <div id="data">
-    <div class="text-center">
-    <h1>Danh sách lớp học phần</h1>
-    </div>
-
     <div class="main-button">
-        <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleCourse">Thêm lớp môn học</button>
     </div>
 
     <table class="table table-striped table-bordered">
@@ -23,13 +22,13 @@
         </thead>
         <tbody>
         @foreach($courses as $course)
-        <tr id="{{ $course->id }}">
+        <tr id="'course' . {{ $course->id }}">
             <td>{{$course->id}}</td>
             <td>{{$course->name}}</td>
-            <td>{{$course->code}}</td>
+            <td id="code" >{{$course->code}}</td>
             <td>{{$course->semester}}</td>
             <td>
-                <a  class="btn btn-info btn-xs" data-id="{{$course->id}}" id="view">View</a>
+                <a  class="btn btn-info btn-xs" data-id="{{$course->id}}" data-code="{{$course->code}}" id="view">View</a>
                 <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                 <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
             </td>
@@ -47,14 +46,15 @@
 
 @section('js')
 <script type="text/javascript">
-    /*-----------------Edit Student-----------------------*/
+    var code = '';
     $(document).on('click','#edit', function(){
         $('#editSingleCourse').modal('show');
     });
 
     $(document).on('click','#view', function(){
         var id = $(this).data('id');
-        alert(id);
+        code = $(this).data('code');
+        alert(code);
         $.get('{{ URL::to("course/student")}}',{id:id}).done(function(data){
             console.log(data);
             console.log(1);
@@ -81,8 +81,14 @@
             data : data,
             dataTy : 'json',
             success:function(data) {
-                alert('hello');
-                $('#data').empty().html(data);
+                if ($.isEmptyObject(data.errors)) {
+                    alert(data);
+                     $('#data').empty().html(data);
+                     $('#h1').empty().html('<h1>Danh sách sinh viên trong lớp '+code +'</h1>');
+                     
+                } else {
+                    alert(data.errors);
+                }
             }
         }).fail(function(data) {
             alert('something error')
