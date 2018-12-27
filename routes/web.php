@@ -40,7 +40,6 @@ Route::post('/teacher/edit', 'Admin\TeacherController@edit')->name('/teacher/edi
 Route::get('/teacher/edit', 'Admin\TeacherController@editUser')->name('/teacher/edit');
 
 // Chức năng với admin
-
 Route::get('/admin', 'Admin\AdminController@admin')->name('admin');
 Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');
 Route::get('/admin-import', 'Admin\AdminController@import')->name('admin-import');
@@ -73,7 +72,12 @@ Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
 Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
 Route::post('/generate','Admin\SurveyController@surveyRegister');
-
+Route::post('/survey/insert-survey', 'Admin\SurveyController@insertSurvey');
+Route::any('/survey-submit', function () {
+    return view('admin.surveys.submit');
+});
+Route::get('/survey/setdefault', 'Admin\SurveyController@setDefault');
+Route::get('/survey/load-criterion', 'Admin\SurveyController@loadCriterion');
 
 
 // Chức năng với course
@@ -85,9 +89,7 @@ Route::post('/course-delete', 'Admin\CourseController@deleteStudent');
 Route::get('/course/student', 'Admin\CourseController@studentsCourse');
 
 
-Route::any('/survey-submit', function () {
-    return view('admin.surveys.submit');
-});
+
 
 // chức năng cho sinh giao viên và sinh viên
 
