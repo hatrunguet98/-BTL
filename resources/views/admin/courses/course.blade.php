@@ -62,7 +62,11 @@
             alert("hello");
             $('#data').empty().html(data);
         });
-    })
+    });
+    
+    $(document).on('change', '#select-code', function () {
+        
+    });
 
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({
