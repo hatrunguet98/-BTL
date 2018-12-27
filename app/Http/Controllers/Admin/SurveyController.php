@@ -217,4 +217,10 @@ class SurveyController extends Controller
         }
         return view('admin.surveys.setDefault.Criterion', compact('criteria','type'));
     }
+
+    public function deleteCriterion(Request $request){
+        if($request->ajax()){
+            
+        }
+    }
 }
