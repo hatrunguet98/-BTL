@@ -11,6 +11,10 @@
         <a class="btn btn-vimeo" href="http://localhost/-BTL/public/generate">Tạo đánh giá chung</a>
     </div>
 
+    <div class="main-button2">
+        <a class="btn btn-vimeo" href="http://localhost/-BTL/public/survey/setdefault">Cài đặt mặc định</a>
+    </div>
+
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -57,7 +61,7 @@
         }).fail(function(data){
             alert('errors');
         });
-    })
+    });
 
     $(document).on('click','#edit', function(e){
         var id = $(this).data('id');
