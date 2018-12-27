@@ -55,12 +55,13 @@
     $(document).on('click','#view', function(){
         var id = $(this).data('id');
         code = $(this).data('code');
-        alert(code);
         $.get('{{ URL::to("course/student")}}',{id:id}).done(function(data){
             console.log(data);
             console.log(1);
             alert("hello");
             $('#data').empty().html(data);
+            $('#h1').empty().html('Danh sách sinh viên trong lớp '+code);
+
         });
     });
     
@@ -87,9 +88,10 @@
             dataTy : 'json',
             success:function(data) {
                 if ($.isEmptyObject(data.errors)) {
-                    alert(data);
-                     $('#data').empty().html(data);
-                     $('#h1').empty().html('<h1>Danh sách sinh viên trong lớp '+code +'</h1>');
+                    $('#data').empty().html(data);
+                    alert('hello');
+                    console.log(data);
+                    $('#h1').empty().html('Danh sách sinh viên trong lớp '+code);
                 } else {
                     alert(data.errors);
                 }
