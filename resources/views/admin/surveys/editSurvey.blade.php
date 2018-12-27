@@ -5,15 +5,16 @@
         <div class="modal-content">
             <h2>Sửa đánh giá</h2>
             <div class="form" >
-                <form action="" method="post">
+                <form action="{{ url('survey/submitEditSurvey') }}" method="post" id="submitEdit">
                     @csrf
+                    <input type="hidden" name="id" value="{{$id}}" >
                     <div class="form-group col-md-6 date">
                         <label for="start">Ngày bắt đầu:</label>
                         <input type="date" id="start" name="start" value="{{$start}}">
                     </div>
                     <div class="form-group col-md-6 date">
                         <label for="end">Ngày kết thúc:</label>
-                        <input type="date" id="end" name="end" value="{{$finish}}">
+                        <input type="date" id="end" name="finish" value="{{$finish}}">
                     </div>
                     <div class="form-group col-md-12 survey">
                         <h4><b>Chọn tiêu chí:</b></h4>
