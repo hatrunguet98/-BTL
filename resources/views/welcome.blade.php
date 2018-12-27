@@ -24,6 +24,7 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script type="text/javascript" src="{{ asset('user/js/home.js') }}"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
     <!--header-->
@@ -41,18 +42,18 @@
                         <hr class="style2">
                         <h6 class="mb-4">An objective view about the teaching quality of UET.</h6>
                         <br />
-                        <a class="btn ">Login</a>
-                        <a class="btn ">Learn more</a>
+                        <a class="btn" href="#footer">About</a>
+                        <a class="btn" href="#working">Working</a>
                     </div>
                     <!--Grid row-->
                 </div>
             </div>
 </section>
 <main>
-        <section class="banner-bottom py-5">
+        <section class="banner-bottom py-5" id="working">
             <div class="container py-md-3">
                 <div class="heading">
-                    <h3 class="head text-center">The working of website</h3>
+                    <h3 class="head text-center">Hoạt động của trang web</h3>
                     <p class="my-3 head text-center"> Website cung cấp các chức năng để đánh giá các vấn đề của khóa
                         học.Đưa ra kết quả đánh giá khách quan nhất từ sinh viên</p>
                 </div>
@@ -115,7 +116,7 @@
                 <div class="info-card row">
                     <div class="pl-3 pt-2">
                             <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3403 1 Đồ họa máy tính </div>
-                            <div class="h7"><img src="{{ asset('user/images/teacher.png') }}" alt="" class="icon p-1"> Giảng viên name</div>
+                            <div class="h7"><img src="{{ asset('user/images/teacher.png' ) }}" alt="" class="icon p-1"> Giảng viên name</div>
                     </div>
                 </div>
             </div>
@@ -131,6 +132,11 @@
     <!--footer-->
     @include("user.layout.partial.footer")
     @show
+<div class='lentop'>
+    <div>
+    <img src="{{ asset('user/images/swipe-up.png') }}">
+    </div>
+</div>
 </body>
 <style>
 header:hover {
@@ -138,3 +144,4 @@ header:hover {
     transition-duration: 1s;
 }
 </style>
+

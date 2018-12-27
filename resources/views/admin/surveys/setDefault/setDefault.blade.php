@@ -10,58 +10,7 @@
     </div>
 
     <div id="table">
-        <table class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                {{--<th>Số thứ tự</th>--}}
-                <th>Cở sở vật chất</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                {{--<td>1</td>--}}
-                <td><p>ssssssssssssss ssssssssssss sssssssssss ssssssssssss sssssssssssss sssssss ssssssssssss</p></td>
-                <td>
-                    <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
-                </td>
-            </tr>
-            <tr>
-                {{--<td>2</td>--}}
-                <td>ádfasdgadfgdfhdj</td>
-                <td>
-                    <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
-                </td>
-            </tr>
-            <tr>
-                {{--<td>3</td>--}}
-                <td>ádfasdgadfgdfhdj</td>
-                <td>
-                    <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-            <thead>
-            <tr>
-                {{--<th>Số thứ tự</th>--}}
-                <th>Cở sở vật chất</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                {{--<td>1</td>--}}
-                <td><p>ssssssssssssss ssssssssssss sssssssssss ssssssssssss sssssssssssss sssssss ssssssssssss</p></td>
-                <td>
-                    <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        
     </div>
 
 
@@ -73,9 +22,65 @@
 
 @section('js')
     <script type="text/javascript">
+    $(document).ready(function(e){
+        autoload();
+    })
         // -----------------edit-----------------
-        $(document).on('click','#edit', function(){
-            $('#editCriterion').modal('show');
+    $(document).on('click','#edit', function(){
+        $('#editCriterion').modal('show');
+    });
+    $(document).on('submit','#insertCriterion', function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
+
+        e.preventDefault();
+        var data = $(this).serialize();
+        var url = $(this).attr('action');
+        var method = $(this).attr('method');
+        console.log(data);
+        $.ajax({
+            type : method,
+            url : url,
+            data : data,
+            dataTy : 'json',
+            success:function(data) {
+                if ($.isEmptyObject(data.errors)) {
+                    alert('success');
+                    $('#table').empty().html(data);
+                } else {
+                    msgError(data.errors);
+                }
+            }
+        }).fail(function(data) {
+            alert('something error')
+        });
+    });
+
+    function msgError(data) {
+        var a = ""
+        $.each(data, function(key, value){
+            a += "- " +value+"\n";
+        });
+        alert(a);
+    }
+
+    function autoload(){
+        var data = "";
+        var url = "load-criterion";
+        var method = "get";
+        $.ajax({
+            type : method,
+            url : url,
+            data : data,
+            dataTy : 'json',
+            success:function(data){
+                $('#table').empty().html(data);
+            }
+        });
+    }
+
     </script>
 @endsection
