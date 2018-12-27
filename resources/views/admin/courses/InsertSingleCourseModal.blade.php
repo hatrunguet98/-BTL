@@ -9,8 +9,8 @@
                     <div class="form-group col-md-6" style="z-index: 2">
                         <div class="input-group">
                             <span class="input-group-addon "><i class="fa fa-book" aria-hidden="true"></i></span>
-                            <select class="selectpicker form-control bootstrap-select" name="code" id="select-code" data-live-search="true">
-                                <option selected disabled style="display: none;">Chọn mã môn học</option>
+                            <select class="selectpicker form-control bootstrap-select" title="Chọn mã môn học" data-count-selected-text="Not changable text" name="code" id="select-code" data-live-search="true">
+                                <option id="code0" selected disabled style="display: none;">Chọn mã môn học</option>
                                 @foreach($subjects as $subject)
                                     <option id="{{'code' . $subject->id}}"  value="{{$subject->id}}">{{$subject->code}}</option>
                                 @endforeach
@@ -32,9 +32,9 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
                             <select class="selectpicker  form-control bootstrap-select" name="subject" id="select-subject" data-live-search="true">
-                                <option selected disabled style="display: none">Chọn tên môn học</option>
+                                <option id="name0" selected disabled style="display: none">Chọn tên môn học</option>
                                 @foreach($subjects as $subject)
-                                    <option id="{{'name' . $subject->id}}" >{{$subject->name}}</option>
+                                    <option id="{{'name' . $subject->id}}" value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
                             </select>
                         </div>
