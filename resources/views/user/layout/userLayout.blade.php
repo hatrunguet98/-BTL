@@ -33,13 +33,18 @@
     <!--Main Layout-->
     @section('main')
     @show
-    
+
     @section('js')
     <!--------------------------
     | Your Javascript Here |
     -------------------------->
 
     @show
+    <div class='lentop'>
+        <div>
+            <img src="{{ asset('user/images/swipe-up.png') }}">
+        </div>
+    </div>
     <script type="text/javascript">
         $(document).on('click', '#all-course', function(e){
         $.get(
