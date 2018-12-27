@@ -32,7 +32,7 @@ a {
 .form-search {
     width: 130px;
     box-sizing: border-box;
-    border: 2px solid #141a1b;
+    border: 2px solid #10cdeb;
     border-radius: 10px;
     outline: none;
     padding: 12px 14px;
@@ -148,9 +148,6 @@ footer {
     color: #a5a8b0
 }
 
-.btn1{
-    background: rgba(255, 255, 255, 1);
-}
 /* Sign */
 
 .card{
@@ -216,7 +213,7 @@ footer {
     background-color: white;
     }
     .card{
-        top: 250px;
+        top: 170px;
     }
 /* Sinh vien */
 
@@ -279,7 +276,7 @@ footer {
     position: fixed;
     width: 235px;
     height: 100%;
-    background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+    background:  #007bff99;
     color: #fff;
 }
 
