@@ -93,7 +93,6 @@ class StudentController extends Controller
                                 'name' => $criteria[$value]->name,
                                 'type' => $criteria[$value]->type,
                                 'value' => '0',
-
                             ];
                 }
                 $comment = '';
