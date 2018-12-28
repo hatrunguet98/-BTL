@@ -88,7 +88,6 @@
     $(document).on('click','#edit', function(){
         $('#editSingleTeacher').modal('show');
         var id = $(this).data('id');
-        console.log(id);
         $.get('{{URL::to("teacher/edit")}}',{id:id}).done(function(data) {
             $('#username-edit').val(data.username);
             $('#name-edit').val(data.name);

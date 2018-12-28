@@ -3,7 +3,7 @@
     <form>
     <div class="container">
         <div>
-            <p class="font-weight-bold text-center h2">KẾT QUẢ PHẢN HỒI CỦA NGƯỜI HỌC VỀ HỌC PHẦN</p>
+            <p class="font-weight-bold text-center h2">KẾT QUẢ PHẢN HỒI CỦA NGƯỜI HỌC VỀ HỌC PHẦN {{ $about['subject-code'] }}</p>
         </div>
         <div>
             <span class="text-center font-weight-bold">
@@ -13,11 +13,11 @@
     </div>
     <div>
         <span>
-            <label class="h5">Tên học phần:</label><br>
-            <label class="h5">Tên giảng viên:</label><br>
-            <label class="h5">Số lượng sinh viên đánh giá:</label><br>
-            <label class="h5">Số lượng giản viên tham gia giảng dạy môn học:</label><br>
-            <label class="h5">Số lượng môn học giảng viên tham gia giảng dạy:</label><br>
+            <label class="h5">Tên học phần: {{ $about['sublect-name'] }}</label><br>
+            <label class="h5">Tên giảng viên: {{ $about['teacher-name'] }}</label><br>
+            <label class="h5">Số lượng sinh viên đánh giá: {{ $about['quantity-student'] }}</label><br>
+            <label class="h5">Số lượng giảng viên tham gia giảng dạy môn học: {{ $about['quantity-teacher'] }}</label><br>
+            <label class="h5">Số lượng môn học giảng viên tham gia giảng dạy: {{ $about['quantity-subject'] }}</label><br>
         </span>
     </div>
     <div>
@@ -37,8 +37,8 @@
             <tbody>
                 @foreach($results as $key => $result)
                 <tr>
-                    <td>{{ $key+1 }}</td>
-                    <td>{{ $result['name'] }}</td>
+                    <td>{{$key+1 }}</td>
+                    <td>{{$result['name'] }}</td>
                     <td>{{$result['M'] }}</td>
                     <td>{{$result['STD'] }}</td>
                     <td>{{$result['M1'] }}</td>

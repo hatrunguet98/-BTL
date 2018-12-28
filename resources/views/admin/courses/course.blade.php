@@ -117,8 +117,9 @@
         var valSubject = $( "#select-subject option:checked" ).val();
         if(valCode != valSubject){
             $('#select-subject').val(valCode).change();
+            $('#select-subject').selectpicker('refresh');
         }
-        
+
     });
 
     $(document).on('change', '#select-subject', function () {
@@ -126,7 +127,9 @@
         var valSubject = $( "#select-subject option:checked" ).val();
         if(valCode != valSubject){
             $('#select-code').val(valSubject).change();
+            $('#select-code').selectpicker('refresh');
         }
+
     });
 
     $(document).on('change', '#edit-selectcode', function () {

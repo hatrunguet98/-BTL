@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="form">
                 <h2 id ="edit-header">Sửa thông tin giảng viên</h2>
-                <form action="{{ url('/teacher/edit') }}" method="post" id="edit-teacher">
+                <form action="{{ url('/teacher/edit') }}" method="post" id="edit-admin">
                     @csrf
                     <div class="form-group col-md-6">
                         <div class="input-group">
