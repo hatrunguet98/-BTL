@@ -35,21 +35,20 @@ class TeacherController extends Controller
 	    		->join('surveys','surveys.id', '=', 'user_courses.survey_id')
 	    		->where('user_courses.course_id', $course_id)
 	    		->get();
-	    	$evaluate = array();
-	    	foreach ($data as $key => $value) {
-	    		$array = $value->evaluate;
-	    		$array = json_decode($array);
-	    		$evaluate[] = $array;
-	    	}
-	    	$i = sizeof($evaluate);
-	    	$val = $evaluate[0];
-	    	$criteria = DB::table('criteria')->get();
-	    	$results = array();
-	    	foreach ($val as $key => $value) {
+	    	$course = DB::table('courses')->where('id',$course_id)->first();
+	    	$criterion = json_decode($course->criterion);
+	    	$temp = DB::table('criteria')->get();
+            $criteria = array();
+            foreach ($temp as $key => $value) {
+                $criteria += [
+                    $value->id => $value,
+                ];
+            }
+	    	foreach ($criterion as $key => $value) {
 	    		$results[] = [
-	    			'id' => $criteria[$key-1]->id,
-	    			'name' => $criteria[$key-1]->name,
-	    			'M' => $value,
+	    			'id' => $criteria[$value]->id,
+	    			'name' => $criteria[$value]->name,
+	    			'M' => '0',
 	    			'STD' => '1',
 	    			'M1' => '1',
 	    			'STD1' => '1',
@@ -57,23 +56,16 @@ class TeacherController extends Controller
 	    			'STD2' => '1',
 	    		];
 	    	}
-	    	/*dd($val);
-	    	foreach ($val as $key => $value) {
-	    		$val[$key] = floatval($value);
-	    	}
-	    	foreach ($evaluate as $key => $values) {
-	    		if($key){
-	    			foreach ($value as $k => $va) {
-	    				$val[$key] += floatval($va);
-	    			}
-	    		}
-	    	}
-	    	foreach ($evaluate as $key => $value) {
-	    		dd($value);
-	    		//$evaluate[$key] = $value / $i;
-	    	}
-	    	dd($evaluate);*/
-	        return view('user.teacher.result.result', compact('results'));
+	    	$types = DB::table('criteria')->select('type')->distinct()->get();
+            $type = array();
+            $i = 0;
+            foreach ($types as $key => $value){
+                $type += [
+                    $i => $value->type,
+                ];
+                $i++;
+            }
+	        return view('user.teacher.result.result', compact('results','type'));
     	}
     }
 }

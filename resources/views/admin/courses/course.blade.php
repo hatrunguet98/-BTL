@@ -65,6 +65,23 @@
 
         });
     });
+    
+    $(document).on('change', '#select-code', function () {
+        var valCode = $( "#select-code option:checked" ).val();
+        var valSubject = $( "#select-subject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#select-subject').val(valCode).change();
+        }
+
+    });
+
+    $(document).on('change', '#select-subject', function () {
+        var valCode = $( "#select-code option:checked" ).val();
+        var valSubject = $( "#select-subject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#select-code').val(valSubject).change();
+        }
+    });
 
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({
