@@ -17,7 +17,8 @@
             <th>ID</th>
             <th>Name</th>
             <th>Mã lớp học phần</th>
-            <th>ki hoc</th>
+            <th>Ki hoc</th>
+            <th>Giáo Viên</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -28,9 +29,10 @@
             <td>{{$course->name}}</td>
             <td id="code" >{{$course->code}}</td>
             <td>{{$course->semester}}</td>
+            <td>{{$course->user_name}}</td>
             <td>
                 <a  class="btn btn-info btn-xs" data-id="{{$course->id}}" data-code="{{$course->code}}" id="view">View</a>
-                <a  class="btn btn-success btn-xs" id="edit">Edit</a>
+                <a  class="btn btn-success btn-xs" id="edit" data-course="{{$course}}">Edit</a>
                 <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
             </td>
         </tr>
@@ -51,6 +53,50 @@
 
     $(document).on('click','#edit', function(){
         $('#editSingleCourse').modal('show');
+        var course = $(this).data('course');
+        var semester = "";
+        var code_id = course['code_id'];
+        var user_id = course['user_id']
+        if(course['semester'] == 'Kì I'){
+            semester = 1;
+        } else if(course['semester'] == 'Kì II'){
+            semester = 2;
+        } else {
+            semester = 3;
+        }
+
+        $('#edit-selectcode').val(code_id).change();
+        $('#edit-semester').val(semester).change();
+        $('#edit-selectsubject').val(code_id).change();
+        $('#edit-user').val(user_id).change();
+        $('#course_id').val(course['id']);
+        $('#edit-course').on('submit', function(e){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            e.preventDefault();
+            var data = $(this).serialize();
+            var url = $(this).attr('action');
+            var method = $(this).attr('method');
+            $.ajax({
+                type : method,
+                url : url,
+                data : data,
+                dataTy : 'json',
+                success:function(data){
+                    if ($.isEmptyObject(data.errors)) {
+                        alert('hello');
+                    } else {
+                        alert('errors');
+                    }
+                }
+            }).fail(function(data) {
+                alert('something error');
+            });
+        })
     });
 
     $(document).on('click','#view', function(){
@@ -82,6 +128,24 @@
             $('#select-code').val(valSubject).change();
         }
     });
+
+    $(document).on('change', '#edit-selectcode', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectsubject').val(valCode).change();
+        }
+        
+    });
+
+    $(document).on('change', '#edit-selectsubject', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectcode').val(valSubject).change();
+        }
+    });
+
 
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({

@@ -14,8 +14,13 @@ use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
 { 
     public function course(){
-    	$courses = Course::all();
-    	$subjects = Subject::all();
+    	$courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id')
+            ->join('user_courses','courses.id', '=', 'user_courses.course_id')
+            ->join('users', 'users.id', '=', 'user_courses.user_id')
+            ->join('roles','roles.id','=', 'users.role')
+            ->where('roles.name', 'giaovien')
+            ->get();
+        $subjects = Subject::all();
     	$semesters = Semester::all();
         $teachers = ClassQueryUser::showUser('giaovien');
 	    return view('admin.courses.course',compact('courses','subjects','semesters','teachers'));
@@ -119,6 +124,49 @@ class CourseController extends Controller
                         ->where('roles.name','sinhvien')
                         ->get();
             return view('admin.courses.courseStudent.CourseStudent', compact('students','course_id'));
+        }
+    }
+
+    public function editCourse(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $id = $data['id'];
+            $user_id = $data['user'];
+            $semester = $data['semester'];
+            
+
+            $course = DB::table('courses')
+                ->select('courses.subject_id', 'courses.name', 'courses.code', 'courses.semester', 'user_courses.id as user_course_id', 'users.id as user_id')
+                ->join('user_courses','user_courses.course_id', '=', 'courses.id')
+                ->join('users','users.id', '=', 'user_courses.user_id')
+                ->join('roles','roles.id', '=', 'users.role')
+                ->where('roles.name', 'giaovien')
+                ->where('courses.id', $id)
+                ->first();
+            $user_course_id = $course->user_course_id;
+
+            if($course->user_id != $data['user_id']){
+                DB:table('user_courses')->where('id', $user_course_id)
+                    ->update([
+                        'user_id' => $user_id,
+                    ]);
+            }
+
+            if($semester == 1) {
+                $semester = 'Kì I'; 
+            }elseif($semester == 2) {
+                $semester = 'Kì II';
+            } else {
+                $semester = 'Kì Hè';
+            }
+
+            if($course->semester != $semester){
+                DB::table('courses')->where('id', $id)
+                    ->update([
+                        'semester' => $semester,
+                    ]);
+            }
+            
         }
     }
 }
