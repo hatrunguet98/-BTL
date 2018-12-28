@@ -22,21 +22,8 @@
             <th>Action</th>
         </tr>
         </thead>
-        <tbody>
-        @foreach($courses as $course)
-        <tr id="'course' . {{ $course->id }}">
-            <td>{{$course->id}}</td>
-            <td>{{$course->name}}</td>
-            <td id="code" >{{$course->code}}</td>
-            <td>{{$course->semester}}</td>
-            <td>{{$course->user_name}}</td>
-            <td>
-                <a  class="btn btn-info btn-xs" data-id="{{$course->id}}" data-code="{{$course->code}}" id="view">View</a>
-                <a  class="btn btn-success btn-xs" id="edit" data-course="{{$course}}">Edit</a>
-                <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
-            </td>
-        </tr>
-        @endforeach
+        <tbody id="table">
+       
         </tbody>
     </table>
 </div>
@@ -49,6 +36,21 @@
 
 @section('js')
 <script type="text/javascript">
+    $(document).ready(function(){
+        var data = "";
+        var url = "load-course";
+        var method = "get";
+        $.ajax({
+            type : method,
+            url : url,
+            data : data,
+            dataTy : 'json',
+            success:function(data){
+                $('#table').empty().html(data);
+            }
+        });
+    });
+
     var code = '';
 
     $(document).on('click','#edit', function(){
@@ -81,6 +83,7 @@
             var data = $(this).serialize();
             var url = $(this).attr('action');
             var method = $(this).attr('method');
+            $('#editSingleCourse').modal('hide');
             $.ajax({
                 type : method,
                 url : url,
@@ -88,7 +91,7 @@
                 dataTy : 'json',
                 success:function(data){
                     if ($.isEmptyObject(data.errors)) {
-                        alert('hello');
+                       $('#table').empty().html(data);
                     } else {
                         alert('errors');
                     }

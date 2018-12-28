@@ -26,6 +26,16 @@ class CourseController extends Controller
 	    return view('admin.courses.course',compact('courses','subjects','semesters','teachers'));
     }
 
+    public function loadCourse(){
+        $courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id')
+            ->join('user_courses','courses.id', '=', 'user_courses.course_id')
+            ->join('users', 'users.id', '=', 'user_courses.user_id')
+            ->join('roles','roles.id','=', 'users.role')
+            ->where('roles.name', 'giaovien')
+            ->get();
+        return view('admin.courses.ListCourse', compact('courses'));
+    }
+
     public function allCourses(){
         return view('user.courses.courses');
     }
@@ -133,6 +143,7 @@ class CourseController extends Controller
             $id = $data['id'];
             $user_id = $data['user'];
             $semester = $data['semester'];
+            $subject = $data['subject'];
             
 
             $course = DB::table('courses')
@@ -145,7 +156,7 @@ class CourseController extends Controller
                 ->first();
             $user_course_id = $course->user_course_id;
 
-            if($course->user_id != $data['user_id']){
+            if($course->user_id != $user_id){
                 DB:table('user_courses')->where('id', $user_course_id)
                     ->update([
                         'user_id' => $user_id,
@@ -167,6 +178,28 @@ class CourseController extends Controller
                     ]);
             }
             
+            if($course->subject_id != $subject){
+                $course = DB::table('courses')
+                    ->where('subject_id',  $subject)
+                    ->orderBy('id', 'desc')
+                    ->first();
+                $sub = DB::table('subjects')
+                    ->where('id', $data['code'])
+                    ->first();
+                $code = "";
+                if(!$course){
+                    $code = $sub->code . " 1";
+                } else {
+                    $code = $sub->code ." ".(substr($course->code,8) + 1);
+                }
+                DB::table('courses')->where('id', $id)
+                    ->update([
+                        'subject_id' => $subject,
+                        'name' => $sub->name,
+                        'code' => $code,
+                    ]);
+            }
+            return $this->loadCourse();
         }
     }
 }
