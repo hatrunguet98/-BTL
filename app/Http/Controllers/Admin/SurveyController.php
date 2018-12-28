@@ -281,5 +281,25 @@ class SurveyController extends Controller
         }
     }
 
-
+    public function deleteSurvey(Request $request){
+        if($request->ajax()){
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $time = date_format(now(),"Y-m-d H:i:s");
+            $id = $request->id;
+            $course = DB::table('courses')->where('id', $id)->first();
+            $start = $course->start;
+            if($start >= $time) {
+                DB::table('courses')->where('id', $id)->update([
+                    'status' => '0',
+                    'criterion' => NULL,
+                    'start' => NULL,
+                    'finish' => NULL,
+                ]);
+                return response()->json(['success'=>'Đánh giá đã được xóa']);
+            } else {
+                return response()->json(['errors'=>'- Không thể xóa môn học đã bắt đầu đánh giá !']);
+            }
+        }
+        return response()->json(['errors'=>'something errors']);
+    }
 }

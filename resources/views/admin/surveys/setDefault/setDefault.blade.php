@@ -105,7 +105,7 @@
             $('#insertCriterion').modal('hide');        
         });
     });
-
+    // delete
     $(document).on('click', '#delete', function(e){
         $.ajaxSetup({
             headers: {

@@ -80,6 +80,7 @@ Route::post('/survey/submitEditSurvey','Admin\SurveyController@submitEditSurvey'
 Route::get('/load-survey', 'Admin\SurveyController@loadSurvey');
 Route::post('/survey/delete-criterion', 'Admin\SurveyController@deleteCriterion');
 Route::post('/survey/edit-criterion', 'Admin\SurveyController@editCriterion');
+Route::post('/survey/delete', 'Admin\SurveyController@deleteSurvey');
 
 
 

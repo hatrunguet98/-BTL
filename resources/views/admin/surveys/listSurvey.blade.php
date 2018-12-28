@@ -1,5 +1,5 @@
 @foreach($courses as $course)
-    <tr>
+    <tr id="{{ 'list'.$course->id }}">
         <td style="width:15%;text-align: center">
             <button type="button" class="btn btn-default" id="edit" data-toggle="modal" data-target="#editSurvey" data-id="{{$course->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-default" id="show" data-id="{{$course->id}}"><i class="fa fa-eye" aria-hidden="true"></i></button>
