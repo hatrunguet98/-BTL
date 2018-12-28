@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="form">
                 <h2>Thêm mới lớp môn học</h2>
-                <form action="insert-survey" method="post" id="insertCriterion">
+                <form action="{{ url('survey/insert-survey') }}" method="post" id="insertCriterion">
                     @csrf
                     <div class="form-group col-md-12" style="z-index: 2">
                         <div class="input-group">
