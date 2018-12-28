@@ -11,7 +11,6 @@ html {
 .lentop div {background:#ff0d0d7a; border:2px solid #fff; border-radius:45px; padding:11px 12.5px; box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.3)}
 .lentop img {width:32x; height:32px;}
 
-
 header.scroll hr.style1 {
     height: 0px;
 }
@@ -57,7 +56,7 @@ form {
 
 .rgba-gradient {
     height: 100%;
-    background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+    background: -webkit-linear-gradient(45deg,rgba(161, 83, 27, 0.66), rgba(23, 255, 255, 0.45) 100%);
     /*background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
 }
 
@@ -88,8 +87,9 @@ a.btn {
 }
 
 a.btn:hover {
-    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    color:#dc3545;
     border-width: 0px;
+    font-weight: 800;
 }
 
 .login {
@@ -105,7 +105,7 @@ a.btn:hover {
 .login:hover {
     text-decoration: none;
     color: #5563b1;
-    font-size: 20px;
+    font-weight: 800;
 }
 .login-content{
     color: #fff;
@@ -312,9 +312,9 @@ button#course {
 }
 
 .tag-sidebar:hover {
-    color: #5563b1;
+    color: #f0e731;
     text-decoration: none;
-    font-size: 20px;
+    font-weight: 800;
 }
 
 .row {
