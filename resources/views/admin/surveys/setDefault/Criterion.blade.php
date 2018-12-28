@@ -9,7 +9,7 @@
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['0'])
             <tr>
-                <td><p>{{ $criterion->name }}</p></td>
+                <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
                     <a  class="btn btn-success btn-xs" id="edit" data-id="{{$criterion->id}}" data-name="{{$criterion->name}}">Edit</a>
                     <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
@@ -29,7 +29,7 @@
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['1'])
             <tr>
-                <td><p>{{ $criterion->name }}</p></td>
+                <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
                     <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                     <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
@@ -49,7 +49,7 @@
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['2'])
             <tr>
-                <td><p>{{ $criterion->name }}</p></td>
+                <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
                     <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                     <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
@@ -69,7 +69,7 @@
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['3'])
             <tr>
-                <td><p>{{ $criterion->name }}</p></td>
+                <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
                     <a  class="btn btn-success btn-xs" id="edit">Edit</a>
                     <a  class="btn btn-danger btn-xs" id="delete">Delete</a>

@@ -76,26 +76,36 @@ class CourseController extends Controller
     public function enrollStudent(Request $request) {
         $username = $request->username;
         $course_id = $request->id;
-        $user = DB::table('users')->join('roles','users.role', '=', 'roles.id')
+        $user = DB::table('users')->select('users.username', 'users.id')
+            ->join('roles','users.role', '=', 'roles.id')
             ->where('users.status',1)
             ->where('roles.name','sinhvien')
             ->where('users.username',$username)->first();
         if($user) {
-            DB::table('user_courses')->insert([
-                'user_id' => $user->id,
-                'course_id' => $course_id,
-            ]);
+            $check = DB::table('user_courses')
+            ->where('course_id', $course_id)
+            ->where('user_id', $user->id)
+            ->first();
+            if($check){
+                return response()->json(['errors'=>'Sinh viên đã được thêm vào khóa học']);
+            }else {
+                DB::table('user_courses')->insert([
+                    'user_id' => $user->id,
+                    'course_id' => $course_id,
+                ]);
+                $students  = DB::table('courses')->select('users.id as user_id','user_courses.id as id', 'users.username', 'users.name', 'users.email', 'users.class')
+                                ->join('user_courses','user_courses.course_id','=','courses.id')
+                                ->join('users','user_courses.user_id', '=', 'users.id')
+                                ->join('roles','roles.id','=', 'users.role')
+                                ->where('courses.id',$course_id)
+                                ->where('roles.name','sinhvien')
+                                ->get();
+                return view('admin.courses.courseStudent.CourseStudent', compact('students','course_id'));
+            }
         } else {
             return response()->json(['errors'=>'Tài khoản không tồn tại']);
         }
-        $students  = DB::table('courses')->select('users.id as user_id','user_courses.id as id', 'users.username', 'users.name', 'users.email', 'users.class')
-                        ->join('user_courses','user_courses.course_id','=','courses.id')
-                        ->join('users','user_courses.user_id', '=', 'users.id')
-                        ->join('roles','roles.id','=', 'users.role')
-                        ->where('courses.id',$course_id)
-                        ->where('roles.name','sinhvien')
-                        ->get();
-            return view('admin.courses.courseStudent.CourseStudent', compact('students','course_id'));
+        return response()->json(['errors' => 'something errors']);
     }
 
     public function studentsCourse(Request $request){

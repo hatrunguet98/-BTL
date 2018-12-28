@@ -18,8 +18,13 @@ class SurveyController extends Controller
     }
 
     public function survey() {
-    	$courses = Course::where('status',1)->get();
+    	//$courses = Course::where('status',1)->get();
     	return view('admin.surveys.survey',compact('courses'));
+    }
+
+    public function loadSurvey(){
+        $courses = Course::where('status',1)->get();
+        return view('admin.surveys.listSurvey',compact('courses'));
     }
 
     public function generate() {
@@ -71,7 +76,6 @@ class SurveyController extends Controller
             if(substr($key, 0,6) == 'survey' ){
                 $criteria[] = substr($key, 6);
             }
-
         }
         $criterion =  json_encode($criteria);
         foreach($courses as $course) {
@@ -113,7 +117,7 @@ class SurveyController extends Controller
             $types = DB::table('criteria')->select('type')->distinct()->get();
             $type = array();
             $i = 0;
-            foreach ($types as $key => $value) {
+            foreach ($types as $key => $value){
                 $type += [
                     $i => $value->type,
                 ];
@@ -156,8 +160,34 @@ class SurveyController extends Controller
                 ];
                 $i++;
             }
-            return view('admin.surveys.editSurvey', compact('datas','start', 'finish','type'));
+            return view('admin.surveys.editSurvey', compact('datas','start', 'finish','type','id'));
         }
+    }
+
+    public function submitEditSurvey(Request $request){
+        if($request->ajax()){
+            $course_id = $request->id;
+            $start = date_create($request->start . ' 00:00:00');
+            $start = date_format($start,"Y-m-d H:i:s");
+            $finish = date_create($request->finish . ' 23:59:59');
+            $finish = date_format($finish,"Y-m-d H:i:s");
+            $data = $request->all();
+            $criteria = array();
+            foreach ($data as $key => $value) {
+                if(substr($key, 0,6) == 'survey' ){
+                    $criteria[] = substr($key, 6);
+                }
+            }
+            $criterion =  json_encode($criteria);
+            DB::table('courses')->where('id',$course_id)
+                ->update([
+                    'criterion' => $criterion,
+                    'start' => $start,
+                    'finish' => $finish,
+                ]);
+            return $this->loadSurvey();
+        }
+        return response()->json(['errors'=>'some thing errors']);
     }
 
     public function setDefault(){
@@ -216,5 +246,11 @@ class SurveyController extends Controller
             $i++;
         }
         return view('admin.surveys.setDefault.Criterion', compact('criteria','type'));
+    }
+
+    public function deleteCriterion(Request $request){
+        if($request->ajax()){
+            
+        }
     }
 }

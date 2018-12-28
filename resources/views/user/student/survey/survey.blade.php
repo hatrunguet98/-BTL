@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                 @foreach($datas as $data)
-                @if($data['id'] <= 2 && $data['id'] >= 1)
+                @if($data['type'] == $type['0'])
                     <tr>
                         <td>{{ $data['name'] }}</td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
@@ -40,7 +40,8 @@
                 </thead>
                 <tbody>
                 @foreach($datas as $data)
-                @if($data['id'] <= 7 && $data['id'] > 2)
+                @if($data['type'] == $type['1'])
+
                     <tr>
                         <td>{{ $data['name'] }}</td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
@@ -64,7 +65,8 @@
                 </thead>
                 <tbody>
                 @foreach($datas as $data)
-                @if($data['id'] <= 15 && $data['id'] > 7)
+                @if($data['type'] == $type['2'])
+
                     <tr>
                         <td>{{ $data['name'] }}</td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
@@ -88,7 +90,7 @@
                 </thead>
                 <tbody>
                 @foreach($datas as $data)
-                @if($data['id'] > 15 && $data['id'] <= 19)
+                @if($data['type'] == $type['3'])
                     <tr>
                         <td>{{ $data['name'] }}</td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>

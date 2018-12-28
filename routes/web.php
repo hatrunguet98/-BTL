@@ -78,6 +78,10 @@ Route::any('/survey-submit', function () {
 });
 Route::get('/survey/setdefault', 'Admin\SurveyController@setDefault');
 Route::get('/survey/load-criterion', 'Admin\SurveyController@loadCriterion');
+Route::post('/survey/delete','Admin/SurveyController@deleteCriterion');
+Route::post('/survey/submitEditSurvey','Admin\SurveyController@submitEditSurvey');
+Route::get('/load-survey', 'Admin\SurveyController@loadSurvey');
+
 
 
 // Chức năng với course

@@ -57,51 +57,56 @@ class StudentController extends Controller
 
             $criterion = json_decode($courses->criterion);
 
-            $criteria = DB::table('criteria')->get();
+            $temp = DB::table('criteria')->get();
+            $criteria = array();
+            foreach ($temp as $key => $value) {
+                $criteria += [
+                    $value->id => $value,
+                ];
+            }
             $datas = array();
             $check = DB::table('user_courses')->select('surveys.evaluate', 'surveys.comment')
                     ->where('user_courses.id',$user_course_id)
                     ->join('surveys','surveys.id', '=', 'user_courses.survey_id')
                     ->first();
-            $evaluate = $check->evaluate;
-            $comment = $check->comment;
-            $evaluate = json_decode(($evaluate));
-            $array = array();
-            foreach ($evaluate as $key => $value) {
-                $array[] = $value;
-            }
-            foreach ($criterion as $key => $value) {
-                if ($value <= 2) {
+            if($check){
+                $evaluate = $check->evaluate;
+                $comment = $check->comment;
+                $evaluate = json_decode($evaluate);
+                $array = array();
+                foreach ($evaluate as $key => $value) {
+                    $array += [ $key => $value];
+                }
+                foreach ($criterion as $key => $value) {
                     $datas[] = [
-                                'id' => $criteria[$value-1]->id,
-                                'name' => $criteria[$value-1]->name,
-                                'type' => $criteria[$value-1]->type,
-                                'value' => $array[$value-1],
-                            ];
-                }elseif($value <= 7) {
-                    $datas[] = [
-                                'id' => $criteria[$value-1]->id,
-                                'name' => $criteria[$value-1]->name,
-                                'type' => $criteria[$value-1]->type,
-                                'value' => $array[$value-1],
-                            ];
-                } elseif ($value <= 15) {
-                    $datas[] = [
-                                'id' => $criteria[$value-1]->id,
-                                'name' => $criteria[$value-1]->name,
-                                'type' => $criteria[$value-1]->type, 
-                                'value' => $array[$value-1],
-                            ];
-                } else {
-                    $datas[] = [
-                                'id' => $criteria[$value-1]->id,
-                                'name' => $criteria[$value-1]->name,
-                                'type' => $criteria[$value-1]->type,
-                                'value' => $array[$value-1],
+                                'id' => $criteria[$value]->id,
+                                'name' => $criteria[$value]->name,
+                                'type' => $criteria[$value]->type,
+                                'value' => $array[$value],
                             ];
                 }
+            } else {
+                $array = array();
+                foreach ($criterion as $key => $value) {
+                    $datas[] = [
+                                'id' => $criteria[$value]->id,
+                                'name' => $criteria[$value]->name,
+                                'type' => $criteria[$value]->type,
+                                'value' => '0',
+                            ];
+                }
+                $comment = '';
             }
-            return view('user.student.survey.survey', compact('datas','course','comment'));
+            $types = DB::table('criteria')->select('type')->distinct()->get();
+            $type = array();
+            $i = 0;
+            foreach ($types as $key => $value){
+                $type += [
+                    $i => $value->type,
+                ];
+                $i++;
+            }
+            return view('user.student.survey.survey', compact('datas','course','comment','type'));
         }
     }
 

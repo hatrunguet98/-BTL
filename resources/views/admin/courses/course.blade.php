@@ -48,6 +48,7 @@
 @section('js')
 <script type="text/javascript">
     var code = '';
+
     $(document).on('click','#edit', function(){
         $('#editSingleCourse').modal('show');
     });
@@ -55,14 +56,32 @@
     $(document).on('click','#view', function(){
         var id = $(this).data('id');
         code = $(this).data('code');
-        alert(code);
         $.get('{{ URL::to("course/student")}}',{id:id}).done(function(data){
             console.log(data);
             console.log(1);
             alert("hello");
             $('#data').empty().html(data);
+            $('#h1').empty().html('Danh sách sinh viên trong lớp '+code);
+
         });
-    })
+    });
+    
+    $(document).on('change', '#select-code', function () {
+        var valCode = $( "#select-code option:checked" ).val();
+        var valSubject = $( "#select-subject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#select-subject').val(valCode).change();
+        }
+        
+    });
+
+    $(document).on('change', '#select-subject', function () {
+        var valCode = $( "#select-code option:checked" ).val();
+        var valSubject = $( "#select-subject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#select-code').val(valSubject).change();
+        }
+    });
 
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({
@@ -83,9 +102,10 @@
             dataTy : 'json',
             success:function(data) {
                 if ($.isEmptyObject(data.errors)) {
-                    alert(data);
-                     $('#data').empty().html(data);
-                     $('#h1').empty().html('<h1>Danh sách sinh viên trong lớp '+code +'</h1>');
+                    $('#data').empty().html(data);
+                    alert('hello');
+                    console.log(data);
+                    $('#h1').empty().html('Danh sách sinh viên trong lớp '+code);
                 } else {
                     alert(data.errors);
                 }
