@@ -43,7 +43,7 @@ Route::get('/teacher/edit', 'Admin\TeacherController@editUser')->name('/teacher/
 Route::get('/admin', 'Admin\AdminController@admin')->name('admin');
 Route::post('/admin-register', 'Admin\AdminController@register')->name('admin-register');
 Route::get('/admin-import', 'Admin\AdminController@import')->name('admin-import');
-Route::post('/admin-import', 'Admin\AdminController@importTeacher')->name('admin-import');
+Route::post('/admin-import', 'Admin\AdminController@importAdmin')->name('admin-import');
 Route::post('/admin/delete', 'Admin\AdminController@delete')->name('/admin/delete');;
 Route::get('/load-admin', 'Admin\AdminController@loadUser')->name('load-admin');
 Route::post('/admin/edit', 'Admin\AdminController@edit')->name('/admin/edit');
@@ -57,7 +57,7 @@ Route::get('/admin/edit', 'Admin\AdminController@editUser')->name('/admin/edit')
 //Route::post('/Admin/delete/{id}', 'Admin\AdminController@delete');
 //
 //
-//Route::post('/teacher/edit/{id}', 'Admin\TeacherController@edit');
+Route::post('/teacher/edit/{id}', 'Admin\TeacherController@edit');
 //Route::post('/admin/edit/{id}', 'Admin\AdminController@edit');
 
 
