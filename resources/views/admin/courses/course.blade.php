@@ -67,21 +67,20 @@
     });
     
     $(document).on('change', '#select-code', function () {
-        var selectSubject = document.getElementById("select-subject").options;
-        for(var i = 0; i < selectSubject.length; i++){
-            selectSubject[i].removeAttribute("selected");
+        var valCode = $( "#select-code option:checked" ).val();
+        var valSubject = $( "#select-subject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#select-subject').val(valCode).change();
         }
-        document.getElementById("name"+this.value).setAttribute("selected", "selected");
-        $('.selectpicker').selectpicker('refresh')
+        
     });
 
     $(document).on('change', '#select-subject', function () {
-        var selectCode = document.getElementById("select-code").options;
-        for(var i = 0; i < selectCode.length; i++){
-            selectCode[i].removeAttribute("selected");
+        var valCode = $( "#select-code option:checked" ).val();
+        var valSubject = $( "#select-subject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#select-code').val(valSubject).change();
         }
-        document.getElementById("code"+this.value).setAttribute("selected", "selected");
-        $('.selectpicker').selectpicker('refresh')
     });
 
     $(document).on('submit','#enroll-single', function(e){
