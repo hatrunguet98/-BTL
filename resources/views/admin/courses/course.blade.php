@@ -65,24 +65,6 @@
 
         });
     });
-    
-    $(document).on('change', '#select-code', function () {
-        var selectSubject = document.getElementById("select-subject").options;
-        for(var i = 0; i < selectSubject.length; i++){
-            selectSubject[i].removeAttribute("selected");
-        }
-        document.getElementById("name"+this.value).setAttribute("selected", "selected");
-        $('.selectpicker').selectpicker('refresh')
-    });
-
-    $(document).on('change', '#select-subject', function () {
-        var selectCode = document.getElementById("select-code").options;
-        for(var i = 0; i < selectCode.length; i++){
-            selectCode[i].removeAttribute("selected");
-        }
-        document.getElementById("code"+this.value).setAttribute("selected", "selected");
-        $('.selectpicker').selectpicker('refresh')
-    });
 
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({
