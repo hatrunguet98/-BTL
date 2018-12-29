@@ -1,12 +1,13 @@
 @extends('user.layout.userLayout')
+<!--Main Layout-->
 @section('main')
-    <!--Main Layout-->
     <main class="main-user">
     	<div id="data">
     	</div>
     </main>
 @endsection
-
+<!--/.Main Layout-->
+<!-- ajax -->
 @section('js')
 <script type="text/javascript">
 	$(document).ready(function(e){
@@ -22,7 +23,7 @@
 		var id = $(this).data('id');
 		$.get(
 			'{{ URL::to("student/survey") }}',
-			 {id:id}
+			{id:id}
 		).done(function(data){
 			if ($.isEmptyObject(data.errors)) {
 					$('#data').empty().html(data);
@@ -73,4 +74,5 @@
 	}
 </script>
 @endsection
+<!-- /.ajax -->
 

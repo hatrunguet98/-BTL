@@ -1,6 +1,7 @@
 <div class="frame">
     <!--Grid row-->
     <div class="row">
+        <!-- courses -->
         <div class="col-xs-6 col-md-4 p-2 pl-2">
             <div class="card-course">
                 <img id="image-course" src="{{ asset('user/images/course/ungdungweb.png') }} " alt="" class="img-course-ds">
@@ -181,5 +182,7 @@
                 </div>
             </div>
         </div>
+        <!-- /courses -->
     </div>
+    <!--/Grid row-->
 </div>
