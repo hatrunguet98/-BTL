@@ -12,7 +12,7 @@
                 <div class="collapse navbar-collapse " id="navbarCollapse">
                     <ul class="navbar-nav ml-lg-4 mr-auto">
                             <li class="nav-item active p-1">
-                                <a class="nav-link" id="all-courses" href="">Courses <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" id="all-courses" href="{{url('home')}}">Courses <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
                                 <form>
