@@ -35,8 +35,8 @@ class CourseController extends Controller
             ->join('users', 'users.id', '=', 'user_courses.user_id')
             ->join('roles','roles.id','=', 'users.role')
             ->where('roles.name', 'giaovien')
-            ->get();
-        return view('admin.courses.ListCourse', compact('courses'));
+            ->Paginate(7);
+        return view('admin.courses.ListCourse', compact('courses'))->render();
     }
 
     public function allCourses(){
