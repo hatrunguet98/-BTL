@@ -73,14 +73,14 @@ Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('su
 Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
 Route::post('/generate','Admin\SurveyController@surveyRegister');
 Route::post('/survey/insert-survey', 'Admin\SurveyController@insertSurvey');
-Route::any('/survey-submit', function () {
-    return view('admin.surveys.submit');
-});
-Route::get('/survey/setdefault', 'Admin\SurveyController@setDefault');
+Route::get('/survey/setDefault', 'Admin\SurveyController@setDefault');
 Route::get('/survey/load-criterion', 'Admin\SurveyController@loadCriterion');
 Route::post('/survey/delete','Admin/SurveyController@deleteCriterion');
 Route::post('/survey/submitEditSurvey','Admin\SurveyController@submitEditSurvey');
 Route::get('/load-survey', 'Admin\SurveyController@loadSurvey');
+Route::post('/survey/delete-criterion', 'Admin\SurveyController@deleteCriterion');
+Route::post('/survey/edit-criterion', 'Admin\SurveyController@editCriterion');
+Route::post('/survey/delete', 'Admin\SurveyController@deleteSurvey');
 
 
 
@@ -91,6 +91,9 @@ Route::post('/enroll-student','Admin\CourseController@enrollStudent');
 Route::post('/course-delete', 'Admin\CourseController@deleteStudent');
 
 Route::get('/course/student', 'Admin\CourseController@studentsCourse');
+Route::post('/course/edit-course', 'Admin\CourseController@editCourse');
+Route::get('/load-course', 'Admin\CourseController@loadCourse');
+Route::post('/delete-course', 'Admin\CourseController@deleteCourse');
 
 
 

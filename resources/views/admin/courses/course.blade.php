@@ -17,24 +17,13 @@
             <th>ID</th>
             <th>Name</th>
             <th>Mã lớp học phần</th>
-            <th>ki hoc</th>
+            <th>Ki hoc</th>
+            <th>Giáo Viên</th>
             <th>Action</th>
         </tr>
         </thead>
-        <tbody>
-        @foreach($courses as $course)
-        <tr id="'course' . {{ $course->id }}">
-            <td>{{$course->id}}</td>
-            <td>{{$course->name}}</td>
-            <td id="code" >{{$course->code}}</td>
-            <td>{{$course->semester}}</td>
-            <td>
-                <a  class="btn btn-info btn-xs" data-id="{{$course->id}}" data-code="{{$course->code}}" id="view">View</a>
-                <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
-            </td>
-        </tr>
-        @endforeach
+        <tbody id="table">
+       
         </tbody>
     </table>
 </div>
@@ -47,10 +36,70 @@
 
 @section('js')
 <script type="text/javascript">
+    $(document).ready(function(){
+        var data = "";
+        var url = "load-course";
+        var method = "get";
+        $.ajax({
+            type : method,
+            url : url,
+            data : data,
+            dataTy : 'json',
+            success:function(data){
+                $('#table').empty().html(data);
+            }
+        });
+    });
+
     var code = '';
 
     $(document).on('click','#edit', function(){
         $('#editSingleCourse').modal('show');
+        var course = $(this).data('course');
+        var semester = "";
+        var code_id = course['code_id'];
+        var user_id = course['user_id']
+        if(course['semester'] == 'Kì I'){
+            semester = 1;
+        } else if(course['semester'] == 'Kì II'){
+            semester = 2;
+        } else {
+            semester = 3;
+        }
+
+        $('#edit-selectcode').val(code_id).change();
+        $('#edit-semester').val(semester).change();
+        $('#edit-selectsubject').val(code_id).change();
+        $('#edit-user').val(user_id).change();
+        $('#course_id').val(course['id']);
+        $('#edit-course').on('submit', function(e){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            e.preventDefault();
+            var data = $(this).serialize();
+            var url = $(this).attr('action');
+            var method = $(this).attr('method');
+            $('#editSingleCourse').modal('hide');
+            $.ajax({
+                type : method,
+                url : url,
+                data : data,
+                dataTy : 'json',
+                success:function(data){
+                    if ($.isEmptyObject(data.errors)) {
+                       $('#table').empty().html(data);
+                    } else {
+                        alert('errors');
+                    }
+                }
+            }).fail(function(data) {
+                alert('something error');
+            });
+        })
     });
 
     $(document).on('click','#view', function(){
@@ -85,6 +134,67 @@
         }
 
     });
+
+    $(document).on('change', '#edit-selectcode', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectsubject').val(valCode).change();
+        }
+        
+    });
+
+    $(document).on('change', '#edit-selectsubject', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectcode').val(valSubject).change();
+        }
+
+    });
+
+
+    $(document).on('click', '#delete', function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+
+    });
+
+    $(document).on('change', '#edit-selectcode', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectsubject').val(valCode).change();
+        }
+        
+    });
+
+    $(document).on('change', '#edit-selectsubject', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectcode').val(valSubject).change();}
+            
+        });
+
+        if(confirm('Are you sure?')){
+            var id = $(this).data('id');
+            $.post('{{URL::to("delete-course")}}',{id:id}, function(data){
+                if ($.isEmptyObject(data.errors)) {
+                    $('#list'+id).remove();
+                    alert('success');
+                } else {
+                    alert(data.errors);
+                }
+            }).done(function(data) {
+            }).fail(function() {
+                alert( "delete error" );
+            });
+        }
+    })
+
 
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({

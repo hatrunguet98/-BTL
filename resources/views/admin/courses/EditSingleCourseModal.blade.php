@@ -3,33 +3,55 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="form">
-                <h2>Sửa thông tin lớp môn học</h2>
-                <form action="" method="post">
+                <h2>Sửa lớp môn học</h2>
+                <form action="{{url('course/edit-course')}}" method="post" id="edit-course">
                     @csrf
-                    <div class="form-group col-md-6">
+                    <input type="hidden" name="id" id="course_id" value="">
+                    <div class="form-group col-md-6" style="z-index: 2">
+                        <div class="input-group">
+                            <span class="input-group-addon "><i class="fa fa-book" aria-hidden="true"></i></span>
+                            <select class="selectpicker form-control bootstrap-select" title="Chọn mã môn học" data-count-selected-text="Not changable text" name="code" id="edit-selectcode" data-live-search="true">
+                                <option id="code0" selected disabled style="display: none;">Chọn mã môn học</option>
+                                @foreach($subjects as $subject)
+                                    <option id="{{'code' . $subject->id}}"  value="{{$subject->id}}">{{$subject->code}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" style="z-index: 2">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="Course_code" placeholder="Mã môn học">
+                            <select class="selectpicker  form-control bootstrap-select" name="semester" id="edit-semester" data-live-search="true">
+                                <option selected disabled style="display: none">Chọn mã học kỳ</option>
+                                @foreach($semesters as $semester)
+                                    <option id="{{'semester' . $semester->id}}"  value="{{$semester->id}}">{{$semester->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6" style="z-index: 1">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="semester" placeholder="Học kì">
+                            <select class="selectpicker  form-control bootstrap-select" name="subject" id="edit-selectsubject" data-live-search="true">
+                                <option id="name0" selected disabled style="display: none">Chọn tên môn học</option>
+                                @foreach($subjects as $subject)
+                                    <option id="{{'name' . $subject->id}}" value="{{$subject->id}}">{{$subject->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6" style="z-index: 0">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="name" placeholder="Tên môn học">
+                            <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <select class="selectpicker form-control bootstrap-select"  name="user" id="edit-user" data-live-search="true">
+                                <option selected disabled style="display: none;">Chọn tên giảng viên</option>
+                                @foreach($teachers as $teacher)
+                                    <option id="{{'user' . $teacher->id}}" value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="form-group col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control" name="teacher_name" placeholder="Tên giảng viên">
-                        </div>
-                    </div>
+
 
                     <button type="submit" class="btn btn-primary submitBtn">Submit</button>
                     <button type="button" class="btn btn-danger closeBtn" data-dismiss="modal">Close</button>

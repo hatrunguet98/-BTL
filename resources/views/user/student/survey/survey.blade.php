@@ -80,7 +80,7 @@
                 </tbody>
                 <thead>
                     <tr>
-                        <th>4. Hoạt động học tập cảu học sinh</th>
+                        <th>4. Hoạt động học tập của học sinh</th>
                         <th>1</th>
                         <th>2</th>
                         <th>3</th>
@@ -114,9 +114,9 @@
                             </form>
                         </tr>
                     </tbody>
-            </table> 
+            </table>
     </div>
-    <div class="p-5 text-center">
+    <div class="p-1 text-center">
         <input type="submit" value="submit" class="btn btn-lg btn-success center-block">
     </div>
     </form>

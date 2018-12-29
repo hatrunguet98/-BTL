@@ -31,7 +31,7 @@
     @include("user.layout.partial.header")
     <!--Main Layout-->
     @section('main')
-    <section style="background-image: url('{{ asset('user/css/architecture.jpg') }}');background-position: center;background-repeat: no-repeat;background-size: cover;color:#ffff;height: 80%">
+    <section style="background-image: url('{{ asset('user/css/bgk-0.jpg') }}');background-position: center;background-repeat: no-repeat;background-size: cover;color:#ffff;height: 100%">
             <div class="rgba-gradient d-flex align-items-center">
             <div class="container ">
                 <!--Grid row-->
@@ -85,7 +85,7 @@
                 <div class="inner-sec-w3ls py-lg-5 py-3">
                     <div class="heading">
                         <h3 class="head text-center">Các khóa học </h3>
-                        <p class="my-3 head text-center">Sinh viên chỉ đánh gái được khóa học mình tham gia.</p>
+                        <p class="my-3 head text-center">Sinh viên chỉ đánh giá được khóa học mình tham gia.</p>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-md-4 p-2 pl-2">
