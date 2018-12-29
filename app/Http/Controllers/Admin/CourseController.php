@@ -219,4 +219,22 @@ class CourseController extends Controller
             return $this->loadCourse();
         }
     }
+
+    public function deleteUser(Request $request){
+        if($request->ajax()){
+            $user_course_id = $request->id;
+            $check = DB::table('user_courses')
+                ->where('id', $user_course_id)
+                ->first();
+            $course_id = $check->course_id;
+            if($check){
+                DB::table('user_courses')->where('id',$user_course_id)->delete();
+                return response()->json(['success' => 'delete success']);
+            } else {
+                return response()->json(['errors'=>'something errors']);
+            }
+        }
+
+        return response()->json(['errors'=>'something errors']);
+    }
 }

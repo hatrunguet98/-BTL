@@ -37,14 +37,14 @@
         </thead>
         <tbody id="listUsers">
             @foreach( $students as $student)
-            <tr>
+            <tr id="{{'list'.$student->id}}">
                 <td  style="width:5%;text-align: center">{{$student->user_id}}</td>
                 <td style="width:15%;text-align: center">{{$student->username}}</td>
                 <td style="width:30%;text-align: center">{{$student->name}}</td>
                 <td style="width:20%;text-align: center">{{$student->email}}</td>
                 <td style="width:15%;text-align: center">{{$student->class}}</td>
                 <td style="width:15%;text-align: center">
-                    <a  class="btn btn-danger btn-xs" id="delete" data-id="{{$student->id}}">Delete</a>
+                    <a  class="btn btn-danger btn-xs" id="delete-user" data-id="{{$student->id}}">Delete</a>
                 </td>
             </tr>
             @endforeach
