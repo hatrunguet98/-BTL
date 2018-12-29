@@ -51,15 +51,16 @@
             data : data,
             dataTy : 'json',
             success:function(data) {
-                $('#insertSingleTeacher').modal('hide')
-                alert('success');
+                if ($.isEmptyObject(data.errors)) {
+                    alert('success');
+                    $('#table').empty().html(data);
+                    $('#insertSingleTeacher').modal('hide')
+                } else {
+                    msgError(data.errors);
+                }
             }
-        }).done(function(data) {
-            $('#table').empty().html(data);
         }).fail(function(e) {
-            $('#insertSingleTeacher').modal('hide')
-            //console.log(e.responseText.message);
-            alert(e.responseText);
+            alert('something errors');
         });
     })
         /* delete users*/
@@ -114,11 +115,14 @@
                 data : data,
                 dataTy : 'json',
                 success:function(data){
-                    alert('success');
+                   if ($.isEmptyObject(data.errors)) {
+                        alert('success');
+                        $('#table').empty().html(data);
+                        $('#editSingleTeacher').modal('hide')
+                    } else {
+                        msgError(data.errors);
+                    }
                 }
-            }).done(function(data) {
-                $('#editSingleTeacher').modal('hide');
-                $('#table').empty().html(data);
             }).fail(function(data) {
                 alert('something error');
             });
@@ -152,6 +156,14 @@
                 $('#table').empty().html(data);
             }
         });
+    }
+
+    function msgError(data) {
+        var a = "";
+        $.each(data, function(key, value){
+            a += "- " +value+"\n";
+        });
+        alert(a);
     }
 </script>
 @endsection

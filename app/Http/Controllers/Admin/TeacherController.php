@@ -51,29 +51,32 @@ class TeacherController extends Controller
 
     public function edit (Request $request) {
        if($request->ajax()) {
-            $data = "";
+            $data = $request->all();
+            $validator = "";
             if(!$request->password) {
-                $data = $this->validate($request, [
+                $validator = validator::make($data, [
                     'username' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255'],
                     'name' => ['required', 'string', 'max:255'],
                 ]);
             } else {
-                $data = $this->validate($request, [
+                $validator = validator::make($data, [
                     'username' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255'],
                     'name' => ['required', 'string', 'max:255'],
-                    'password' => ['required', 'string', 'min:6'],
+                    'password' => ['required', 'string', 'min:6','confirmed'],
                 ]);
-                if($request->password != $request->confirm_password) {
-                    return response(['message' => 'The password confirmation does not match.']);
-                }
             }
-            $user = User::find($request->id);
-            $user->update($data);
-            return $this->loadUser();
+            if($validator->fails()){
+                return response()->json(['errors'=>$validator->errors()->all()]);
+            } else {
+                $data = $validator->validate();
+                $user = User::find($request->id);
+                $user->update($data);
+                return $this->loadUser();
+            }
        }
-       return response(['message' => 'something ERROR']);
+       return response()->json(['errors'=>'some thing errors']);
     }
 
     public function delete(Request $request)
@@ -94,9 +97,23 @@ class TeacherController extends Controller
     {
        if($request->ajax()){
             $data = $request->all();
-            $this->createUser($data);
-            return $this->loadUser();
+            $validator = Validator::make($data, [
+                'username' => ['required', 'string', 'max:255','unique:users'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'name' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
+            ]);
+
+            if($validator->fails()){
+                return response()->json(['errors'=>$validator->errors()->all()]);
+            } else {
+                $data = $validator->validate();
+                $this->createUser($data);
+                return $this->loadUser();
+            }
+            
         }
+       return response()->json(['errors'=>'some thing errors']);
     }
 
     public function importTeacher(Request $request)
@@ -111,37 +128,13 @@ class TeacherController extends Controller
 
     public function createUser(array $data)
     {
-        $this->validator($data)->validate();
-
         event(new Registered($user = $this->create($data)));
 
-        //$this->guard()->login($user);
 
         return redirect($this->redirectPath());
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
+   
     protected function create(array $data)
     {
         return User::create([

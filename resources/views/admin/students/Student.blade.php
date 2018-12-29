@@ -75,7 +75,6 @@
                 } else {
                     msgError(data.errors);
                 }
-                //console.log(data);
             }
         }).fail(function(data) {
             alert('something error')
@@ -117,10 +116,6 @@
             alert( "something error" );
             $('#editSingleStudent').modal('hide');
         });
-        $('#username-edit').val(student.username);
-        $('#name-edit').val(student.name);
-        $('#email-edit').val(student.email);
-        $('#class-edit').val(student.class);
 
         $('#edit-student').on('submit',function(e){
             $.ajaxSetup({
