@@ -198,7 +198,6 @@ class SurveyController extends Controller
         if($request->ajax()){
             $name = $request->name;
             $typeNumber = $request->type;
-
             $types = DB::table('criteria')->select('type')->distinct()->get();
             $type = array();
             $i = 0;
@@ -209,26 +208,24 @@ class SurveyController extends Controller
                 $i++;
             }
 
-            $check = DB::table('criteria')->orderBy('id', 'desc')->first();
-            
-            if($check->name != $name || $check->type = $type[$typeNumber]){
+            $check = DB::table('criteria')
+            ->where('name', $name)
+            ->where('type', $type[$typeNumber])
+            ->where('status', 1)
+            ->first();
+            if(!$check){
+                DB::table('criteria')->insert([
+                    'name' => $name,
+                    'type' => $type[$typeNumber],
+                ]);
+            }elseif($check->name != $name || $check->type != $type[$typeNumber]){
+                DB::table('criteria')->insert([
+                    'name' => $name,
+                    'type' => $type[$typeNumber],
+                ]);
             }
-
-            DB::table('criteria')->insert([
-                'name' => $name,
-                'type' => $type[$typeNumber],
-            ]);
 
             $criteria = DB::table('criteria')->where('status',1)->get();
-            $types = DB::table('criteria')->select('type')->distinct()->get();
-            $type = array();
-            $i = 0;
-            foreach ($types as $key => $value) {
-                $type += [
-                    $i => $value->type,
-                ];
-                $i++;
-            }
             return view('admin.surveys.setDefault.Criterion', compact('criteria','type'));
         }
         return response()->json(['errors'=>'some thing errors']);
@@ -250,7 +247,59 @@ class SurveyController extends Controller
 
     public function deleteCriterion(Request $request){
         if($request->ajax()){
-            
+            $id = $request->id;
+            DB::table('criteria')->where('id', $id)
+                ->update([
+                    'status' => '0',
+                ]);
+            return response()->json(['success'=>'success']);
         }
+        return response()->json(['errors'=>'some thing errors']);
+    }
+
+    public function editCriterion(Request $request){
+        if($request->ajax()){
+            $id = $request->id;
+            $types = DB::table('criteria')->select('type')->distinct()->get();
+            $typeNumber = $request->type;
+            $name = $request->name;
+            $type = array();
+            $i = 0;
+            foreach ($types as $key => $value) {
+                $type += [
+                    $i => $value->type,
+                ];
+                $i++;
+            }
+            DB::table('criteria')->where('id',$id)
+                ->update([
+                    'type' => $type[$typeNumber],
+                    'name' => $name,
+                ]);
+            $criteria = DB::table('criteria')->where('status',1)->get();
+            return view('admin.surveys.setDefault.Criterion', compact('criteria','type'));
+        }
+    }
+
+    public function deleteSurvey(Request $request){
+        if($request->ajax()){
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $time = date_format(now(),"Y-m-d H:i:s");
+            $id = $request->id;
+            $course = DB::table('courses')->where('id', $id)->first();
+            $start = $course->start;
+            if($start >= $time) {
+                DB::table('courses')->where('id', $id)->update([
+                    'status' => '0',
+                    'criterion' => NULL,
+                    'start' => NULL,
+                    'finish' => NULL,
+                ]);
+                return response()->json(['success'=>'Đánh giá đã được xóa']);
+            } else {
+                return response()->json(['errors'=>'- Không thể xóa môn học đã bắt đầu đánh giá !']);
+            }
+        }
+        return response()->json(['errors'=>'something errors']);
     }
 }

@@ -6,11 +6,11 @@
 
 @section('content')
     <div class="main-button">
-        <a class="btn btn-vimeo" href="http://localhost/-BTL/public/generate">Tạo đánh giá chung</a>
+        <a class="btn btn-vimeo" href="{{ asset('generate') }}">Tạo đánh giá chung</a>
     </div>
 
     <div class="main-button2">
-        <a class="btn btn-vimeo" href="http://localhost/-BTL/public/survey/setdefault">Cài đặt mặc định</a>
+        <a class="btn btn-vimeo" href="{{ asset('survey/setDefault') }}">Cài đặt mặc định</a>
     </div>
 
     <table class="table table-striped table-bordered">
@@ -38,14 +38,12 @@
 
     $(document).on('click','#show', function(e){
         var id = $(this).data('id');
-        alert(id);
         $.get(
             '{{ URL::to("view-survey") }}',
             {id:id},
         ).done(function(data){
             $('#data').empty().html(data);
             $('#showSurvey').modal('show');
-            alert('hello');
         }).fail(function(data){
             alert('errors');
         });
@@ -53,7 +51,6 @@
 
     $(document).on('click','#edit', function(e){
         var id = $(this).data('id');
-        alert(id);
         $.get(
             '{{ URL::to("edit-survey") }}',
             {id:id},
@@ -87,6 +84,29 @@
         }).fail(function(data) {
             alert('something error')
         });
+    })
+
+    $(document).on('click', '#delete', function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        if(confirm('Are you sure?')){
+            var id = $(this).data('id');
+            $.post('{{URL::to("survey/delete")}}',{id:id}, function(data){
+                if ($.isEmptyObject(data.errors)) {
+                    $('#list'+id).remove();
+                    alert(data.success);
+                } else {
+                    alert(data.errors);
+                }
+            }).done(function(data) {
+            }).fail(function() {
+                alert( "delete error" );
+            });
+        }
     })
 
     function autoload(){
