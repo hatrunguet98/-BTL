@@ -143,12 +143,64 @@ class SurveyController extends Controller
             }
             $datas = array();
             foreach ($criterion as $key => $value) {
-                $datas[] = [
-                    'id' => $criteria[$value]->id,
-                    'name' => $criteria[$value]->name,
-                    'type' => $criteria[$value]->type,
+                $datas += [
+                $criteria[$value]->id => [
+                        'id' => $criteria[$value]->id,
+                        'name' => $criteria[$value]->name,
+                        'type' => $criteria[$value]->type,
+                        'status' => $criteria[$value]->status, 
+                    ],
                 ];
             }
+            $dat = DB::table('criteria')
+                ->where('status', '0')
+                ->get();
+            $crit = array();
+            foreach ($dat as $key => $value) {
+                $crit += [
+                    $value->id => $value,
+                ];
+            }
+
+            foreach ($criterion as $key => $value) {
+                if(isset($crit[$value])) {
+                    $ret[] = [
+                        'id' => $crit[$value]->id,
+                        'name' => $crit[$value]->name,
+                        'type' => $crit[$value]->type,
+                        'status' => $crit[$value]->status, 
+                    ];
+                }
+            }
+
+            $data_1 = $dat = DB::table('criteria')
+                ->where('status', '1')
+                ->get();
+            $results = array();
+            foreach ($data_1 as $key => $value) {
+                $results += 
+                [   
+                $value->id  => [
+                        'id' => $value->id,
+                        'name' => $value->name,
+                        'type' => $value->type,
+                        'status' => $value->status,
+                    ],
+                ];
+            }
+            foreach ($crit as $key => $value) {
+               $results += 
+                [   
+                $value->id  => [
+                        'id' => $value->id,
+                        'name' => $value->name,
+                        'type' => $value->type,
+                        'status' => $value->status,
+                    ],
+                ];
+            }
+
+
             $start = Carbon::parse($courses->start)->format('Y-m-d');
             $finish = Carbon::parse($courses->finish)->format('Y-m-d');
             $types = DB::table('criteria')->select('type')->distinct()->get();
@@ -160,7 +212,8 @@ class SurveyController extends Controller
                 ];
                 $i++;
             }
-            return view('admin.surveys.editSurvey', compact('datas','start', 'finish','type','id'));
+            
+            return view('admin.surveys.editSurvey', compact('datas','results','start', 'finish','type','id'));
         }
     }
 

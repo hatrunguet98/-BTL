@@ -21,10 +21,10 @@
                         <div class="survey-content">
                             <div class="about-equipments">
                                 <h5>1. Cơ sở vật chất</h5>
-                                @foreach($datas as $data)
-		                           	@if($data['type'] == $type['0'])
+                                @foreach($results as $key => $result)
+		                           	@if($result['type'] == $type['0'])
 		                                <div class="row">
-		                                    <label><input type="checkbox" name="{{'survey'.$data['id']}}" value="1" checked><span>{{ $data['name'] }}</span></label>
+		                                    <label><input type="checkbox" name="{{'survey'.$result['id']}}" value="1" {{ isset($datas[$key]['id']) ? 'checked' : '' }} ><span>{{ $result['name'] }}</span></label>
 		                                </div>
 		                            @endif
                         		@endforeach
@@ -32,10 +32,10 @@
 
                             <div class="about-subject">
                                 <h5>2. Môn học</h5>
-                                @foreach($datas as $data)
-		                           	@if($data['type'] == $type['1'])
+                                @foreach($results as $key => $result)
+		                           	@if($result['type'] == $type['1'])
 		                                <div class="row">
-		                                    <label><input type="checkbox" name="{{'survey'.$data['id']}}" value="1" checked><span>{{ $data['name'] }}</span></label>
+		                                    <label><input type="checkbox" name="{{'survey'.$result['id']}}" value="1" {{ isset($datas[$key]) ? 'checked' : '' }}><span>{{ $result['name'] }}</span></label>
 		                                </div>
 		                            @endif
                         		@endforeach
@@ -43,10 +43,10 @@
 
                             <div class="about-teachers">
                                 <h5>3. Hoạt động dạy hoc của giảng viên</h5>
-                               @foreach($datas as $data)
-		                           	@if($data['type'] == $type[2])
+                               @foreach($results as $key => $result)
+		                           	@if($result['type'] == $type[2])
 		                                <div class="row">
-		                                    <label><input type="checkbox" name="{{'survey'.$data['id']}}" value="1" checked><span>{{ $data['name'] }}</span></label>
+		                                    <label><input type="checkbox" name="{{'survey'.$result['id']}}" value="1" {{ isset($datas[$key]) ? 'checked' : '' }}><span>{{ $result['name'] }}</span></label>
 		                                </div>
 		                            @endif
                         		@endforeach
@@ -54,10 +54,10 @@
 
                             <div class="about-students">
                                 <h5>4. Hoạt động học tập của sinh viên</h5>
-                                @foreach($datas as $data)
-		                           	@if($data['type'] == $type['3'])
+                                @foreach($results as $key => $result)
+		                           	@if($result['type'] == $type['3'])
 		                                <div class="row">
-		                                    <label><input type="checkbox" name="{{'survey'.$data['id']}}" value="1" checked><span>{{ $data['name'] }}</span></label>
+		                                    <label><input type="checkbox" name="{{'survey'.$result['id']}}" value="1" {{ isset($datas[$key]) ? 'checked' : '' }}><span>{{ $result['name'] }}</span></label>
 		                                </div>
 		                            @endif
                         		@endforeach

@@ -53,7 +53,9 @@
         var id = $(this).data('id');
         $.get(
             '{{ URL::to("edit-survey") }}',
-            {id:id},
+            {
+                id:id, 
+            },
         ).done(function(data){
             $('#data').empty().html(data);
             $('#editSurvey').modal('show');
