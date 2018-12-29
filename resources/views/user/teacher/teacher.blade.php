@@ -6,6 +6,8 @@
     		@include('user/courses/courses')
     	</div>
     </main>
+    <!--/.Main Layout-->
+    <!-- ajax -->
 @endsection
 @section('js')
 <script type="text/javascript">
@@ -21,3 +23,4 @@
 	});
 </script>
 @endsection
+<!-- /.ajax -->

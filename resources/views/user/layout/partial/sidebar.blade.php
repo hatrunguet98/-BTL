@@ -1,13 +1,15 @@
+<!-- sidebar-pc -->
 <div class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
+        <!-- sidebar-pc: style can be found in sidebar.less -->
         <section class="sidebar" id="sidebar">
-            <!-- Sidebar user panel -->
+            <!-- Sidebar-pc user panel -->
             <ul class="tree pl-1">
                 <a class="tag-sidebar p-1" href="{{ url('welcome') }}"><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
                 <li class="has-children p-1 pt-2">
                     <button class="tag-sidebar" id="course"><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
                     Courses</button>
                 </li>
+                <!-- list-survery-result -->
                 <li class="has-children p-1 ">
                     <button class="tag-sidebar" id="class-survey" href=""><img class="icontree" src="{{ asset('user/images/notebook.png') }}" /> ClassSurvey</button>
                     <ul id="list-survey" style="display:none">
@@ -21,15 +23,18 @@
                         </li>
                     </ul>
                 </li>
+                <!-- /.list-survery-result -->
             </ul>
         </section>
-        <!-- /.sidebar -->
-    </div>
-        <div class="mobile-sidebar">
+        <!-- /.sidebar-pc -->
+</div>
+<!-- sidebar-mobile -->
+<div class="mobile-sidebar">
         <a class="tag-sidebar "href="{{ url('welcome') }}"><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
         <button class="tag-sidebar" id="course"><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
                     Courses</button>
         <button class="tag-sidebar" id="class-survey-mobile" href=""><img class="icontree" src="{{ asset('user/images/notebook.png') }}" /> ClassSurvey</button>
+        <!-- list-survery-result -->
         <ul id="list-survey-mobile" style="display:none">
         @foreach($courses as $course)
             <li class="tag-courses p-0">
@@ -40,4 +45,6 @@
             @endforeach
             </li>
         </ul>
-    </div>
+        <!-- /.list-survery-result -->
+</div>
+<!-- /.sidebar-mobile -->
