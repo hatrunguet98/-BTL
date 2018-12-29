@@ -8,6 +8,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/css/dataTables.checkboxes.css" rel="stylesheet"/>
 
+    {{--button điều hướng--}}
+    <div class="main-button">
+       <a href="{{ url('/survey') }}" type="button" class="btn btn-vimeo"> Quay lại </a>
+    </div>
+
     <form id="myform" action="{{ url('generate') }}" method="post">
         @csrf
         <table id="mytable" class="table table-bordered table-striped table-hover">
@@ -29,11 +34,11 @@
 
                     <div class="form-group col-md-6 date">
                         <label for="start">Ngày bắt đầu:</label>
-                        <input type="date" id="start" name="start" value="0000-00-00">
+                        <input type="date" id="start" name="start" >
                     </div>
                     <div class="form-group col-md-6 date">
                         <label for="start">Ngày kết thúc:</label>
-                        <input type="date" id="start" name="finish" value="0000-00-00">
+                        <input type="date" id="finish" name="finish" >
                     </div>
                     <div class="form-group col-md-12 survey">
                         <div class="survey-content">
@@ -44,7 +49,7 @@
                                 @foreach($criteria as $criterion)
                                     @if ($criterion->type == $type['0'])
                                     <div class="row">
-                                        <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                        <label><input type="checkbox" class="survey-criterion" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                     </div>
                                     @endif
                                 @endforeach
@@ -55,7 +60,7 @@
                                 @foreach($criteria as $criterion)
                                     @if ($criterion->type == $type['1'])
                                         <div class="row">
-                                            <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                            <label><input type="checkbox" class="survey-criterion" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                         </div>
                                     @endif
                                 @endforeach
@@ -66,7 +71,7 @@
                                 @foreach($criteria as $criterion)
                                     @if ($criterion->type == $type['2'])
                                         <div class="row">
-                                            <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                            <label><input type="checkbox" class="survey-criterion" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                         </div>
                                     @endif
                                 @endforeach
@@ -77,7 +82,7 @@
                                 @foreach($criteria as $criterion)
                                     @if ($criterion->type == $type['3'])
                                         <div class="row">
-                                            <label><input type="checkbox" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
+                                            <label><input type="checkbox" class="survey-criterion" name="{{'survey'.$criterion->id}}" checked value="1"><span>{{ $criterion->name }}</span></label>
                                         </div>
                                     @endif
                                 @endforeach
@@ -121,15 +126,35 @@
             $("#myform").on('submit', function(e){
                 var form = this;
                 var rowsel = mytable.column(0).checkboxes.selected();
+
                 $.each(rowsel, function(index){
-                    console.log(form);
                     $(form).append(
                         $('<input>').attr('type','hidden').attr('name','courses[]').val(mytable.cell(index,0).data())
                     )
                 });
-                //e.preventDefault();
-            });
 
+                var countCriterion = 0;
+                var criteria = document.getElementsByClassName('survey-criterion');
+                for(var i = 0; i < criteria.length; i++) {
+                    if (criteria[i].checked) {
+                        countCriterion ++;
+                    }
+                }
+
+                if(rowsel.count() == 0) {
+                    alert("Chưa chọn môn học nào");
+                    e.preventDefault();
+                } else if (document.getElementById("start").value.length == 0) {
+                    alert("Chưa chọn ngày bắt đầu");
+                    e.preventDefault();
+                } else if (document.getElementById("finish").value.length == 0){
+                    alert("Chưa chọn ngày kết thúc");
+                    e.preventDefault();
+                } else if (countCriterion == 0){
+                    alert("Chưa chọn tiêu chí nào");
+                    e.preventDefault();
+                }
+            });
         });
 
         $(document).on('click','#check-all', function(){

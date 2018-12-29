@@ -79,6 +79,7 @@
         $('#edit-selectsubject').val(code_id).change();
         $('#edit-user').val(user_id).change();
         $('#course_id').val(course['id']);
+        
         $('#edit-course').on('submit', function(e){
             $.ajaxSetup({
                 headers: {
@@ -254,6 +255,18 @@
         }).fail(function(data) {
             alert('something error')
         });
+    })
+
+    $(document).on('click', '#submit-course', function () {
+        if(document.getElementById('select-code').value == "") {
+            alert("Chưa chọn mã môn học")
+        } else if (document.getElementById('select-semester').value == "") {
+            alert("Chưa chọn học kì")
+        } else if (document.getElementById('select-subject').value == "") {
+            alert("Chưa chọn tên môn học")
+        } else if (document.getElementById('select-teacher').value == "") {
+            alert("Chưa chọn giảng viên")
+        }
     })
 </script>
     

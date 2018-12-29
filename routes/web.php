@@ -72,8 +72,10 @@ Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
 Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
 Route::post('/generate','Admin\SurveyController@surveyRegister');
-Route::post('/survey/insert-survey', 'Admin\SurveyController@insertSurvey');
-Route::get('/survey/setDefault', 'Admin\SurveyController@setDefault');
+Route::post('/survey/survey-insert', 'Admin\SurveyController@surveyInsert');
+Route::get('/survey/set-default', function(){
+	return view('admin.surveys.setDefault.SetDefault');
+});
 Route::get('/survey/load-criterion', 'Admin\SurveyController@loadCriterion');
 Route::post('/survey/delete','Admin/SurveyController@deleteCriterion');
 Route::post('/survey/submitEditSurvey','Admin\SurveyController@submitEditSurvey');
