@@ -121,10 +121,67 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/thuthapvaphantichyeucau.jpg') }}" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3109  Thu thập và phân tích yêu cầu </div>
+                    </div>
                 </div>
-                <div class="p-1 text-center">
-                <button type=""  class="btn btn-lg btn-success center-block">Xem thêm</button>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/phattrienungdungdidong.jpg') }}" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3120  Phát triển ứng dụng di động </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/kientruchuongdichvu.PNG') }}" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> INT3505  Kiến trúc hướng dịch vụ </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/giaitich2.jpg') }}" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> MAT1042  Giải tích 2 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/tienganh.jpg') }}" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> FLF2102  Tiếng Anh cơ sở 2 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 p-2 pl-2">
+            <div class="card-course">
+                <img id="image-course" src="{{ asset('user/images/course/marketing.jpg') }}" alt="" class="img-course-ds">
+                <div class="info-card row">
+                    <div class="pl-3 pt-2">
+                            <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> BSA2002  Nguyên lý Marketing  </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                 </div>
             </div>
         </section>
