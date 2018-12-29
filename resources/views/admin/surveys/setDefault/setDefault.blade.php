@@ -9,6 +9,11 @@
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertCriterion">Thêm tiêu chí</button>
     </div>
 
+    {{--button điều hướng--}}
+    <div class="main-button2">
+        <a href="{{ url('/survey') }}" type="button" class="btn btn-vimeo"> Quay lại </a>
+    </div>
+
     <div id="table">
         
     </div>
