@@ -75,35 +75,27 @@
     });
 
     // insert survey
-    $(document).on('submit','#insertCriterion', function(e){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
+    $(document).on('submit','#insert-criterion', function(e){
         e.preventDefault();
         var data = $(this).serialize();
         var url = $(this).attr('action');
         var method = $(this).attr('method');
         $('#insertCriterion').modal('hide');
         $.ajax({
-            type : method,
-            url : url,
-            data : data,
-            dataTy : 'json',
-            success:function(data) {
-                $('#insertCriterion').modal('hide');
-                if ($.isEmptyObject(data.errors)) {
-                    $('#table').empty().html(data);
-                } else {
-                    msgError("something errors");
+                type : method,
+                url : url,
+                data : data,
+                dataTy : 'json',
+                success:function(data){
+                    if ($.isEmptyObject(data.errors)) {
+                        $('#table').empty().html(data);
+                    } else {
+                        alert(data.errors);
+                    }
                 }
-            }
-        }).fail(function(data) {
-            alert('something error');
-            $('#insertCriterion').modal('hide');        
-        });
+            }).fail(function(data) {
+                alert('something error');
+            });
     });
     // delete
     $(document).on('click', '#delete', function(e){
