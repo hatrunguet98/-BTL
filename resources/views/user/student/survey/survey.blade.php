@@ -1,10 +1,11 @@
 <div class="frame">
+    <!-- survey-course -->
     <form action="{{ URL('student/survey') }}" method="post" id="insert-survey" >
         @csrf
     <div class="survey-table p-5">
         <h2 class="text-center" id="name-courses">{{$course}}</h2>
             <input type="hidden" name="user_course_id" id="input-id" value="">
-             <table class="table">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>1. Cơ sở vật chất</th>
@@ -71,7 +72,7 @@
                         <td>{{ $data['name'] }}</td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==1 ?'checked':''}} value="1" required> </td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==2 ?'checked':''}} value="2" required> </td>
-                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==3 ?'checked':''}}value="3" required> </td>
+                        <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==3 ?'checked':''}} value="3" required> </td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==4 ?'checked':''}} value="4" required> </td>
                         <td><input type="radio" name="{{ 'survey'.$data['id'] }}" {{ $data['value']==5 ?'checked':''}} value="5" required> </td>
                     </tr>
@@ -120,4 +121,16 @@
         <input type="submit" value="submit" class="btn btn-lg btn-success center-block">
     </div>
     </form>
+    <!-- /.survey-course -->
+    <!-- note -->
+    <div class="p-5">
+        <em class="h5">Giá trị chuẩn của các mức đánh giá</em><br>
+        <em class="h6">- 1: rất chưa hài lòng/ kém.</em><br>
+        <em class="h6">- 2: chưa hài lòng/ chưa tốt.</em><br>
+        <em class="h6">- 3: khá hài lòng/ khá tốt.</em><br>
+        <em class="h6">- 4: hài lòng/ tốt.</em><br>
+        <em class="h6">- 5: rất hài lòng/ rất tốt.</em><br>
+        <em class="h6">- Ý kiến bổ sung của sinh viên: Sinh viên bổ sung ý kiến đánh giá riêng của mình về các vấn đề của khoa học. </em><br>
+    </div>
+    <!-- /.note -->
 </div>
