@@ -118,9 +118,6 @@
         var id = $(this).data('id');
         code = $(this).data('code');
         $.get('{{ URL::to("course/student")}}',{id:id}).done(function(data){
-            console.log(data);
-            console.log(1);
-            alert("hello");
             $('#data').empty().html(data);
             $('#h1').empty().html('Danh sách sinh viên trong lớp '+code);
 
@@ -271,6 +268,21 @@
         } else if (document.getElementById('select-teacher').value == "") {
             alert("Chưa chọn giảng viên")
         }
+    });
+
+    $(document).on('click', '#result', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.get('{{ URL::to("course/result") }}', {id:id}).done(function(data){
+            if ($.isEmptyObject(data.errors)) {
+                $('#data').empty().html(data);
+                $('#h1').empty();
+            } else {
+                alert(data.errors);
+            }
+        }).fail(function(data){
+            alert('something error');
+        });
     })
 </script>
     
