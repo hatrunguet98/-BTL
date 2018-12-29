@@ -3,9 +3,9 @@
     <!-- Logo -->
     <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini">CS</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg">ClassSurvey</span>
     </a>
 
     <!-- Header Navbar -->
@@ -24,32 +24,6 @@
                         <i class="fa fa-envelope"></i>
                         <span class="label label-success">4</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
-                        <li>
-                            <!-- inner menu: contains the messages -->
-                            <ul class="menu">
-                                <li><!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <!-- User Image -->
-                                            <img src="{{ asset('AdminLTE/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
-                                        </div>
-                                        <!-- Message title and timestamp -->
-                                        <h4>
-                                            Support Team
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                        </h4>
-                                        <!-- The message -->
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <!-- end message -->
-                            </ul>
-                            <!-- /.menu -->
-                        </li>
-                        <li class="footer"><a href="#">See All Messages</a></li>
-                    </ul>
                 </li>
                 <!-- /.messages-menu -->
 
@@ -60,21 +34,6 @@
                         <i class="fa fa-bell"></i>
                         <span class="label label-warning">10</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 10 notifications</li>
-                        <li>
-                            <!-- Inner Menu: contains the notifications -->
-                            <ul class="menu">
-                                <li><!-- start notification -->
-                                    <a href="#">
-                                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                    </a>
-                                </li>
-                                <!-- end notification -->
-                            </ul>
-                        </li>
-                        <li class="footer"><a href="#">View all</a></li>
-                    </ul>
                 </li>
                 <!-- Tasks Menu -->
                 <li class="dropdown tasks-menu">
@@ -83,35 +42,7 @@
                         <i class="fa fa-flag"></i>
                         <span class="label label-danger">9</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 9 tasks</li>
-                        <li>
-                            <!-- Inner menu: contains the tasks -->
-                            <ul class="menu">
-                                <li><!-- Task item -->
-                                    <a href="#">
-                                        <!-- Task title and progress text -->
-                                        <h3>
-                                            Design some buttons
-                                            <small class="pull-right">20%</small>
-                                        </h3>
-                                        <!-- The progress bar -->
-                                        <div class="progress xs">
-                                            <!-- Change the css width attribute to simulate progress -->
-                                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                                                 aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">20% Complete</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <!-- end task item -->
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <a href="#">View all tasks</a>
-                        </li>
-                    </ul>
+
                 </li>
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
@@ -124,7 +55,7 @@
                             @if (Auth::user()->name )
                                 {{ Auth::user()->name }}
                             @else
-                                {{ Auth::user()->username }} 
+                                {{ Auth::user()->username }}
                             @endif
                         </span>
                     </a>
@@ -139,7 +70,7 @@
                             </p>
                         </li>
                         <!-- Menu Body -->
-                       
+
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
@@ -161,7 +92,7 @@
                 </li>
                 <!-- Control Sidebar Toggle Button -->
                 <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>

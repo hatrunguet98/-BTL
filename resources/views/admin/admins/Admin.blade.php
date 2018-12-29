@@ -6,7 +6,7 @@
 
 @section('content')
 
-    //2 button điều hướng
+    {{--2 button điều hướng--}}
     <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleAdmin">Thêm admin</button>
     </div>
@@ -18,13 +18,13 @@
 
     </div>
 
-    //form nhập 1 sinh viên
+    {{--form nhập 1 sinh viên--}}
     @include('admin.admins.InsertSingleAdminModal')
 
-    //form sửa 1 sinh viên
+    {{--form sửa 1 sinh viên--}}
     @include('admin.admins.EditSingleAdminModal')
 
-    //form nhập danh sách sinh viên
+    {{--form nhập danh sách sinh viên--}}
     @include('admin.admins.InsertListAdminModal')
 
 @endsection
