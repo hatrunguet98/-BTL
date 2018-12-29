@@ -7,6 +7,8 @@
 
 @section('content')
 <div id="data">
+
+    {{--Hai nút điều khiển modal--}}
     <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleCourse">Thêm lớp môn học</button>
     </div>
@@ -15,6 +17,7 @@
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#enrollListStudent">Enroll danh sách sinh viên</button>
     </div>
 
+    {{--Danh sách các môn học--}}
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -27,17 +30,18 @@
         </tr>
         </thead>
         <tbody id="table">
-       
+       {{--Nội dung danh sách các môn học sẽ load bằng ajax--}}
         </tbody>
     </table>
 </div>
-
+    {{--form nhập 1 lớp môn học--}}
     @include('admin.courses.InsertSingleCourseModal')
 
+    {{--form sửa 1 lớp môn học--}}
     @include('admin.courses.EditSingleCourseModal')
 
+    {{--form thêm 1 danh sách lớp học--}}
     @include('admin.courses.EnrollListStudentModal')
-
 
 @endsection
 

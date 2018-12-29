@@ -6,7 +6,7 @@
 
 @section('content')
 
-    {{--2 button điều hướng--}}
+    {{--2 button điều khiển modal--}}
     <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleAdmin">Thêm admin</button>
     </div>
