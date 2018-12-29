@@ -21,8 +21,8 @@ class ClassQueryUser
         ->join('roles','users.role', '=', 'roles.id')
         ->where('roles.name',$role_name)
         ->where('status',1)
-        ->orderBy('id', 'desc')
-        ->Paginate(7);
+/*        ->orderBy('id', 'desc')*/
+        ->Paginate(10);
         return $user;
     }
 }
