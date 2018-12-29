@@ -8,10 +8,7 @@
                     @csrf
                     <div class="form-group col-md-12">
                         <div class="input-group">
-                        <label id="" for="FILE" class="input-file">
-                            <p class="h3"style="padding:20px;"><img class="pt-4" src="{{ asset('css/adminView/open-folder.png') }}" alt="" style="with:80px;height:80px;"> Open file from your device.</p>
-                            <input type="file" name="FILE" id="FILE" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required="true" style="display:none;">
-                            </label>
+                            <input type="file" name="FILE" id="FILE" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required="true">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary submitBtn">Submit</button>
