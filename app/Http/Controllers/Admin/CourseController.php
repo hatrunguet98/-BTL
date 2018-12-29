@@ -12,11 +12,12 @@ use App\Services\ClassAdmin\ClassQueryUser;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\CourseListStudent;
 use Excel;
+use App\Services\ClassResultSurvey;
 
 class CourseController extends Controller
 { 
     public function course(){
-    	$courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id')
+    	$courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id', 'user_courses.id as user_course_id')
             ->join('user_courses','courses.id', '=', 'user_courses.course_id')
             ->join('users', 'users.id', '=', 'user_courses.user_id')
             ->join('roles','roles.id','=', 'users.role')
@@ -29,7 +30,7 @@ class CourseController extends Controller
     }
 
     public function loadCourse(){
-        $courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id')
+        $courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id','user_courses.id as user_course_id')
             ->join('user_courses','courses.id', '=', 'user_courses.course_id')
             ->join('users', 'users.id', '=', 'user_courses.user_id')
             ->join('roles','roles.id','=', 'users.role')
@@ -244,6 +245,17 @@ class CourseController extends Controller
         if($request->hasFile('FILE')){
             Excel::import(new CourseListStudent, request()->file('FILE'));
             return redirect('/course');
+        }
+    }
+
+    public function resultCourse(Request $request){
+        if($request->ajax()){
+            $cal = new ClassResultSurvey;
+            if(!$cal->resultSurvey($request)){
+                return response()->json(['errors'=>'Đánh giá môn học chưa kết thúc !']);
+            } else {
+                return view('user.teacher.result.result', $cal->resultSurvey($request));
+            }
         }
     }
 }

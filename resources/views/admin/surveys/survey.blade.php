@@ -54,7 +54,7 @@
         $.get(
             '{{ URL::to("edit-survey") }}',
             {
-                id:id, 
+                id:id,
             },
         ).done(function(data){
             $('#data').empty().html(data);
