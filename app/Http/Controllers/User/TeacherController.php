@@ -171,7 +171,8 @@ class TeacherController extends Controller
             //dd(count($allTeacher));
             $about['quantity-teacher'] = count($allTeacher);
             $about['quantity-subject'] = count($sameTeachers) + 1;
-            $about['subject-code'] = $subject_code;
+            $about['course-code'] = $course_code;
+            $about['semester'] = $course->semester;
 	        return view('user.teacher.result.result', compact('results','type', 'about'));
     	}
     }
