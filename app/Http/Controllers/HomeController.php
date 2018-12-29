@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\ClassAdmin\ClassRoleAdmin;
+use App\Services\ClassUser\ClassRoleUser;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -11,11 +14,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+   /* public function __construct()
     {
         $this->middleware('auth');
     }
-
+*/
     /**
      * Show the application dashboard.
      *
@@ -23,6 +26,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(Auth::check()){
+            if(ClassRoleAdmin::checkAdmin()){
+                return redirect('dashboard');
+            } else {
+                return redirect('/welcome');
+            }
+        } else {
+            return redirect('/welcome');
+        }
+    }
+
+    public function home()
+    {
+        if(Auth::check()){
+            if(ClassRoleAdmin::checkAdmin()){
+                return redirect('dashboard');
+            } else if(ClassRoleUser::CheckTeacher()) {
+                return redirect('/teachers');
+            } else if(ClassRoleUser::CheckStudent()) {
+                return redirect('/students');
+            }
+        } else {
+            return redirect('/welcome');
+        }
     }
 }
