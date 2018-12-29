@@ -5,22 +5,25 @@
 @endsection
 
 @section('content')
-    <div class="main-button">
-        <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertCriterion">Thêm tiêu chí</button>
-    </div>
+
 
     {{--button điều hướng--}}
-    <div class="main-button2">
+    <div class="main-button">
         <a href="{{ url('/survey') }}" type="button" class="btn btn-vimeo"> Quay lại </a>
+    </div>
+
+    <div class="main-button2">
+        <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertCriterion">Thêm tiêu chí</button>
     </div>
 
     <div id="table">
         
     </div>
 
-
+    {{--form thêm 1 tiêu chí--}}
     @include('admin.surveys.setDefault.InsertCriterionModal')
 
+    {{--form sửa 1 tiêu chí--}}
     @include('admin.surveys.setDefault.editCriterionModal')
 
 @endsection

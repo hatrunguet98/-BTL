@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    {{--các nút điều khiển modal--}}
     <div class="main-button">
         <a class="btn btn-vimeo" href="{{ asset('generate') }}">Tạo đánh giá chung</a>
     </div>
@@ -36,6 +37,7 @@
         autoload();
     })    
 
+    //Hiện modal thông tin đánh giá
     $(document).on('click','#show', function(e){
         var id = $(this).data('id');
         $.get(
@@ -49,6 +51,7 @@
         });
     });
 
+    //Hiện modal form sửa đánh giá
     $(document).on('click','#edit', function(e){
         var id = $(this).data('id');
         $.get(
@@ -64,6 +67,7 @@
         });
     })
 
+    //ajax khi submit phần vừa sửa
     $(document).on('submit','#submitEdit', function(e){
         e.preventDefault();
         var data = $(this).serialize();
@@ -88,6 +92,7 @@
         });
     })
 
+    //ajax khi xóa bản đánh giá
     $(document).on('click', '#delete', function(e){
         $.ajaxSetup({
             headers: {

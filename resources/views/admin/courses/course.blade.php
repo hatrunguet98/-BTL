@@ -64,6 +64,7 @@
 
     var code = '';
 
+    // edit
     $(document).on('click','#edit', function(){
         $('#editSingleCourse').modal('show');
         var course = $(this).data('course');
@@ -114,6 +115,7 @@
         })
     });
 
+    // Xem danh sách sinh viên trong lớp
     $(document).on('click','#view', function(){
         var id = $(this).data('id');
         code = $(this).data('code');
@@ -123,7 +125,8 @@
 
         });
     });
-    
+
+    //Tự động chọn mã môn học theo tên lớp hoặc tự chọn tên lớp thep mã môn học
     $(document).on('change', '#select-code', function () {
         var valCode = $( "#select-code option:checked" ).val();
         var valSubject = $( "#select-subject option:checked" ).val();
@@ -133,7 +136,6 @@
         }
 
     });
-
     $(document).on('change', '#select-subject', function () {
         var valCode = $( "#select-code option:checked" ).val();
         var valSubject = $( "#select-subject option:checked" ).val();
@@ -141,9 +143,7 @@
             $('#select-code').val(valSubject).change();
             $('#select-code').selectpicker('refresh');
         }
-
     });
-
     $(document).on('change', '#edit-selectcode', function () {
         var valCode = $( "#edit-selectcode option:checked" ).val();
         var valSubject = $( "#edit-selectsubject option:checked" ).val();
@@ -152,7 +152,6 @@
         }
         
     });
-
     $(document).on('change', '#edit-selectsubject', function () {
         var valCode = $( "#edit-selectcode option:checked" ).val();
         var valSubject = $( "#edit-selectsubject option:checked" ).val();
@@ -161,7 +160,6 @@
         }
 
     });
-
     $(document).on('change', '#edit-selectcode', function () {
         var valCode = $( "#edit-selectcode option:checked" ).val();
         var valSubject = $( "#edit-selectsubject option:checked" ).val();
@@ -179,6 +177,7 @@
             
     });
 
+    // Delete
     $(document).on('click', '#delete', function(e){
         $.ajaxSetup({
             headers: {
@@ -203,6 +202,8 @@
         }
     });
 
+
+    //xóa sinh viên khỏi lớp
     $(document).on('click', '#delete-user', function(e){
         $.ajaxSetup({
             headers: {
@@ -226,6 +227,7 @@
         }
     });
 
+    //nhập sinh viên cho lớp
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({
             headers: {
@@ -246,7 +248,6 @@
             success:function(data) {
                 if ($.isEmptyObject(data.errors)) {
                     $('#data').empty().html(data);
-                    alert('hello');
                     console.log(data);
                     $('#h1').empty().html('Danh sách sinh viên trong lớp '+code);
                 } else {
@@ -258,6 +259,7 @@
         });
     })
 
+    //kiểm tra thông tin nhập vào khi insert
     $(document).on('click', '#submit-course', function () {
         if(document.getElementById('select-code').value == "") {
             alert("Chưa chọn mã môn học")
@@ -270,6 +272,7 @@
         }
     });
 
+    //hiện kết quả đánh giá của lớp
     $(document).on('click', '#result', function(e){
         e.preventDefault();
         var id = $(this).data('id');

@@ -6,6 +6,7 @@
 
 @section('content')
 
+    {{--các nút điều khiển modal--}}
     <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleStudent">Thêm sinh viên</button>
     </div>
@@ -13,6 +14,7 @@
     <div class="main-button2">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertListStudent">Thêm danh sách sinh viên</button>
     </div>
+
     <div class="modal fade" id="errors" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -32,11 +34,14 @@
     <div id="table">
         
     </div>
-   
+
+    {{--form nhập 1 sinh viên--}}
     @include('admin.students.InsertSingleStudentModal')
 
+    {{--form sửa 1 sinh viên--}}
     @include('admin.students.EditSingleStudentModal')
 
+    {{--form nhập 1 danh sách giảng viên--}}
     @include('admin.students.InsertListStudentModal')
 
 @endsection
