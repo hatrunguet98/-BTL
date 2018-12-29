@@ -79,6 +79,7 @@
         $('#edit-selectsubject').val(code_id).change();
         $('#edit-user').val(user_id).change();
         $('#course_id').val(course['id']);
+        
         $('#edit-course').on('submit', function(e){
             $.ajaxSetup({
                 headers: {

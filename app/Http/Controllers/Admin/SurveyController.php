@@ -190,11 +190,7 @@ class SurveyController extends Controller
         return response()->json(['errors'=>'some thing errors']);
     }
 
-    public function setDefault(){
-        return view('admin.surveys.setDefault.setDefault');
-    }
-
-    public function insertSurvey(Request $request){
+    public function surveyInsert(Request $request){
         if($request->ajax()){
             $name = $request->name;
             $typeNumber = $request->type;
@@ -207,7 +203,6 @@ class SurveyController extends Controller
                 ];
                 $i++;
             }
-
             $check = DB::table('criteria')
             ->where('name', $name)
             ->where('type', $type[$typeNumber])
@@ -224,7 +219,6 @@ class SurveyController extends Controller
                     'type' => $type[$typeNumber],
                 ]);
             }
-
             $criteria = DB::table('criteria')->where('status',1)->get();
             return view('admin.surveys.setDefault.Criterion', compact('criteria','type'));
         }

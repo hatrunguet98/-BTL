@@ -50,7 +50,6 @@ class CreateUsersTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('admin_id');
-            $table->integer('admin_survay_id')->nullable();
             $table->integer('subject_id')->nullable();
             $table->string('name')->nullable();
             $table->string('code');

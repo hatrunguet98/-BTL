@@ -10,7 +10,7 @@
     </div>
 
     <div class="main-button2">
-        <a class="btn btn-vimeo" href="{{ asset('survey/setDefault') }}">Cài đặt mặc định</a>
+        <a class="btn btn-vimeo" href="{{ asset('survey/set-default') }}">Cài đặt mặc định</a>
     </div>
 
     <table class="table table-striped table-bordered">
