@@ -109,9 +109,9 @@
         var id = $(this).data('id');
         student = "";
         $.get('{{URL::to("student/edit")}}',{id:id}).done(function(data) {
-            $('#username-edit').val(data.username);
+            $('#username-edit').text(data.username);
             $('#name-edit').val(data.name);
-            $('#email-edit').val(data.email);
+            $('#email-edit').text(data.email);
             $('#class-edit').val(data.class);
         }).fail(function(data){
             alert( "something error" );
