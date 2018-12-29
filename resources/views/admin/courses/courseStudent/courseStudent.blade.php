@@ -20,7 +20,6 @@
 <div id="table">
 
 </div>
-
     <table class="table table-striped table-bordered  table-condensed" >
         <thead>
         <tr>

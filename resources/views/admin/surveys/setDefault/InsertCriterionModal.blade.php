@@ -3,7 +3,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="form">
-                <h2>Thêm mới lớp môn học</h2>
+                <h2>Thêm mới tiêu chí</h2>
                 <form action="{{ url('survey/survey-insert') }}" method="post" id="insert-criterion">
                     @csrf
                     <div class="form-group col-md-12" style="z-index: 2">

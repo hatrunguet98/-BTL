@@ -6,6 +6,7 @@
 
 @section('content')
 
+    {{--các nút điều khiển Modal--}}
     <div class="main-button">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleTeacher">Thêm giảng viên</button>
     </div>
@@ -17,10 +18,13 @@
         
     </div>
 
+    {{--form nhập 1 giảng viên--}}
     @include('admin.lecturers.InsertSingleLecturerModal')
 
+    {{--form sửa 1 giảng viên--}}
     @include('admin.lecturers.EditSingleLecturerModal')
 
+    {{--form nhập 1 danh sách giảng viên--}}
     @include('admin.lecturers.InsertListLecturerModal')
 
 @endsection
