@@ -8,11 +8,11 @@
     <tbody>
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['0'])
-            <tr>
+            <tr id="{{'list'.$criterion->id}}">
                 <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
-                    <a  class="btn btn-success btn-xs" id="edit" data-id="{{$criterion->id}}" data-name="{{$criterion->name}}">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
+                    <a  class="btn btn-success btn-xs" id="edit" data-id="{{$criterion->id}}" data-type="0" data-name="{{$criterion->name}}">Edit</a>
+                    <a  class="btn btn-danger btn-xs" id="delete" data-id="{{$criterion->id}}">Delete</a>
                 </td>
             </tr>
             @endif
@@ -28,11 +28,11 @@
     <tbody>
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['1'])
-            <tr>
+            <tr id="{{'list'.$criterion->id}}">
                 <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
-                    <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
+                    <a  class="btn btn-success btn-xs" id="edit" data-id="{{$criterion->id}}" data-type="1" data-name="{{$criterion->name}}">Edit</a>
+                    <a  class="btn btn-danger btn-xs" id="delete" data-id="{{$criterion->id}}">Delete</a>
                 </td>
             </tr>
             @endif
@@ -48,11 +48,11 @@
     <tbody>
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['2'])
-            <tr>
+            <tr id="{{'list'.$criterion->id}}">
                 <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
-                    <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
+                    <a  class="btn btn-success btn-xs" id="edit" data-id="{{$criterion->id}}" data-type="2" data-name="{{$criterion->name}}">Edit</a>
+                    <a  class="btn btn-danger btn-xs" id="delete" data-id="{{$criterion->id}}">Delete</a>
                 </td>
             </tr>
             @endif
@@ -68,11 +68,11 @@
     <tbody>
         @foreach($criteria as $criterion)
             @if($criterion->type == $type['3'])
-            <tr>
+            <tr id="{{'list'.$criterion->id}}">
                 <td><p style="margin-left: 30px">{{ $criterion->name }}</p></td>
                 <td>
-                    <a  class="btn btn-success btn-xs" id="edit">Edit</a>
-                    <a  class="btn btn-danger btn-xs" id="delete">Delete</a>
+                    <a  class="btn btn-success btn-xs" id="edit" data-id="{{$criterion->id}}" data-type="3" data-name="{{$criterion->name}}">Edit</a>
+                    <a  class="btn btn-danger btn-xs" id="delete" data-id="{{$criterion->id}}">Delete</a>
                 </td>
             </tr>
             @endif
