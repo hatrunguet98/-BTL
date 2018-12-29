@@ -9,7 +9,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 2 | Starter</title>
+    <title>ClassSurvey</title>
+    <link rel="icon" href="{{ asset('user/images/unnamed.png') }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
