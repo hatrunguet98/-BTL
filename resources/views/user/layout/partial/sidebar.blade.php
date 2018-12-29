@@ -15,7 +15,7 @@
                         <li>
                         <a class="tag-sidebar" id="survey" data-id="{{$course->user_courses_id}}" href="{{ url('surveys') }}">
                             <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
-                            <p class="h6" id="name-course" style="display:none">{{$course->course_name}}</p>
+                            <p class="h6" id="name-course" style="display:">{{$course->course_name}}</p>
                         </a>
                         @endforeach
                         </li>
@@ -26,17 +26,17 @@
         <!-- /.sidebar -->
     </div>
         <div class="mobile-sidebar">
-        <a class="tag-sidebar "href=""><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
-        <button class="tag-sidebar" id="course-mobile" href=""><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
-        Courses</button>
+        <a class="tag-sidebar "href="{{ url('welcome') }}"><img class="icontree" src="{{ asset('user/images/home.png') }}" /> Home</a>
+        <button class="tag-sidebar" id="course"><img class="icontree" src="{{ asset('user/images/books-stack-of-three.png') }}" />
+                    Courses</button>
         <button class="tag-sidebar" id="class-survey-mobile" href=""><img class="icontree" src="{{ asset('user/images/notebook.png') }}" /> ClassSurvey</button>
         <ul id="list-survey-mobile" style="display:none">
+        @foreach($courses as $course)
             <li class="tag-courses p-0">
-            @foreach($courses as $course)
-            <button class="tag-sidebar" id="tag-classsurvey" href="{{ url('surveys') }}">
-                <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
-                <label class="h10" id="name-course">{{$course->course_name}}</label>
-            </button>
+                <a class="tag-sidebar" id="survey" data-id="{{$course->user_courses_id}}" href="{{ url('surveys') }}">
+                    <img class="icontree" src="{{ asset('user/images/book1.png') }}" /><span id="name-courses">{{$course->code}}</span>
+                    <p class="h6" id="name-course" >{{$course->course_name}}</p>
+                </a>
             @endforeach
             </li>
         </ul>
