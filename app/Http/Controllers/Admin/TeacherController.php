@@ -55,14 +55,10 @@ class TeacherController extends Controller
             $validator = "";
             if(!$request->password) {
                 $validator = validator::make($data, [
-                    'username' => ['required', 'string', 'max:255'],
-                    'email' => ['required', 'string', 'email', 'max:255'],
                     'name' => ['required', 'string', 'max:255'],
                 ]);
             } else {
                 $validator = validator::make($data, [
-                    'username' => ['required', 'string', 'max:255'],
-                    'email' => ['required', 'string', 'email', 'max:255'],
                     'name' => ['required', 'string', 'max:255'],
                     'password' => ['required', 'string', 'min:6','confirmed'],
                 ]);
