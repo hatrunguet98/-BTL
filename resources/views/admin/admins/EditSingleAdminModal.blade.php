@@ -33,7 +33,7 @@
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+                            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary submitBtn">Submit</button>
