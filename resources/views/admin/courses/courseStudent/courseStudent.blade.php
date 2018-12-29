@@ -2,9 +2,6 @@
     <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#enrollSingleStudent">Enroll sinh viên</button>
 </div>
 
-<div class="main-button2">
-    <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#enrollListStudent">Enroll danh sách sinh viên</button>
-</div>
 <div class="modal fade" id="errors" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -37,14 +34,14 @@
         </thead>
         <tbody id="listUsers">
             @foreach( $students as $student)
-            <tr>
+            <tr id="{{'list'.$student->id}}">
                 <td  style="width:5%;text-align: center">{{$student->user_id}}</td>
                 <td style="width:15%;text-align: center">{{$student->username}}</td>
                 <td style="width:30%;text-align: center">{{$student->name}}</td>
                 <td style="width:20%;text-align: center">{{$student->email}}</td>
                 <td style="width:15%;text-align: center">{{$student->class}}</td>
                 <td style="width:15%;text-align: center">
-                    <a  class="btn btn-danger btn-xs" id="delete" data-id="{{$student->id}}">Delete</a>
+                    <a  class="btn btn-danger btn-xs" id="delete-user" data-id="{{$student->id}}">Delete</a>
                 </td>
             </tr>
             @endforeach
@@ -52,5 +49,3 @@
     </table>
 
 @include('admin.courses.courseStudent.EnrollSingleStudentModal')
-
-@include('admin.courses.courseStudent.EnrollListStudentModal')

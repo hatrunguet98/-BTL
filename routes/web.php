@@ -94,6 +94,8 @@ Route::get('/course/student', 'Admin\CourseController@studentsCourse');
 Route::post('/course/edit-course', 'Admin\CourseController@editCourse');
 Route::get('/load-course', 'Admin\CourseController@loadCourse');
 Route::post('/delete-course', 'Admin\CourseController@deleteCourse');
+Route::post('/delete-student', 'Admin\CourseController@deleteUser');
+Route::post('import-course','Admin\CourseController@importStudentCourse');
 
 
 
@@ -110,7 +112,7 @@ Route::get('/teachers','User\TeacherController@teacher');
 Route::get('/teacher/result', 'User\TeacherController@result')->name('teacher/result');
 
 
-Route::get('/user/userlayout/teacher/teacher',function(){
+/*Route::get('/user/userlayout/teacher/teacher',function(){
     return view('user.userlayout.teacher.teacher');
 });
 Route::get('/surveys',function(){
@@ -120,3 +122,4 @@ Route::get('/surveys',function(){
 Route::get('/welcome', function () {
     return view('welcome');
 });
+*/

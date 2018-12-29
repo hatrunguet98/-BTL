@@ -4,11 +4,11 @@
         <div class="modal-content">
             <div class="form">
                 <h2>Chọn danh sách sinh viên</h2>
-                <form action="" method="post">
+                <form action="{{url('import-course')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group col-md-12">
                         <div class="input-group">
-                            <input type="file" class="button-a-background">
+                            <input type="file" name="FILE" required="true"">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary submitBtn">Submit</button>

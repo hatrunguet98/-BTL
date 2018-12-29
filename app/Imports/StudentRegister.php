@@ -59,7 +59,7 @@ class StudentRegister implements ToCollection
                     'role' => $this->role,
                 ]);
             } catch( \Exception $e ) {
-                dd($e);
+                
             }
         }
         return $array;

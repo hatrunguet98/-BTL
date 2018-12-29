@@ -10,6 +10,8 @@ use App\Semester;
 use Illuminate\Support\Facades\DB;
 use App\Services\ClassAdmin\ClassQueryUser;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\CourseListStudent;
+use Excel;
 
 class CourseController extends Controller
 { 
@@ -217,6 +219,31 @@ class CourseController extends Controller
                 return response()->json(['errors'=>'Không thể xóa môn học đã bắt đầu đánh giá']);
             }
             return $this->loadCourse();
+        }
+    }
+
+    public function deleteUser(Request $request){
+        if($request->ajax()){
+            $user_course_id = $request->id;
+            $check = DB::table('user_courses')
+                ->where('id', $user_course_id)
+                ->first();
+            $course_id = $check->course_id;
+            if($check){
+                DB::table('user_courses')->where('id',$user_course_id)->delete();
+                return response()->json(['success' => 'delete success']);
+            } else {
+                return response()->json(['errors'=>'something errors']);
+            }
+        }
+
+        return response()->json(['errors'=>'something errors']);
+    }
+
+    public function importStudentCourse(Request $request){
+        if($request->hasFile('FILE')){
+            Excel::import(new CourseListStudent, request()->file('FILE'));
+            return redirect('/course');
         }
     }
 }
