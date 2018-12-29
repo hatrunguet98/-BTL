@@ -10,11 +10,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <!-- CSS -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
+    <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
+    <!-- AJAX -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
+    <!-- Bootstrap js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -22,17 +26,21 @@
     <!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <script type="text/javascript" src="{{ asset('user/js/home.js') }}"></script>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <![endif]-->
+    <!-- js -->
+    <script type="text/javascript" src="{{ asset('user/js/home.js') }}"></script>
+    <!-- jquery-latest -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
     <!--header-->
     @include("user.layout.partial.header")
     <!--Main Layout-->
     @section('main')
+    <!-- background-img -->
     <section style="background-image: url('{{ asset('user/css/bgk-0.jpg') }}');background-position: center;background-repeat: no-repeat;background-size: cover;color:#ffff;height: 100%">
-            <div class="rgba-gradient d-flex align-items-center">
+    <!-- background-color -->
+        <div class="rgba-gradient d-flex align-items-center">
             <div class="container ">
                 <!--Grid row-->
                 <div class="row" id="row1">
@@ -45,11 +53,13 @@
                         <a class="btn" href="#footer">About</a>
                         <a class="btn" href="#working">Working</a>
                     </div>
-                    <!--Grid row-->
+                <!--Grid row-->
                 </div>
             </div>
-</section>
-<main>
+    </section>
+    <!-- main-content -->
+    <main>
+        <!-- banner-working -->
         <section class="banner-bottom py-5" id="working">
             <div class="container py-md-3">
                 <div class="heading">
@@ -80,6 +90,8 @@
                 </div>
             </div>
         </section>
+        <!-- /banner-working -->
+        <!-- courses -->
         <section class="Courses py-5">
             <div class="container">
                 <div class="inner-sec-w3ls py-lg-5 py-3">
@@ -177,25 +189,32 @@
                             <div class="h7"><img src="{{ asset('user/images/book.png') }}" alt="" class="icon p-1"> BSA2002  Nguyên lý Marketing  </div>
                         </div>
                     </div>
-        </div>
-    </div>
+                </div>
+            </div>
                 </div>
             </div>
         </section>
-</main>
+        <!-- /courses -->
+    </main>
+    <!-- /main-layout -->
     <!--footer-->
     @include("user.layout.partial.footer")
     @show
-<div class='lentop'>
+    <!-- /footer -->
+    <!-- Back to top -->
+    <div class='lentop'>
     <div>
     <img src="{{ asset('user/images/swipe-up.png') }}">
     </div>
-</div>
+    </div>
+    <!-- /Back to top -->
 </body>
+<!-- style-background-head -->
 <style>
 header:hover {
     background: rgba(0, 0, 0, .6);
     transition-duration: 1s;
 }
 </style>
+<!-- /style-background-head -->
 

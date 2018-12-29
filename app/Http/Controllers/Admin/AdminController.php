@@ -120,6 +120,7 @@ class AdminController extends Controller
             }
             
         }
+        return response()->json(['errors'=>'some thing errors']);
     }
 
     public function importAdmin(Request $request)
