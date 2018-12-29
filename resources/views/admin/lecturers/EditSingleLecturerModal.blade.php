@@ -9,21 +9,22 @@
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control" name="username" placeholder="Mã giảng viên" id="username-edit" required>
+                            <label type="text" class="form-control" name="username" placeholder="Mã giảng viên" id="username-edit" required>username cũ</label>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <label type="email" class="form-control" name="email" placeholder="Nhập VNU email" id="email-edit" required>email cũ</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input type="text" class="form-control" name="name" placeholder="Họ và tên" id="name-edit" required>
                         </div>
                     </div>
-                    <div class="form-group col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            <input type="email" class="form-control" name="email" placeholder="Nhập VNU email" id="email-edit" required>
-                        </div>
-                    </div>
+
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -33,7 +34,7 @@
                     <div class="form-group col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+                            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary submitBtn">Submit</button>
