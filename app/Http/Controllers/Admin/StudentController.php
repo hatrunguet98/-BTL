@@ -13,6 +13,7 @@ use Excel;
 use App\Imports\StudentRegister;
 use Illuminate\Support\Facades\Auth;
 use App\Services\ClassAdmin\ClassQueryUser;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -69,8 +70,20 @@ class StudentController extends Controller
                 return response()->json(['errors'=>$validator->errors()->all()]);
             } else {
                 $data = $validator->validate();
-                $user = User::find($request->id);
-                $user->update($data);
+                if(!$request->password){
+                    DB::table('users')->where('id', $request->id)
+                        ->update([
+                            'name' => $data['name'],
+                            'class' => $data['class'],
+                        ]);
+                } else {
+                    DB::table('users')->where('id', $request->id)
+                        ->update([
+                            'name' => $data['name'],
+                            'password' => Hash::make($data['password']),
+                            'class' => $data['class'],
+                        ]);
+                }
                 return $this->loadUser();
             }
        }
