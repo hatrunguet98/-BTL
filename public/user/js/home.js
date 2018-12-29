@@ -20,13 +20,13 @@ $(document).ready(function() {
             document.getElementById("list-surveymobile").style.display = "none";
         }
     });
-    $("#name-courses").hover(function() {
-        if (document.getElementById("name-course").style.display == "none") {
-            document.getElementById("name-course").style.display = "";
-        } else {
-            document.getElementById("name-course").style.display = "none";
-        }
-    });
+    // $("#name-courses").hover(function() {
+    //     if (document.getElementById("name-course").style.display == "none") {
+    //         document.getElementById("name-course").style.display = "";
+    //     } else {
+    //         document.getElementById("name-course").style.display = "none";
+    //     }
+    // });
     $(function(){
         $(window).scroll(function () {
         if ($(this).scrollTop() > 100) $(".lentop").fadeIn();
