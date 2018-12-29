@@ -51,15 +51,17 @@
                 data : data,
                 dataTy : 'json',
                 success:function(data) {
-                    $('#insertSingleAdmin').modal('hide')
-                    alert('success');
+                    if ($.isEmptyObject(data.errors)) {
+                        alert('success');
+                        $('#table').empty().html(data);
+                        $('#insertSingleAdmin').modal('hide')
+                    } else {
+                        msgError(data.errors);
+                    }
                 }
-            }).done(function(data) {
-                $('#table').empty().html(data);
             }).fail(function(e) {
                 $('#insertSingleAdmin').modal('hide')
-                //console.log(e.responseText.message);
-                alert(e.responseText);
+                alert('something errors');
             });
         })
         /* delete users*/
@@ -115,11 +117,14 @@
                     data : data,
                     dataTy : 'json',
                     success:function(data){
-                        alert('success');
+                        if ($.isEmptyObject(data.errors)) {
+                            alert('success');
+                            $('#table').empty().html(data);
+                            $('#editSingleAdmin').modal('hide')
+                        } else {
+                            msgError(data.errors);
+                        }
                     }
-                }).done(function(data) {
-                    $('#editSingleAdmin').modal('hide');
-                    $('#table').empty().html(data);
                 }).fail(function(data) {
                     alert('something error');
                 });
@@ -153,6 +158,14 @@
                     $('#table').empty().html(data);
                 }
             });
+        }
+
+        function msgError(data) {
+            var a = "";
+            $.each(data, function(key, value){
+                a += "- " +value+"\n";
+            });
+            alert(a);
         }
     </script>
 @endsection

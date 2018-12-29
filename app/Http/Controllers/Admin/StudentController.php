@@ -130,31 +130,13 @@ class StudentController extends Controller
 
     public function createUser(array $data)
     {
-        //$this->validator($data)->validate();
         event(new Registered($user = $this->create($data)));
 
-        //$this->guard()->login($user);
 
         return redirect($this->redirectPath());
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
+    
     protected function create(array $data)
     {
         return User::create([

@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@home');
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 // Chức năng với sinh viên
 Route::get('/student', 'Admin\StudentController@student')->name('student');
