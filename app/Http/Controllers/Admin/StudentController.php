@@ -128,7 +128,6 @@ class StudentController extends Controller
     {
         event(new Registered($user = $this->create($data)));
 
-
         return redirect($this->redirectPath());
     }
 
