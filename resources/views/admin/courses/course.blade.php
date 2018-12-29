@@ -135,12 +135,48 @@
 
     });
 
+    $(document).on('change', '#edit-selectcode', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectsubject').val(valCode).change();
+        }
+        
+    });
+
+    $(document).on('change', '#edit-selectsubject', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectcode').val(valSubject).change();
+        }
+
+    });
+
 
     $(document).on('click', '#delete', function(e){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+                    }
+
+    });
+
+    $(document).on('change', '#edit-selectcode', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectsubject').val(valCode).change();
+        }
+        
+    });
+
+    $(document).on('change', '#edit-selectsubject', function () {
+        var valCode = $( "#edit-selectcode option:checked" ).val();
+        var valSubject = $( "#edit-selectsubject option:checked" ).val();
+        if(valCode != valSubject){
+            $('#edit-selectcode').val(valSubject).change();}
+            
         });
 
         if(confirm('Are you sure?')){
