@@ -153,6 +153,30 @@
     });
 
 
+    $(document).on('click', '#delete', function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        if(confirm('Are you sure?')){
+            var id = $(this).data('id');
+            $.post('{{URL::to("delete-course")}}',{id:id}, function(data){
+                if ($.isEmptyObject(data.errors)) {
+                    $('#list'+id).remove();
+                    alert('success');
+                } else {
+                    alert(data.errors);
+                }
+            }).done(function(data) {
+            }).fail(function() {
+                alert( "delete error" );
+            });
+        }
+    })
+
+
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({
             headers: {

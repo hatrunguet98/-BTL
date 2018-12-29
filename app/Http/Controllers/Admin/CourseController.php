@@ -202,4 +202,21 @@ class CourseController extends Controller
             return $this->loadCourse();
         }
     }
+
+    public function deleteCourse(Request $request){
+        if($request->ajax()){
+            $id = $request->id;
+            $course = DB::table('courses')->where('id',$id)->first();
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $time = date_format(now(),"Y-m-d H:i:s");
+            if($course->status == 0){
+                DB::table('courses')->where('id',$id)->delete();
+            }else if($time < $course->start){
+                DB::table('courses')->where('id',$id)->delete();
+            }else {
+                return response()->json(['errors'=>'Không thể xóa môn học đã bắt đầu đánh giá']);
+            }
+            return $this->loadCourse();
+        }
+    }
 }
