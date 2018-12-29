@@ -153,15 +153,6 @@
 
     });
 
-
-    $(document).on('click', '#delete', function(e){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-
-    });
-
     $(document).on('change', '#edit-selectcode', function () {
         var valCode = $( "#edit-selectcode option:checked" ).val();
         var valSubject = $( "#edit-selectsubject option:checked" ).val();
@@ -177,6 +168,14 @@
         if(valCode != valSubject){
             $('#edit-selectcode').val(valSubject).change();}
             
+    });
+
+    $(document).on('click', '#delete', function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+
         });
 
         if(confirm('Are you sure?')){
@@ -193,8 +192,30 @@
                 alert( "delete error" );
             });
         }
-    })
+    });
 
+    $(document).on('click', '#delete-user', function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+
+        });
+
+        if(confirm('Are you sure?')){
+            var id = $(this).data('id');
+            $.post('{{URL::to("delete-student")}}',{id:id}, function(data){
+                if ($.isEmptyObject(data.errors)) {
+                    $('#list'+id).remove();
+                    alert(data.success);
+                } else {
+                    alert(data.errors);
+                }
+            }).fail(function() {
+                alert( "something error" );
+            });
+        }
+    });
 
     $(document).on('submit','#enroll-single', function(e){
         $.ajaxSetup({
