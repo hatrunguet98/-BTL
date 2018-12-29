@@ -14,20 +14,9 @@
         <a class="btn btn-vimeo" href="{{ asset('survey/set-default') }}">Cài đặt mặc định</a>
     </div>
 
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <th style="width:15%;text-align: center"><i class="fa fa-cog" aria-hidden="true"></i></th>
-            <th style="width:30%;text-align: center">Title</th>
-            <th style="width:15%;text-align: center">Code</th>
-            <th style="width:20%;text-align: center">Start</th>
-            <th style="width:20%;text-align: center">Finish</th>
-        </tr>
-        </thead>
-        <tbody id="table">
-            
-        </tbody>
-    </table>
+    <div id="table">
+        
+    </div>
     <div id="data">
     </div>
 @endsection
@@ -35,6 +24,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         autoload();
+        listSurvey();
     })    
 
     //Hiện modal thông tin đánh giá
@@ -115,6 +105,19 @@
             });
         }
     })
+
+    function listSurvey(){
+       $(document).on('click','.pagination a', function(e){
+            e.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            var url = '{{URL::to("load-survey")}}'+'?page='+page;
+            $.ajax({
+                url : url
+            }).done(function(data){
+                $('#table').html(data);
+            })
+        })
+    }
 
     function autoload(){
         var data = "";

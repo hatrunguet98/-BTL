@@ -16,23 +16,11 @@
     <div class="main-button2">
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#enrollListStudent">Enroll danh sách sinh viên</button>
     </div>
-
-    {{--Danh sách các môn học--}}
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Mã lớp học phần</th>
-            <th>Ki hoc</th>
-            <th>Giáo Viên</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody id="table">
+    <div id="table">
+       {{--Danh sách các môn học--}}
+    
        {{--Nội dung danh sách các môn học sẽ load bằng ajax--}}
-        </tbody>
-    </table>
+    </div>
 </div>
     {{--form nhập 1 lớp môn học--}}
     @include('admin.courses.InsertSingleCourseModal')
@@ -60,6 +48,7 @@
                 $('#table').empty().html(data);
             }
         });
+        listCourse();
     });
 
     var code = '';
@@ -286,7 +275,20 @@
         }).fail(function(data){
             alert('something error');
         });
-    })
+    });
+
+    function listCourse(){
+       $(document).on('click','.pagination a', function(e){
+            e.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            var url = '{{URL::to("load-course")}}'+'?page='+page;
+            $.ajax({
+                url : url
+            }).done(function(data){
+                $('#table').html(data);
+            })
+        })
+    }
 </script>
     
 @endsection

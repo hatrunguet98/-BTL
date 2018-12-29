@@ -23,8 +23,8 @@ class SurveyController extends Controller
     }
 
     public function loadSurvey(){
-        $courses = Course::where('status',1)->get();
-        return view('admin.surveys.listSurvey',compact('courses'));
+        $courses = Course::where('status',1)->Paginate(5);
+        return view('admin.surveys.listSurvey',compact('courses'))->render();
     }
 
     public function generate() {
