@@ -95,6 +95,7 @@ Route::post('/course/edit-course', 'Admin\CourseController@editCourse');
 Route::get('/load-course', 'Admin\CourseController@loadCourse');
 Route::post('/delete-course', 'Admin\CourseController@deleteCourse');
 Route::post('/delete-student', 'Admin\CourseController@deleteUser');
+Route::post('import-course','Admin\CourseController@importStudentCourse');
 
 
 

@@ -11,6 +11,10 @@
         <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#insertSingleCourse">Thêm lớp môn học</button>
     </div>
 
+    <div class="main-button2">
+        <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#enrollListStudent">Enroll danh sách sinh viên</button>
+    </div>
+
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -31,6 +35,9 @@
     @include('admin.courses.InsertSingleCourseModal')
 
     @include('admin.courses.EditSingleCourseModal')
+
+    @include('admin.courses.EnrollListStudentModal')
+
 
 @endsection
 
