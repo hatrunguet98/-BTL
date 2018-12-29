@@ -10,6 +10,8 @@ use App\Semester;
 use Illuminate\Support\Facades\DB;
 use App\Services\ClassAdmin\ClassQueryUser;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\CourseListStudent;
+use Excel;
 
 class CourseController extends Controller
 { 
@@ -236,5 +238,12 @@ class CourseController extends Controller
         }
 
         return response()->json(['errors'=>'something errors']);
+    }
+
+    public function importStudentCourse(Request $request){
+        if($request->hasFile('FILE')){
+            Excel::import(new CourseListStudent, request()->file('FILE'));
+            return redirect('/course');
+        }
     }
 }

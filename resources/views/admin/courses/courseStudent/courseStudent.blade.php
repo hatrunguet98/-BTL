@@ -2,9 +2,6 @@
     <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#enrollSingleStudent">Enroll sinh viên</button>
 </div>
 
-<div class="main-button2">
-    <button type="button" class="btn btn-vimeo" data-toggle="modal" data-target="#enrollListStudent">Enroll danh sách sinh viên</button>
-</div>
 <div class="modal fade" id="errors" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -52,5 +49,3 @@
     </table>
 
 @include('admin.courses.courseStudent.EnrollSingleStudentModal')
-
-@include('admin.courses.courseStudent.EnrollListStudentModal')

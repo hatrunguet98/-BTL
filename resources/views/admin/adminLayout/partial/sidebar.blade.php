@@ -36,7 +36,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">CHỨC NĂNG</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('dashboard') }}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+            <li class="active"><a href="{{ url('dashboard') }}"><i class="fa fa-link"></i> <span>About</span></a></li>
             <li class="active"><a href="{{ url('student') }}"><i class="fa fa-link"></i> <span>Danh sách sinh viên</span></a></li>
             <li class="active"><a href="{{ url('teacher') }}"><i class="fa fa-link"></i> <span>Danh sách giảng viên</span></a></li>
             <li class="active"><a href="{{ url('admin') }}"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
