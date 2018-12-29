@@ -42,17 +42,6 @@
             <li class="active"><a href="{{ url('admin') }}"><i class="fa fa-link"></i> <span>Danh sách admin</span></a></li>
             <li class="active"><a href="{{ url('survey') }}"><i class="fa fa-link"></i> <span>Danh sách đánh giá</span></a></li>
             <li class="active"><a href="{{ url('course') }}"><i class="fa fa-link"></i> <span>Danh sách môn học</span></a></li>
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
