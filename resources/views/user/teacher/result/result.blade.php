@@ -11,6 +11,7 @@
             </span>
         </div>
     </div>
+
     <div>
         <span>
             <label class="h5">Tên học phần: {{ $about['sublect-name'] }}</label><br>
