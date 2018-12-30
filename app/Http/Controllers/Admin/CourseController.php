@@ -12,11 +12,13 @@ use App\Services\ClassAdmin\ClassQueryUser;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\CourseListStudent;
 use Excel;
+use App\Services\ClassResultSurvey;
 
 class CourseController extends Controller
 { 
+    // load thông tin vào trang course
     public function course(){
-    	$courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id')
+    	$courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id', 'user_courses.id as user_course_id')
             ->join('user_courses','courses.id', '=', 'user_courses.course_id')
             ->join('users', 'users.id', '=', 'user_courses.user_id')
             ->join('roles','roles.id','=', 'users.role')
@@ -27,21 +29,21 @@ class CourseController extends Controller
         $teachers = ClassQueryUser::showUser('giaovien');
 	    return view('admin.courses.course',compact('courses','subjects','semesters','teachers'));
     }
-
+    // load course bằng ajax()
     public function loadCourse(){
-        $courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id')
+        $courses = Course::select('courses.id as id','courses.code as code', 'courses.name as name', 'courses.semester as semester', 'users.name as user_name', 'users.id as user_id', 'courses.subject_id as code_id','user_courses.id as user_course_id')
             ->join('user_courses','courses.id', '=', 'user_courses.course_id')
             ->join('users', 'users.id', '=', 'user_courses.user_id')
             ->join('roles','roles.id','=', 'users.role')
             ->where('roles.name', 'giaovien')
-            ->get();
-        return view('admin.courses.ListCourse', compact('courses'));
+            ->Paginate(7);
+        return view('admin.courses.ListCourse', compact('courses'))->render();
     }
-
+    // load ra trang course
     public function allCourses(){
         return view('user.courses.courses');
     }
-
+    // thêm môn học
     public function addCourse(Request $request){
         $data = $request->all();
         $semesters = DB::table('semesters')
@@ -61,6 +63,7 @@ class CourseController extends Controller
                     ->where('roles.name','giaovien')
                     ->where('users.id', $data['user'])
                     ->first();
+        // kiểm tra môn học và giáo viên có tồn tại hay ko 
         if($subject && $teacher) {
             $code = "";
             if(!$course){
@@ -84,12 +87,10 @@ class CourseController extends Controller
                 'user_id' => $teacher->id,
                 'course_id' => $course_id,
             ]);
-        } else {
-            dd("@@@");
         }
        return redirect('/course');
     }
-
+    // thêm sinh viên vào khóa học đã được tạo
     public function enrollStudent(Request $request) {
         $username = $request->username;
         $course_id = $request->id;
@@ -124,7 +125,7 @@ class CourseController extends Controller
         }
         return response()->json(['errors' => 'something errors']);
     }
-
+    // load ajax danh sách sinh viên vào khóa học
     public function studentsCourse(Request $request){
         if($request->ajax()) {
             $course_id = $request->id;
@@ -138,7 +139,7 @@ class CourseController extends Controller
             return view('admin.courses.courseStudent.CourseStudent', compact('students','course_id'));
         }
     }
-
+    // thêm sửa thông tin course vào khóa học
     public function editCourse(Request $request){
         if($request->ajax()){
             $data = $request->all();
@@ -204,7 +205,7 @@ class CourseController extends Controller
             return $this->loadCourse();
         }
     }
-
+    // xóa môn học 
     public function deleteCourse(Request $request){
         if($request->ajax()){
             $id = $request->id;
@@ -221,7 +222,7 @@ class CourseController extends Controller
             return $this->loadCourse();
         }
     }
-
+    // xóa sinh viên ra khỏi khóa học
     public function deleteUser(Request $request){
         if($request->ajax()){
             $user_course_id = $request->id;
@@ -239,11 +240,22 @@ class CourseController extends Controller
 
         return response()->json(['errors'=>'something errors']);
     }
-
+    // thêm sinh viên vào khóa học
     public function importStudentCourse(Request $request){
         if($request->hasFile('FILE')){
             Excel::import(new CourseListStudent, request()->file('FILE'));
             return redirect('/course');
+        }
+    }
+    // xuất kết quả đánh giá cho trang admins
+    public function resultCourse(Request $request){
+        if($request->ajax()){
+            $cal = new ClassResultSurvey;
+            if(!$cal->resultSurvey($request)){
+                return response()->json(['errors'=>'Đánh giá môn học chưa kết thúc !']);
+            } else {
+                return view('user.teacher.result.result', $cal->resultSurvey($request));
+            }
         }
     }
 }

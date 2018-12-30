@@ -70,7 +70,6 @@ Route::get('/edit-survey', 'Admin\SurveyController@editSurvey');
 
 Route::get('/generate','Admin\SurveyController@generate');
 Route::get('/survey-generate','Admin\SurveyController@surveyGenerate')->name('survey-generate');
-Route::get('/survey-edit', 'Admin\SurveyController@surveyEdit');
 Route::post('/generate','Admin\SurveyController@surveyRegister');
 Route::post('/survey/survey-insert', 'Admin\SurveyController@surveyInsert');
 Route::get('/survey/set-default', function(){
@@ -98,6 +97,8 @@ Route::get('/load-course', 'Admin\CourseController@loadCourse');
 Route::post('/delete-course', 'Admin\CourseController@deleteCourse');
 Route::post('/delete-student', 'Admin\CourseController@deleteUser');
 Route::post('import-course','Admin\CourseController@importStudentCourse');
+Route::get('/course/result', 'Admin\CourseController@resultCourse');
+
 
 
 

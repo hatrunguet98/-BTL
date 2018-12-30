@@ -15,8 +15,11 @@
 		e.preventDefault();
 		var id = $(this).data('id');
 		$.get('{{ URL::to("teacher/result") }}', {id:id}).done(function(data){
-			console.log(data);
-			$('#data').empty().html(data);
+			if ($.isEmptyObject(data.errors)) {
+                $('#data').empty().html(data);
+            } else {
+                alert(data.errors);
+            }
 		}).fail(function(data){
 			alert('something error');
 		});

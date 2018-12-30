@@ -9,7 +9,7 @@
         </div>
         <div>
             <span class="text-center font-weight-bold">
-                <p class="h5">{{ $about['semester'] }}, Năm học: 2017-2018</p>
+                <p class="h5">{{ $about['semester'] }}, Năm học: 2018-2019</p>
             </span>
         </div>
     </div>

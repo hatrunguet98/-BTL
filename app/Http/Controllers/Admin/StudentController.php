@@ -31,25 +31,26 @@ class StudentController extends Controller
      *
      * @return void
      */
+    // kiểm tra quyền admin
     public function __construct()
     {
         //$this->middleware('guest');
         $this->middleware('auth');
         $this->middleware('admin');
     }
-
+    // view trang student
     public function student()
     {	        
         return view('admin.students.Student');
     }
-
+    // lấy dữ liệu cho Edit
     public function editUser(Request $request) {
         if($request->ajax()) {
             $user = User::find($request->id);
             return response($user);
         }
     }
-
+    // submit lưu vào databases và sửa thông tin sinh viên
     public function edit (Request $request) {
        if($request->ajax()) {
             $data = $request->all();
@@ -89,7 +90,7 @@ class StudentController extends Controller
        }
        return response()->json(['errors'=>'some thing errors']);
     }
-
+    // xóa tài khoản sinh viên
     public function delete(Request $request)
     {
         if($request->ajax()) {
@@ -97,13 +98,13 @@ class StudentController extends Controller
             return response(['message' => 'student deleted succesfully']);
         }
     }
-
+    // lấy ra danh sách sinh viên
     public function loadUser(){
         $role_name = 'sinhvien';
         $users = ClassQueryUser::showUser($role_name);
         return view('admin.students.ListStudent', compact('users'))->render();
     }
-
+    // thêm sinh viên vào dánh sách
     public function importStudent(Request $request)
     {
         if($request->hasFile('FILE')){
@@ -111,7 +112,7 @@ class StudentController extends Controller
         	 return redirect('/student')->with('success', 'All good!');
         }
     }
-
+    // thêm tài khoản sinh viên
     public function register(Request $request)
     {
         if($request->ajax()){
@@ -123,7 +124,7 @@ class StudentController extends Controller
                 'password' => ['required', 'string', 'min:6', 'confirmed'],
                 'class' => ['required', 'string'],
             ]);
-
+            // trả lại thông náo nếu kết  dữ liệu ko hợp lệ
             if($validator->fails()){
                 return response()->json(['errors'=>$validator->errors()->all()]);
             } else {
@@ -135,7 +136,7 @@ class StudentController extends Controller
         }
        return response()->json(['errors'=>'some thing errors']);
     }
-
+    // thêm tài khoản sinh viên
     public function createUser(array $data)
     {
         event(new Registered($user = $this->create($data)));
@@ -143,7 +144,7 @@ class StudentController extends Controller
         return redirect($this->redirectPath());
     }
 
-    
+    // thêm tài khoản sinh viên
     protected function create(array $data)
     {
         return User::create([
