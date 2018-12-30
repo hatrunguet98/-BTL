@@ -31,6 +31,9 @@ class TeacherController extends Controller
     public function result(Request $request) {
         if($request->ajax()){
             $cal = new ClassResultSurvey;
+            if($cal->resultSurvey($request) == 1){
+                return response()->json(['errors'=>'Đánh giá môn học chưa được tạo!']);
+            }
             if(!$cal->resultSurvey($request)){
                 return response()->json(['errors'=>'Đánh giá môn học chưa kết thúc !']);
             } else {

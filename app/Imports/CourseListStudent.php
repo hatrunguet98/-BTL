@@ -25,7 +25,10 @@ class CourseListStudent implements ToCollection
         if($check){
         $course_id = $check->id;
             foreach ($datas as $key => $data) {
-                $user = DB::table('users')->where('username', $data)->first();
+                $user = DB::table('users')
+                    ->where('username', $data)
+                    ->where('status', '1')
+                    ->first();
                 if($user){
                     $user_id = $user->id;
                     $temp = DB::table('user_courses')

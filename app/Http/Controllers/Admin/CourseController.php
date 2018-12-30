@@ -212,6 +212,13 @@ class CourseController extends Controller
             $course = DB::table('courses')->where('id',$id)->first();
             date_default_timezone_set('Asia/Ho_Chi_Minh');
             $time = date_format(now(),"Y-m-d H:i:s");
+            $ret = DB::table('user_courses')
+                ->where('user_id', $id)
+                ->where('survey_id','<>',null)
+                ->first();
+            if($ret == null){
+                return response()->json(['errors'=>'-Môn học đã có sinh viên!']);
+            }
             if($course->status == 0){
                 DB::table('courses')->where('id',$id)->delete();
             }else if($time < $course->start){
@@ -229,7 +236,7 @@ class CourseController extends Controller
             $check = DB::table('user_courses')
                 ->where('id', $user_course_id)
                 ->first();
-            $course_id = $check->course_id;
+
             if($check){
                 DB::table('user_courses')->where('id',$user_course_id)->delete();
                 return response()->json(['success' => 'delete success']);
@@ -251,6 +258,9 @@ class CourseController extends Controller
     public function resultCourse(Request $request){
         if($request->ajax()){
             $cal = new ClassResultSurvey;
+            if($cal->resultSurvey($request) == 1){
+                return response()->json(['errors'=>'Đánh giá môn học chưa được tạo!']);
+            }
             if(!$cal->resultSurvey($request)){
                 return response()->json(['errors'=>'Đánh giá môn học chưa kết thúc !']);
             } else {
