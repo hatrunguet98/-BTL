@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-
+    // kiểm tra quyền người dùng
 	public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('delete');
         $this->middleware('student');
     }
-    
+    //  lấy ra danh sách khóa học và thông tin người dùng
     public function student(){
     	$id = Auth::user()->id;
     	$courses = DB::table('courses')
@@ -27,7 +27,7 @@ class StudentController extends Controller
                     ->get();
     	return view('user.student.students', compact('courses'));
     }
-
+    // lấy thông tin trang đánh giá
     public function survey(Request $request) {
     	if($request->ajax()){
             date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -109,7 +109,7 @@ class StudentController extends Controller
             return view('user.student.survey.survey', compact('datas','course','comment','type'));
         }
     }
-
+    // ghi lại kết quả đánh giá
     public function insertSurvey(Request $request) {
         $comment = $request->comment;
         $user_course_id = $request->user_course_id;

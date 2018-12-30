@@ -32,12 +32,12 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/dashboard';
-
+    // quyết định đanh nhập bằng tài khoản username
     public function username()
     {
         return 'username';
     }
-
+    // kiêm tra login và đăng nhập
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -62,7 +62,7 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
-
+    // gửi kết quả login
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
@@ -72,7 +72,7 @@ class LoginController extends Controller
         return $this->authenticated($request, $this->guard()->user());
         //return redirect('dashboard');
     }
-
+    // chuyên người dùng vào rang thích hợp
     protected function authenticated(Request $request, $user)
     {
         $delete = $user->status;
