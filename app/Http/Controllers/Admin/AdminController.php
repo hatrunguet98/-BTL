@@ -31,25 +31,26 @@ class AdminController extends Controller
      *
      * @return void
      */
+    // hàm middware xác đinh quyền truy cập của user
     public function __construct()
     {
         //$this->middleware('guest');
         $this->middleware('auth');
         $this->middleware('admin');
     }
-
+    // view đên trang admin
     public function admin()
     {
     	return view('Admin.admins.Admin');
     }
-
+    // edit ra tài khoản admin
     public function editUser(Request $request) {
         if($request->ajax()) {
             $user = User::find($request->id);
             return response($user);
         }
     }
-
+    // submit tài khoản admin
     public function edit (Request $request) {
        if($request->ajax()) {
             $data = $request->all();
@@ -85,7 +86,7 @@ class AdminController extends Controller
        }
        return response(['message' => 'something ERROR']);
     }
-
+    // deletete tài khoản admin
     public function delete(Request $request)
     {
         if($request->ajax()) {
@@ -93,13 +94,13 @@ class AdminController extends Controller
             return $this->loadUser();
         }
     }
-
+    // lấy ra tài khoản
     public function loadUser(){
         $role_name = 'admin';
         $users = ClassQueryUser::showUser($role_name);
         return view('admin.admins.ListAdmin', compact('users'))->render();
     }
-    
+    // thêm tài khoản cho user và xác đinh người dùng
     public function register(Request $request)
     {
        if($request->ajax()){
@@ -110,7 +111,7 @@ class AdminController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'password' => ['required', 'string', 'min:6', 'confirmed'],
             ]);
-
+            // gửi lại kết quả fails
             if($validator->fails()){
                 return response()->json(['errors'=>$validator->errors()->all()]);
             } else {
@@ -122,47 +123,23 @@ class AdminController extends Controller
         }
         return response()->json(['errors'=>'some thing errors']);
     }
-
+    // import tài khoản admin
     public function importAdmin(Request $request)
     {
         if($request->hasFile('FILE')){
-            //return Excel::import(new TeacherRegister, request()->file('FILE'));
             Excel::import(new AdminRegister, request()->file('FILE'));
             return redirect('/admin')->with('success', 'All good!');
         }
     }
 
-
+    // thêm tài khoản
     public function createUser(array $data)
     {
         event(new Registered($user = $this->create($data)));
 
-
         return redirect($this->redirectPath());
     }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
+    // thêm tài khoản vào databases
     protected function create(array $data)
     {
         return User::create([

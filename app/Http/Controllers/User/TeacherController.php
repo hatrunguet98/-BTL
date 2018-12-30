@@ -10,13 +10,13 @@ use App\Services\ClassResultSurvey;
 
 class TeacherController extends Controller
 {
-    
+    // kiểm tra quyền người dùng
 	public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('teacher');
     }
-    
+    // lấy ra thông tin của giảng viên 
     public function teacher(){
     	$id = Auth::user()->id;
     	$courses = DB::table('courses')
@@ -27,7 +27,7 @@ class TeacherController extends Controller
                     ->get();
    		return view('user.teacher.teacher', compact('courses'));
     }
-
+    // lấy ra kết quả cuộc đánh giá
     public function result(Request $request) {
         if($request->ajax()){
             $cal = new ClassResultSurvey;

@@ -31,25 +31,26 @@ class TeacherController extends Controller
      *
      * @return void
      */
+    // check  quyền người dùng
     public function __construct()
     {
         //$this->middleware('guest');
         $this->middleware('auth');
         $this->middleware('admin');
     }
-
+    // gọi trang giáo viên
     public function teacher()
     {
     	return view('Admin.lecturers.Teacher');
     }
-
+    // edit ra thông tin giáo viên
     public function editUser(Request $request) {
         if($request->ajax()) {
             $user = User::find($request->id);
             return response($user);
         }
     }
-
+    // update thông tin giáo viên
     public function edit (Request $request) {
        if($request->ajax()) {
             $data = $request->all();
@@ -85,7 +86,7 @@ class TeacherController extends Controller
        }
        return response()->json(['errors'=>'some thing errors']);
     }
-
+    // xóa giáo viên
     public function delete(Request $request)
     {
         if($request->ajax()) {
@@ -93,13 +94,13 @@ class TeacherController extends Controller
             return $this->loadUser();
         }
     }
-
+    // lấy ra danh sách tài khoản giáo viên
     public function loadUser(){
         $role_name = 'giaovien';
         $users = ClassQueryUser::showUser($role_name);
         return view('admin.lecturers.ListTeacher', compact('users'))->render();
     }
-
+    // thêm tài khoản giáo viên
     public function register(Request $request)
     {
        if($request->ajax()){
@@ -122,7 +123,7 @@ class TeacherController extends Controller
         }
        return response()->json(['errors'=>'some thing errors']);
     }
-
+    // thêm giáo viên theo danh sách
     public function importTeacher(Request $request)
     {
         if($request->hasFile('FILE')){
@@ -131,17 +132,15 @@ class TeacherController extends Controller
             return redirect('/teacher')->with('success', 'All good!');
         }
     }
-
-
+    // thêm tài khoản
     public function createUser(array $data)
     {
         event(new Registered($user = $this->create($data)));
 
-
         return redirect($this->redirectPath());
     }
 
-   
+   // thêm tài khoản
     protected function create(array $data)
     {
         return User::create([
