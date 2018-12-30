@@ -153,7 +153,12 @@
                 } else if (countCriterion == 0){
                     alert("Chưa chọn tiêu chí nào");
                     e.preventDefault();
+                } else if ( document.getElementById("start").value >= document.getElementById("finish").value) {
+                    alert("Ngày bắt đầu phải ở trước ngày kết thúc");
+                    e.preventDefault();
                 }
+
+
             });
         });
 

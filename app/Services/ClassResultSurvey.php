@@ -17,9 +17,11 @@ class ClassResultSurvey
 		$course_id = DB::table('user_courses')->where('id',$user_course_id)->first()->course_id;
         $user_id = DB::table('user_courses')->where('id',$user_course_id)->first()->user_id;
     	$course = DB::table('courses')->where('id',$course_id)->first();
-        /*if($now < $course->finish){
+
+    	if($now < $course->finish){
             return 0;
-        }*/
+        }
+
         $surveys = DB::table('user_courses')->select( 'surveys.evaluate')
             ->join('surveys','surveys.id', '=', 'user_courses.survey_id')
             ->where('user_courses.course_id', $course_id)
@@ -79,7 +81,9 @@ class ClassResultSurvey
             $sameTeacherAverage[] = $this->average($sameTeacher->id);
         }
 
-
+        if($criterion == null){
+            return 1;
+        }
     	foreach ($criterion as $key => $value) {
             //Trung bình
             $sum = 0;
@@ -106,30 +110,30 @@ class ClassResultSurvey
             $STD = sqrt($Ps);
 
             //Trung bình và độ lệch chuẩn với các lớp cùng môn học
-            $calculate = array();
-            $calculate[] = $M;
+            $calculate1 = array();
+            $calculate1[] = $M;
             foreach ($sameSubjectAverage as $item) {
-                $calculate[] = isset($item[$value]) ? $item[$value] : 0;
+                $calculate1[] = isset($item[$value]) ? $item[$value] : 0;
             }
-            $calculateResult1 = $this->STD($calculate);
+            $calculateResult1 = $this->STD($calculate1);
 
             //Trung bình và độ lệch chuẩn với các lớp cùng giáo viên
-            $calculate = array();
-            $calculate[] = $M;
+            $calculate2 = array();
+            $calculate2[] = $M;
             foreach ($sameTeacherAverage as $item) {
-                $calculate[] = isset($item[$value]) ? $item[$value] : 0;
+                $calculate2[] = isset($item[$value]) ? $item[$value] : 0;
             }
-            $calculateResult2 = $this->STD($calculate);
+            $calculateResult2 = $this->STD($calculate2);
 
     		$results[] = [
     			'id' => '1',
     			'name' => $criteria[$value],
-    			'M' => round($M,1),
-    			'STD' => round($STD,1),
-    			'M1' => $calculateResult1['m'],
-    			'STD1' => $calculateResult1['std'],
-    			'M2' => $calculateResult2['m'],
-    			'STD2' => $calculateResult2['std'],
+    			'M' => round($M,2),
+    			'STD' => round($STD,2),
+    			'M1' => round($calculateResult1['m'],2),
+    			'STD1' => round($calculateResult1['std'],2),
+    			'M2' => round($calculateResult2['m'],2),
+    			'STD2' => round($calculateResult2['std'],2),
     		];
     	}
 
@@ -162,7 +166,6 @@ class ClassResultSurvey
             ->distinct()
             ->get();
 
-        //dd(count($allTeacher));
         $about['quantity-teacher'] = count($allTeacher);
         $about['quantity-subject'] = count($sameTeachers) + 1;
         $about['course-code'] = $course_code;
